@@ -1,0 +1,18 @@
+ideas = {
+	country = {
+		lin_enterprises = {
+			picture = Lin_CHI
+			modifier = {
+				production_speed_buildings_factor = 50.0
+				local_resources_factor = 2.0
+				production_factory_efficiency_gain_factor = 10.0
+				production_factory_max_efficiency_factor = 1.0
+				consumer_goods_factor = -0.5
+				research_speed_factor = 8.0
+				productivity_growth_modifier = 8
+			}
+		}
+
+
+	}
+}
