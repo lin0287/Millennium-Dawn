@@ -1010,6 +1010,7 @@ sub_units = {
 		}
 
 		combat_width = 4
+		can_be_parachuted = yes
 
 		#Size Definitions
 		max_strength = 35
@@ -1212,6 +1213,8 @@ sub_units = {
 		}
 
 		supply_consumption = 0.01
+		
+		can_be_parachuted = yes
 
 		# Support nerfs to combat abilities
 		defense = -0.66
@@ -1838,6 +1841,8 @@ sub_units = {
 		training_time = 200
 		suppression = 1
 		weight = 1
+		
+		can_be_parachuted = yes
 
 		supply_consumption = 0.1
 
@@ -2232,6 +2237,7 @@ sub_units = {
 		supply_consumption = 0.06
 
 		transport = medium_tank_destroyer_chassis
+		can_be_parachuted = yes
 
 		plains = {
 			attack = 0.25
@@ -2375,6 +2381,8 @@ sub_units = {
 		}
 
 		combat_width = 1
+		
+		can_be_parachuted = yes
 
 		#Size Definitions
 		max_strength = 18
@@ -2454,6 +2462,8 @@ sub_units = {
 		}
 
 		combat_width = 2
+		
+		can_be_parachuted = yes
 
 		#Size Definitions
 		max_strength = 13
@@ -2533,6 +2543,8 @@ sub_units = {
 		}
 
 		combat_width = 2
+		
+		can_be_parachuted = yes
 
 		#Size Definitions
 		max_strength = 11
@@ -2635,6 +2647,8 @@ sub_units = {
 		weight = 0.33
 		recon = 1.6
 		initiative = 0.08
+		
+		can_be_parachuted = yes
 
 		defense = -0.66
 		breakthrough = -0.66
@@ -2745,6 +2759,8 @@ sub_units = {
 		}
 
 		supply_consumption = 0.03
+		
+		can_be_parachuted = yes
 
 		transport = medium_tank_destroyer_chassis
 
@@ -2813,6 +2829,8 @@ sub_units = {
 		entrenchment = 2
 
 		transport = Inf_equipment
+		
+		can_be_parachuted = yes
 
 		#transport = util_vehicle_equipment
 
@@ -2914,7 +2932,9 @@ sub_units = {
 
 		supply_consumption = 0.02
 		entrenchment = 4
-
+		
+		can_be_parachuted = yes
+		
 		battalion_mult = {
 			category = category_all_infantry
 			entrenchment = 0.25
@@ -4122,6 +4142,8 @@ sub_units = {
 		default_morale = 0.1
 		manpower = 320
 		entrenchment = -0.15
+		
+		can_be_parachuted = yes
 
 
 		#Misc Abilities
@@ -4406,6 +4428,8 @@ sub_units = {
 
 		supply_consumption = 0.08 #0.25
 		transport = medium_tank_chassis
+		
+		can_be_parachuted = yes
 
 		plains = {
 			attack = 0.25

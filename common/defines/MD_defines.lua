@@ -146,8 +146,8 @@
 	NDefines.NProduction.CIC_BANK_SPEED_BOOST_FACTOR = 0 -- 0.25
 	NDefines.NMarket.IC_TO_CIC_FACTOR = 0.85 -- 2.0
 	NDefines.NMarket.PURCHASE_CONTRACT_DELIVERY_TOTAL_DAYS = 7 -- 30
-	NDefines.NMarket.MAX_CIV_FACTORIES_PER_CONTRACT = 15 -- 15
-	NDefines.NMarket.LOW_PRICE_LEVEL_FACTOR = 0.1 -- 0.75
+	NDefines.NMarket.MAX_CIV_FACTORIES_PER_CONTRACT = 30 -- 15
+	NDefines.NMarket.LOW_PRICE_LEVEL_FACTOR = 0.05 -- 0.75
 	NDefines.NMarket.HIGH_PRICE_LEVEL_FACTOR = 1.10 -- 1.25
 	-- Raid AI
 	NDefines.NAI.RAIDS_MIN_SUCCESS_FOR_LAUNCH = 0.12 -- 0.65 -- Scaled by 0.10 more for some reason

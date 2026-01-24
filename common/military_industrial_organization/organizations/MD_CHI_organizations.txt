@@ -8042,6 +8042,7 @@ CHI_sac_manufacturer = {
 	equipment_type = {
 		mio_cat_eq_only_all_light_aircraft
 		mio_cat_eq_only_medium_aircraft
+		mio_cat_eq_only_cv_medium_aircraft
 	}
 
 	research_categories = {
@@ -12720,7 +12721,7 @@ CHI_crrc_manufacturer = {
 	allowed = { original_tag = CHI }
 	icon = GFX_idea_crrc_company
 
-	task_capacity = 5
+	task_capacity = 15
 
 	equipment_type = {
 		train_equipment
