@@ -3104,7 +3104,10 @@ third_times_the_charm = {
 	happened = {
 		date > 1999.01.02
 		original_tag = GER
-		is_europe_state_owned = yes
+		any_state = {
+			is_on_continent = europe
+			is_owned_by = GER
+		}
 	}
 }
 
@@ -3283,28 +3286,13 @@ khaaaan = {
 	happened = {
 		date > 1999.01.02
 		original_tag = MON
-		is_china_state_owned = yes
+		is_mainland_china_state_owned = yes
 		is_russia_state_owned = yes
 	}
 }
 
 # Taiwan Achievements
-# TODO: Add graphics for real_china, silicon_island
-real_china = {
-	possible = {
-		difficulty > 1
-		has_any_custom_difficulty_setting = no
-		game_rules_allow_achievements = yes
-		original_tag = TAI
-	}
-
-	happened = {
-		date > 1999.01.02
-		original_tag = TAI
-		is_china_state_owned = yes
-	}
-}
-
+# TODO: Add graphics for silicon_island
 silicon_island = {
 	possible = {
 		difficulty > 1
