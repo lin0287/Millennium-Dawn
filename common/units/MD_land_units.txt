@@ -2038,13 +2038,14 @@ sub_units = {
 
 		supply_consumption = 0.01 #0.07
 
-		transport = command_control_equipment
+		transport = util_vehicle_equipment
 
 		need = {
 		 	Inf_equipment = 100
 		 	L_AT_Equipment = 12
 		 	AA_Equipment = 8
 		 	command_control_equipment = 30
+			util_vehicle_equipment = 30
 		}
 
 		plains = {
