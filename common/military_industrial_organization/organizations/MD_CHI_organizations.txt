@@ -1986,7 +1986,7 @@ CHI_caic_manufacturer = {
 	}
 
 
-	task_capacity = 8
+	task_capacity = 10
 
 	research_bonus = 0.03
 
