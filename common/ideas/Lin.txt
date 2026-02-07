@@ -7,7 +7,7 @@ ideas = {
 				local_resources_factor = 2.0
 				production_factory_efficiency_gain_factor = 10.0
 				production_factory_max_efficiency_factor = 1.0
-				consumer_goods_factor = -0.5
+				consumer_goods_factor = -0.8
 				research_speed_factor = 15.0
 				productivity_growth_modifier = 12
 			}

@@ -233,9 +233,9 @@
 	NDefines.NProduction.EQUIPMENT_MODULE_REPLACE_XP_COST = 6.0				-- XP cost for replacing one equipment module with an unrelated module when creating an equipment variant.
 	NDefines.NProduction.EQUIPMENT_MODULE_CONVERT_XP_COST = 3.0				-- XP cost for converting one equipment module to a related module when creating an equipment variant.
 	NDefines.NProduction.BASE_NAVAL_EQUIPMENT_CONVERSION_IC_COST_FACTOR  = 0.01
-	NDefines.NProduction.DEFAULT_MAX_NAV_FACTORIES_PER_LINE = 10
-	NDefines.NProduction.CONVOY_MAX_NAV_FACTORIES_PER_LINE = 15
-	NDefines.NProduction.CAPITAL_SHIP_MAX_NAV_FACTORIES_PER_LINE = 10
+	NDefines.NProduction.DEFAULT_MAX_NAV_FACTORIES_PER_LINE = 30
+	NDefines.NProduction.CONVOY_MAX_NAV_FACTORIES_PER_LINE = 30
+	NDefines.NProduction.CAPITAL_SHIP_MAX_NAV_FACTORIES_PER_LINE = 30
 	NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_VALUE = 0		-- The minimum number of factories we have to put on consumer goods, by value.
 	NDefines.NProduction.MINIMUM_NUMBER_OF_FACTORIES_TAKEN_BY_CONSUMER_GOODS_PERCENT = 0	-- The minimum number of factories we have to put on consumer goods, in percent.
 

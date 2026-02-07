@@ -8643,7 +8643,7 @@ CHI_cssc_manufacturer = {
 	allowed = { original_tag = CHI }
 	icon = GFX_idea_China_State_Shipbuilding_Corporation_CHI
 
-	task_capacity = 8
+	task_capacity = 15
 
 	equipment_type = {
 		carrier
@@ -9635,7 +9635,7 @@ CHI_csic_manufacturer = {
 	allowed = { original_tag = CHI }
 	icon = GFX_idea_China_Shipbuilding_Industry_Corporation_CHI
 
-	task_capacity = 8
+	task_capacity = 15
 
 	equipment_type = {
 		mio_cat_destroyers

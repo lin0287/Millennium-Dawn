@@ -172,6 +172,10 @@ equipments = {
 					module_minelaying_category
 				}
 			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
 		}
 
 		default_modules = {
@@ -534,6 +538,10 @@ equipments = {
 					module_minelaying_category
 				}
 			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
 		}
 
 		default_modules = {
@@ -724,6 +732,10 @@ equipments = {
 					module_light_helipad_category
 					module_vls_category
 				}
+			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
 			}
 			fixed_ship_battery_slot = {
 				required = no
@@ -1150,6 +1162,10 @@ equipments = {
 					module_vls_category
 				}
 			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
 			fixed_ship_battery_slot = {
 				required = no
 				allowed_module_categories = {
@@ -1426,6 +1442,10 @@ equipments = {
 					module_vls_category
 				}
 			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
 			fixed_ship_battery_slot = {
 				required = no
 				allowed_module_categories = {
@@ -1622,6 +1642,10 @@ equipments = {
 					module_fuel_tanks_category
 					module_railguns_category
 				}
+			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
 			}
 			fixed_ship_battery_slot = {
 				required = no
@@ -2029,6 +2053,10 @@ equipments = {
 					module_turret_missile_category
 				}
 			}
+			rear_2_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
 			fixed_ship_battery_slot = {
 				required = no
 				allowed_module_categories = { module_railguns_category module_light_guns_category }
@@ -2330,6 +2358,10 @@ equipments = {
 					module_fuel_tanks_category
 					module_vls_category
 				}
+			}
+			mid_3_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
 			}
 			rear_1_custom_slot = {
 				required = no
@@ -4851,6 +4883,10 @@ equipments = {
 			fixed_ship_engine_slot = {
 				required = yes
 				allowed_module_categories = { module_light_surface_power_source_category }
+			}
+			front_1_custom_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
 			}
 		}
 
