@@ -387,8 +387,8 @@ afri_net = {
 	happened = {
 		custom_trigger_tooltip = {
 			tooltip = afri_net_tt
-			all_of_scopes = {
-				array = global.african_states
+			all_collection_elements = {
+				collection = collection:states_in_africa
 				check_variable = { building_level@internet_station > 2 }
 			}
 		}
@@ -753,25 +753,6 @@ form_north_sea_empire = {
 	happened = {
 		date > 1999.1.1
 		has_country_flag = is_NORDEM
-	}
-}
-
-form_the_visegrad_union = {
-	possible = {
-		difficulty > 1
-		has_any_custom_difficulty_setting = no
-		game_rules_allow_achievements = yes
-		OR = {
-			original_tag = POL
-			original_tag = CZE
-			original_tag = SLO
-			original_tag = HUN
-		}
-	}
-
-	happened = {
-		date > 1999.1.1
-		has_country_flag = is_VISE
 	}
 }
 
