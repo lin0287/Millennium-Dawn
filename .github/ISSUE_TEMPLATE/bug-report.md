@@ -3,29 +3,30 @@ name: Bug Report
 about: Create a bug report to report an issue in Millennium Dawn
 title: "[BUG]"
 labels: bug
-assignees: ''
-
+type: bug
+assignees: ""
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**What happens**
+What you saw, and what you expected instead.
+
+**Where**
+The file and line if you know it (e.g. `common/decisions/05_ENG_decisions.txt:3256`), plus the focus, decision, event, idea or GUI ID involved. Paste the matching `error.log` line if there is one.
+
+**Versions**
+Game version and checksum, MD version (release number, or the dev branch date you pulled).
 
 **To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+1.
+2.
+3.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Operating System**
 
-**Version (please complete the following information):**
- - OS: [e.g. Windows, Linux, Mac]
- - Version of MD: [e.g. 1.12.0]
+- [ ] Windows
+- [ ] Linux
+- [ ] Mac
 
 **Additional context**
-Add any other context about the problem here.
+Screenshots, a save game, or anything else that helps.

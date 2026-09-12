@@ -4,6 +4,7 @@ state = {
 
 	history = {
 		owner = BRA
+		set_variable = { state_renewable_capacity_factor_modifier_var = 0.737 }
 		victory_points = {
 			10405 5
 		}
@@ -34,7 +35,7 @@ state = {
 	}
 
 	provinces = {
-		12905 1529 10405 4548
+		12905 1529 10405 4548 16396
 	}
 	manpower = 5356360
 	buildings_max_level_factor = 1.000

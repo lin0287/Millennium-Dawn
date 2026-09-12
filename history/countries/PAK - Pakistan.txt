@@ -1,12 +1,19 @@
-﻿capital = 422
+capital = 422
 2000.1.1 = {
+	set_variable = { currency_strength = 0.6 }
 	set_cosmetic_tag = PAK
 	set_country_flag = dynamic_flag
 	set_country_flag = dynamic_rebel_flag
+	set_country_flag = is_getting_cdf_subsidies
+	add_to_array = { global.uncdf_recipients = THIS }
+	add_dynamic_modifier = { modifier = un_aid_subsidies_modifier }
 	set_variable = { gdp_per_capita = 3.369 }
 
 	complete_special_project = sp:sp_composite_production
+	complete_special_project = sp:sp_space_program
 	complete_special_project = sp:sp_helicopter_project
+	complete_special_project = sp:sp_nuclear_energy
+	complete_special_project = sp:sp_naval_vessel_project
 
 	set_technology = {
 		reactor1 = 1
@@ -17,15 +24,15 @@
 
 		infantry_mass_assault = 1
 
-		infantry_weapons = 1
+		infantry_weapons_1 = 1
 
 		combat_eng_equipment = 1
 
-		command_control_equipment = 1
-		command_control_equipment1 = 1
+		cnc_equipment_1 = 1
+		cnc_equipment_2 = 1
 
-		util_vehicle_0 = 1
 		util_vehicle_1 = 1
+		util_vehicle_2 = 1
 
 		night_vision_1 = 1
 		night_vision_2 = 1
@@ -35,27 +42,22 @@
 		AT_upgrade_1 = 1
 		Anti_tank_1 = 1
 
-		Anti_Air_0 = 1
 		SP_Anti_Air_0 = 1
-		AA_upgrade_1 = 1
-		Anti_Air_1 = 1 #Anza
 
-		body_armor_1980 = 1
-		camouflage = 1
-		camouflage2 = 1
+		body_armor_1 = 1
+		camouflage_1 = 1
+		camouflage_2 = 1
 
 		##Industrial tech & Engineering Tech
 		basic_computing = 1
 		integrated_circuit = 1
 		computing1 = 1
-		decryption1 = 1
-		encryption1 = 1
 
 		radar = 1
 		fuel_silos = 1
 
-		industrial_electrospun_polymeric_nanofibers = 1
-		stereolitography = 1
+		nanofibers_1 = 1
+		printing_1 = 1
 		fuel_refining = 1
 		construction1 = 1
 
@@ -81,33 +83,42 @@
 
 		attack_submarine_hull_1 = 1
 
-		tech_submarine_engineering = 1
+		tech_submarine_engineering_1 = 1
 
 		tech_naval_systems_engineering = 1
-		tech_power_systems = 1
+		tech_power_systems_1 = 1
 
 		tech_combat_support_systems = 1
-		tech_fire_control = 1
-		tech_combat_radar = 1
+		tech_fire_control_1 = 1
 		tech_combat_radar_1 = 1
-		tech_combat_sonar = 1
+		tech_combat_radar_2 = 1
+		tech_combat_sonar_1 = 1
 
 		tech_early_naval_weapon_systems = 1
 		tech_naval_weapon_systems = 1
-		tech_light_guns = 1
+		tech_light_guns_1 = 1
 
-		tech_point_defense_system = 1
+		tech_point_defense_chain_gun = 1
 
-		tech_turret_missiles_surface = 1
-		tech_turret_missiles_aa = 1
-		tech_vls_surface = 1
-		tech_vls_aa = 1
+		tech_turret_missiles_surface_1 = 1
+		tech_turret_missiles_aa_1 = 1
+		tech_vls_surface_1 = 1
+		tech_vls_aa_1 = 1
 
-		tech_torpedoes = 1
+		tech_torpedoes_1 = 1
 
-		tech_landing_craft = 1
+		tech_landing_craft_1 = 1
 	}
 
+	if = {
+		limit = { NOT = { has_dlc = "La Resistance" } }
+		set_technology = {
+			decryption1 = 1
+			encryption1 = 1
+		}
+	}
+
+	complete_special_project = sp:sp_armoured_vehicle_project
 	if = {
 		limit = { has_dlc = "No Step Back" }
 
@@ -116,7 +127,7 @@
 		set_technology = {
 			mbt_tech_ops = 1
 			mbt_tech = 1
-			early_cold_war_ammo = 1
+			tank_ammo_1 = 1
 			defensive_systems = 1
 			nsb_gun_technology_1 = 1
 			nsb_artillery_ammo_1 = 1
@@ -124,6 +135,8 @@
 			nsb_AA_autocannon_0 = 1
 			nsb_SHORAD_missile_0 = 1
 			mbt_tech_1 = 1
+			mbt_tech_2 = 1
+			tank_ammo_2 = 1
 			defensive_systems_2 = 1
 			nsb_gun_technology_2 = 1
 			nsb_artillery_ammo_2 = 1
@@ -165,7 +178,7 @@
 			nsb_gun_pods_tech_1 = 1
 			nsb_light_nose_gun_tech_1 = 1
 			nsb_defense_tech_1 = 1
-			nsb_transport_helicopter1 = 1
+			nsb_transport_helicopter_1 = 1
 		}
 
 		create_equipment_variant = {
@@ -237,7 +250,6 @@
 			obsolete = yes
 		}
 
-		complete_special_project = sp:sp_armoured_vehicle_project
 
 		else = {
 			set_oob = "PAK_2000_nonnsb"
@@ -260,16 +272,16 @@
 				AA_upgrade_1 = 1
 				Anti_Air_1 = 1 #Anza
 				Rec_tank_0 = 1
-				attack_helicopter1 = 1
-				transport_helicopter1 = 1
+				attack_helicopter_1 = 1
+				transport_helicopter_1 = 1
 			}
 		}
 	}
+	complete_special_project = sp:sp_awacs_project
 	if = {
 		limit = { has_dlc = "By Blood Alone" }
 		set_air_oob = "PAK_2000_bba"
 		send_embargo = ISR
-
 		set_technology = {
 			early_airframe_designs = 1
 			flying_wing_design = 1
@@ -289,13 +301,14 @@
 			set_technology = {
 				early_fighter = 1
 				transport_plane1 = 1
+				early_bomber = 1
 			}
 		}
 	}
+	complete_special_project = sp:sp_nuclear_bomb
+	complete_special_project = sp:sp_missile_project
 	if = { limit = { has_dlc = "Gotterdammerung" }
 		complete_special_project = sp:sp_nuclear_warhead_program
-		complete_special_project = sp:sp_missile_project
-		complete_special_project = sp:sp_space_program_gdm
 
 		set_technology = {
 			ballistic_missile = 1
@@ -338,10 +351,6 @@
 		}
 
 		set_variable = { num_launchers_set = 6 }
-
-		else = {
-			complete_special_project = sp:sp_space_program_non_gdm
-		}
 	}
 	set_naval_oob = "PAK_2000_naval_mtg"
 
@@ -373,7 +382,14 @@
 	add_opinion_modifier = { target = USA modifier = large_commercial_relations }
 
 	add_ideas = {
-		crippling_corruption
+		wto_member
+		partially_privatized_healthcare
+		balanced_protections
+		standard_maintenance
+		us_dollar
+		light_regulations
+
+		corruption_level_09
 		sunni
 		youth_radicalization
 		saudi_aid
@@ -392,14 +408,16 @@
 		intervention_limited_interventionism
 		USA_usaid
 		multi_ethnic_state_idea
-		commonwealth_of_nations_member
 		officer_advanced_training
 		consumption_economy
 		full_isr_boycotte
 		nuclear_power_off
 		full_first_use
 		PAK_one_pillar_state
+		no_currency_backing
 	}
+	add_dynamic_modifier = { modifier = Commonwealth_member_modifier }
+	add_to_array = { global.commonwealth_member = THIS }
 
 	add_opinion_modifier = {
 		target = ISR
@@ -411,12 +429,6 @@
 		relation = military_access
 		active = yes
 	}
-
-	#CT
-	set_country_flag = threat_level_substantial
-	set_variable = { threat_level = 50 }
-	set_variable = { radicalization = 45 }
-	add_to_array = { global.ct_states = THIS }
 
 	#Influence system
 	add_to_array = { PAK.influence_targets = TAL }
@@ -432,6 +444,9 @@
 	add_to_array = { PAK.influence_targets = MAY }
 	add_to_array = { PAK.influence_targets = MLD }
 
+	420 = { set_state_flag = pak_raj_border_sector }
+	set_country_flag = pak_raj_border_preparation_ready
+
 	init_influence = yes
 	set_variable = { domestic_influence_amount = 340 }
 	add_to_array = { influence_array = CHI.id }
@@ -446,7 +461,7 @@
 	add_to_array = { influence_array_val = 7 }
 	add_to_array = { influence_array = ENG.id }
 	add_to_array = { influence_array_val = 6 }
-	startup_influence = yes
+	sort_influence = yes
 
 	### Economy
 	set_variable = { var = debt value = 315.953 }
@@ -454,6 +469,8 @@
 	set_variable = { var = corporate_tax_rate value = 34 }
 	set_variable = { var = population_tax_rate value = 17 }
 	set_variable = { var = int_investments value = 0 }
+	set_variable = { inflation_rate_var = 0.04143 }
+	set_variable = { cb_policy_rate = 3 }
 
 	set_popularities = {
 		democratic = 35
@@ -472,33 +489,21 @@
 	start_politics_input = yes
 
 	### Party Popularities
-	set_variable = { party_pop_array^0 = 0 } #Western_Autocracy
 	set_variable = { party_pop_array^1 = 0.02 } #conservatism
 	set_variable = { party_pop_array^2 = 0.07 } #liberalism
 	set_variable = { party_pop_array^3 = 0.26 } #socialism
 	set_variable = { party_pop_array^4 = 0.01 } #Communist-State
 	set_variable = { party_pop_array^5 = 0.045 } #anarchist_communism
 	set_variable = { party_pop_array^6 = 25.5 } #Conservative
-	set_variable = { party_pop_array^7 = 0 } #Autocracy
 	set_variable = { party_pop_array^8 = 0.03 } #Mod_Vilayat_e_Faqih
-	set_variable = { party_pop_array^9 = 0 } #Vilayat_e_Faqih
-	set_variable = { party_pop_array^10 = 0 } #Kingdom
 	set_variable = { party_pop_array^11 = 0.05 } #Caliphate
 	set_variable = { party_pop_array^12 = 0.02 } #Neutral_Muslim_Brotherhood
-	set_variable = { party_pop_array^13 = 0 } #Neutral_Autocracy
-	set_variable = { party_pop_array^14 = 0 } #Neutral_conservatism
-	set_variable = { party_pop_array^15 = 0 } #oligarchism
-	set_variable = { party_pop_array^16 = 0 } #Neutral_Libertarian
-	set_variable = { party_pop_array^17 = 0 } #Neutral_green
-	set_variable = { party_pop_array^18 = 0 } #neutral_Social
-	set_variable = { party_pop_array^19 = 0 } #Neutral_Communism
 	set_variable = { party_pop_array^20 = 0.005 } #Nat_Populism
 	set_variable = { party_pop_array^21 = 0.005 } #Nat_Fascism
 	set_variable = { party_pop_array^22 = 0.23 } #Nat_Autocracy
-	set_variable = { party_pop_array^23 = 0 } #Monarchist
 
 	### Ruling Party
-	add_to_array = { ruling_party = 22 }
+	set_variable = { ruling_party = 22 }
 
 	startup_politics = yes
 
@@ -522,5 +527,35 @@
 	recruit_character = PAK_naveed_mukhtar
 	recruit_character = PAK_moazzam_ilyas
 	set_variable = { overall_productivity = 551 }
+	set_variable = { var_reactor_material_stockpile = 2500 }
 
+	if = {
+		limit = {
+			has_dlc = "La Resistance"
+		}
+		create_intelligence_agency = {
+			name = "Inter-Services Intelligence (ISI)"
+			icon = GFX_intelligence_agency_logo_pak
+		}
+		set_country_flag = MD_skip_treasury_cost
+		upgrade_intelligence_agency = upgrade_form_department
+		upgrade_intelligence_agency = upgrade_establish_cyber_operations_division
+		clr_country_flag = MD_skip_treasury_cost
+	}
+
+
+	# Relation Starting Configuration (moved from on_startup)
+	add_opinion_modifier = { target = CUB modifier = sanctions }
+	add_relation_modifier = { target = USA modifier = USA_World_Economical_Relations }
+	add_relation_modifier = { target = SOV modifier = SOV_World_Economical_Relations }
+	add_relation_modifier = { target = CHI modifier = CHI_World_Economical_Relations }
+	add_relation_modifier = { target = FRA modifier = FRA_World_Economical_Relations }
+	add_relation_modifier = { target = GER modifier = GER_World_Economical_Relations }
+	add_relation_modifier = { target = ENG modifier = ENG_World_Economical_Relations }
+	add_relation_modifier = { target = SPR modifier = SPR_World_Economical_Relations }
+	add_relation_modifier = { target = ITA modifier = ITA_World_Economical_Relations }
+	add_relation_modifier = { target = UKR modifier = UKR_world_economical_relations }
+	add_relation_modifier = { target = ISR modifier = ISR_World_Economical_Relations }
+	add_opinion_modifier = { target = TTP modifier = AlQaida_Are_Terrorists }
+	add_opinion_modifier = { target = TTP modifier = AlQaida_Are_Terrorists_Trade }
 }

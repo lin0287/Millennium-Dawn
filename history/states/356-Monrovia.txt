@@ -8,6 +8,7 @@ state = {
 
 	history = {
 		owner = LUR
+		set_variable = { state_renewable_capacity_factor_modifier_var = 0.630 }
 		add_core_of = LIB
 		add_core_of = LUR
 		victory_points = {
@@ -24,6 +25,7 @@ state = {
 				naval_base = 1
 			}
 			industrial_complex = 1
+			fossil_powerplant = 2
 		}
 		LIB = {
 			set_province_controller = 13240
@@ -31,6 +33,15 @@ state = {
 			set_province_controller = 13239
 		}
 		set_variable = { productivity_state_var = 471 }
+
+		add_province_modifier = {
+			static_modifiers = { terrain_monrovia }
+			province = { id = 7959 }
+		}
+		add_province_modifier = {
+			static_modifiers = { terrain_zorzor }
+			province = { id = 13241 }
+		}
 	}
 
 	provinces = {

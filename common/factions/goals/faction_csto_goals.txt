@@ -6,29 +6,30 @@ faction_goal_secure_central_asia = {
 	visible = {
 		has_faction_template = faction_template_csto
 		NOT = {
-			TRK = {
-				has_idea = CSTO_member
-			}
-			UZB = {
-				has_idea = CSTO_member
+			OR = {
+				TRK = {
+					has_idea = CSTO_member
+				}
+				UZB = {
+					has_idea = CSTO_member
+				}
 			}
 		}
 	}
+	# A non-existent target counts as satisfied, so an annexed UZB/TRK does not deadlock the goal
 	completed = {
-		if = { limit = { country_exists = UZB }
-			UZB = {
-				has_idea = CSTO_member
-			}
+		OR = {
+			NOT = { country_exists = UZB }
+			UZB = { has_idea = CSTO_member }
 		}
-		if = { limit = { country_exists = TRK }
-			TRK = {
-				has_idea = CSTO_member
-			}
+		OR = {
+			NOT = { country_exists = TRK }
+			TRK = { has_idea = CSTO_member }
 		}
 	}
 	complete_effect = {
 		add_faction_power_projection = 200
-		custom_effect_tooltip = generic_skip_one_line_tt
+		newline = yes
 		custom_effect_tooltip = THE_FACTION_LEADER
 		add_faction_initiative = 1
 	}
@@ -53,7 +54,7 @@ faction_goal_secure_crimea = {
 	}
 	complete_effect = {
 		add_faction_power_projection = 200
-		custom_effect_tooltip = generic_skip_one_line_tt
+		newline = yes
 		custom_effect_tooltip = THE_FACTION_LEADER
 		add_faction_initiative = 1
 	}
@@ -84,7 +85,7 @@ faction_goal_bring_georgia_into_orbit = {
 	}
 	complete_effect = {
 		add_faction_power_projection = 200
-		custom_effect_tooltip = generic_skip_one_line_tt
+		newline = yes
 		custom_effect_tooltip = THE_FACTION_LEADER
 		add_faction_initiative = 1
 	}
@@ -115,7 +116,7 @@ faction_goal_bring_ukraine_into_orbit = {
 	}
 	complete_effect = {
 		add_faction_power_projection = 200
-		custom_effect_tooltip = generic_skip_one_line_tt
+		newline = yes
 		custom_effect_tooltip = THE_FACTION_LEADER
 		add_faction_initiative = 1
 	}
@@ -150,7 +151,7 @@ faction_goal_global_hegemony = {
 	}
 	complete_effect = {
 		add_faction_power_projection = 200
-		custom_effect_tooltip = generic_skip_one_line_tt
+		newline = yes
 		custom_effect_tooltip = THE_FACTION_LEADER
 		add_faction_initiative = 1
 	}

@@ -1,4 +1,59 @@
 # Author(s): AngriestBird
+COM_ai_path_category = {
+
+	COM_build_the_orange_movement = {
+
+		icon = GFX_decision_generic_political_discourse
+
+		cost = 25
+
+		days_re_enable = 30
+
+		visible = { has_global_flag = COM_ORANGE_PARTY_FOCUS_PATH }
+
+		available = {
+			western_conservatism_are_in_power = no
+			check_variable = { party_pop_array^1 < 0.45 }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision COM_build_the_orange_movement"
+			set_temp_variable = { party_index = 1 }
+			set_temp_variable = { party_popularity_increase = 0.04 }
+			change_relative_party_popularity = yes
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	COM_carry_the_baath_message = {
+
+		icon = GFX_decision_generic_political_discourse
+
+		cost = 25
+
+		days_re_enable = 30
+
+		visible = { has_global_flag = COM_ISLAMIC_REPUBLIC_FOCUS_PATH }
+
+		available = {
+			nationalist_military_junta_are_in_power = no
+			check_variable = { party_pop_array^22 < 0.50 }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision COM_carry_the_baath_message"
+			set_temp_variable = { party_index = 22 }
+			set_temp_variable = { party_popularity_increase = 0.04 }
+			set_temp_variable = { temp_outlook_increase = 0.04 }
+			change_relative_party_popularity = yes
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+}
+
 COM_comorian_political_decisions = {
 	COM_disband_the_presidential_guard_decision = {
 		icon = x
@@ -10,14 +65,13 @@ COM_comorian_political_decisions = {
 		visible = {
 			NOT = { has_completed_focus = COM_african_mercenaries }
 		}
-		available = {
-			NOT = { has_completed_focus = COM_african_mercenaries }
-		}
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: remove_effect COM_disband_the_presidential_guard_decision"
 			set_country_flag = COM_disbanded_presidential_guard
 		}
+
+		ai_will_do = { base = 0 }
 	}
 
 	# Private Military Companies
@@ -33,17 +87,17 @@ COM_comorian_political_decisions = {
 			has_completed_focus = COM_african_mercenaries
 		}
 		available = {
-			has_completed_focus = COM_african_mercenaries
 			NOT = { has_country_flag = COM_disbanded_presidential_guard }
 		}
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: remove_effect COM_hire_control_risks_decision"
-			set_country_flag = COM_hired_control_risks
 			add_stability = 0.02
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
+
+		ai_will_do = { base = 0 }
 	}
 
 	# Executive Outcomes (South African PMC, revived 2020)
@@ -58,18 +112,18 @@ COM_comorian_political_decisions = {
 			has_completed_focus = COM_african_mercenaries
 		}
 		available = {
-			has_completed_focus = COM_african_mercenaries
 			NOT = { has_country_flag = COM_disbanded_presidential_guard }
 		}
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: remove_effect COM_hire_executive_outcomes_decision"
-			set_country_flag = COM_hired_executive_outcomes
 			add_stability = -0.01
 			army_experience = 10
 			set_temp_variable = { treasury_change = -5 }
 			modify_treasury_effect = yes
 		}
+
+		ai_will_do = { base = 0 }
 	}
 
 	# Defense Systems Limited (British PMC, defunct but alt-history)
@@ -84,18 +138,18 @@ COM_comorian_political_decisions = {
 			has_completed_focus = COM_african_mercenaries
 		}
 		available = {
-			has_completed_focus = COM_african_mercenaries
 			NOT = { has_country_flag = COM_disbanded_presidential_guard }
 		}
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: remove_effect COM_hire_defense_systems_decision"
-			set_country_flag = COM_hired_defense_systems
 			add_stability = 0.01
 			army_experience = 5
 			set_temp_variable = { treasury_change = -4 }
 			modify_treasury_effect = yes
 		}
+
+		ai_will_do = { base = 0 }
 	}
 
 	# WatchGuard International (British PMC, defunct 1972 but alt-history)
@@ -110,19 +164,19 @@ COM_comorian_political_decisions = {
 			has_completed_focus = COM_african_mercenaries
 		}
 		available = {
-			has_completed_focus = COM_african_mercenaries
 			NOT = { has_country_flag = COM_disbanded_presidential_guard }
 		}
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: remove_effect COM_hire_watchguard_decision"
-			set_country_flag = COM_hired_watchguard
 			army_experience = 35
 			add_manpower = 300
 			add_war_support = 0.04
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
+
+		ai_will_do = { base = 0 }
 	}
 
 	# 7 Independent Company reformed as PMC (domestic alternative)
@@ -139,7 +193,6 @@ COM_comorian_political_decisions = {
 			has_country_leader = { name = "Robert Denard" ruling_only = yes }
 		}
 		available = {
-			has_completed_focus = COM_african_mercenaries
 			NOT = { has_country_flag = COM_disbanded_presidential_guard }
 			NOT = { has_country_flag = COM_reformed_7_independent }
 		}
@@ -152,6 +205,8 @@ COM_comorian_political_decisions = {
 			set_temp_variable = { treasury_change = -2 }
 			modify_treasury_effect = yes
 		}
+
+		ai_will_do = { base = 0 }
 	}
 }
 
@@ -179,9 +234,8 @@ COM_mayotte_referendum_decisions = {
 
 		timeout_effect = {
 			log = "[GetDateText]: [Root.GetName]: mission timeout_effect COM_mayotte_referendum_mission"
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = 0.03 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 
 			country_event = { id = france_md.111 days = 1 }
 

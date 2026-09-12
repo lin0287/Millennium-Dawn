@@ -32,19 +32,16 @@ autonomy_state = {
 	ai_overlord_wants_garrison = { always = yes }
 
 	allowed = {
-		OVERLORD = { original_tag = FRA }
+		is_subject = yes
 		# INFO: Add an OR statement and every successive tag that needs to be added here
 		OR = {
 			AND = {
 				original_tag = MTE
 				OVERLORD = { has_country_flag = FRA_MTE_overseas_department }
 			}
-			AND = {
-				original_tag = ANJ
-				has_country_flag = FRA_ANJ_autonomy_state
-			}
 			original_tag = COM
 		}
+		OVERLORD = { original_tag = FRA }
 	}
 
 	can_take_level = { always = no }

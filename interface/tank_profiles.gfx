@@ -1,71 +1,4 @@
 spriteTypes = {
-	#Generic
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_a
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_a.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_b
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_b.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_c
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_c.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_d
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_d.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_e
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_e.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_f
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_f.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_g
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_g.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_h
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_h.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_i
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_i.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_0_j
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_0/medium_tank_chassis_0_j.dds
-	}
-
-	spriteType = {
-		name = GFX_medium_tank_chassis_1_e
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_1/medium_tank_chassis_1_e.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_1_f
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_1/medium_tank_chassis_1_f.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_1_g
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_1/medium_tank_chassis_1_g.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_1_h
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_1/medium_tank_chassis_1_h.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_1_i
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_1/medium_tank_chassis_1_i.dds
-	}
-	spriteType = {
-		name = GFX_medium_tank_chassis_1_j
-		texturefile = gfx/interface/equipmentdesigner/tanks/designer/generic/medium_tank_chassis_1/medium_tank_chassis_1_j.dds
-	}
-
 	#CHI
 	spriteType = {
 		name = GFX_CHI_MBT_0
@@ -86,10 +19,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_CHI_MBT_5
 		texturefile = gfx/interface/technologies/CHI/LAND/MBT6.dds
-	}
-	spriteType = {
-		name = GFX_CHI_MBT_6
-		texturefile = gfx/interface/technologies/CHI/LAND/MBT5.dds
 	}
 	spriteType = {
 		name = GFX_CHI_MBT_7
@@ -118,10 +47,6 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/SOV/LAND/MBT5.dds
 	}
 	spriteType = {
-		name = GFX_SOV_MBT_6
-		texturefile = gfx/interface/technologies/SOV/LAND/MBT6.dds
-	}
-	spriteType = {
 		name = GFX_SOV_MBT_7
 		texturefile = gfx/interface/technologies/SOV/LAND/MBT7.dds
 	}
@@ -146,10 +71,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_ENG_MBT_5
 		texturefile = gfx/interface/technologies/ENG/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_ENG_MBT_6
-		texturefile = gfx/interface/technologies/ENG/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_ENG_MBT_7
@@ -178,10 +99,6 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/GER/LAND/MBT5.dds
 	}
 	spriteType = {
-		name = GFX_GER_MBT_6
-		texturefile = gfx/interface/technologies/GER/LAND/MBT6.dds
-	}
-	spriteType = {
 		name = GFX_GER_MBT_7
 		texturefile = gfx/interface/technologies/GER/LAND/MBT7.dds
 	}
@@ -206,10 +123,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_USA_MBT_5
 		texturefile = gfx/interface/technologies/USA/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_USA_MBT_6
-		texturefile = gfx/interface/technologies/USA/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_USA_MBT_7
@@ -260,10 +173,6 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/FRA/LAND/MBT5.dds
 	}
 	spriteType = {
-		name = GFX_FRA_MBT_6
-		texturefile = gfx/interface/technologies/FRA/LAND/MBT6.dds
-	}
-	spriteType = {
 		name = GFX_FRA_MBT_7
 		texturefile = gfx/interface/technologies/FRA/LAND/MBT7.dds
 	}
@@ -308,10 +217,6 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/ISR/LAND/MBT5.dds
 	}
 	spriteType = {
-		name = GFX_ISR_MBT_6
-		texturefile = gfx/interface/technologies/ISR/LAND/MBT6.dds
-	}
-	spriteType = {
 		name = GFX_ISR_MBT_7
 		texturefile = gfx/interface/technologies/ISR/LAND/MBT7.dds
 	}
@@ -341,10 +246,6 @@ spriteTypes = {
 		name = GFX_ITA_MBT_5
 		texturefile = gfx/interface/technologies/ITA/LAND/MBT7.dds
 	}
-	spriteType = {
-		name = GFX_ITA_MBT_6
-		texturefile = gfx/interface/technologies/ITA/LAND/MBT6.dds
-	}
 
 	#JAP
 	spriteType = {
@@ -366,10 +267,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_JAP_MBT_5
 		texturefile = gfx/interface/technologies/JAP/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_JAP_MBT_6
-		texturefile = gfx/interface/technologies/JAP/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_JAP_MBT_7
@@ -397,10 +294,6 @@ spriteTypes = {
 		name = GFX_RAJ_MBT_5
 		texturefile = gfx/interface/technologies/RAJ/LAND/MBT5.dds
 	}
-	spriteType = {
-		name = GFX_RAJ_MBT_6
-		texturefile = gfx/interface/technologies/RAJ/LAND/MBT6.dds
-	}
 
 	#KOR
 	spriteType = {
@@ -422,10 +315,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_KOR_MBT_5
 		texturefile = gfx/interface/technologies/KOR/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_KOR_MBT_6
-		texturefile = gfx/interface/technologies/KOR/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_KOR_MBT_7
@@ -452,10 +341,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_NKO_MBT_5
 		texturefile = gfx/interface/technologies/NKO/LAND/MBT6.dds
-	}
-	spriteType = {
-		name = GFX_NKO_MBT_6
-		texturefile = gfx/interface/technologies/NKO/LAND/MBT5.dds
 	}
 
 	#PER
@@ -516,10 +401,6 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/SWE/LAND/MBT5.dds
 	}
 	spriteType = {
-		name = GFX_SWE_MBT_6
-		texturefile = gfx/interface/technologies/SWE/LAND/MBT6.dds
-	}
-	spriteType = {
 		name = GFX_SWE_MBT_7
 		texturefile = gfx/interface/technologies/SWE/LAND/MBT7.dds
 	}
@@ -544,10 +425,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_SPR_MBT_5
 		texturefile = gfx/interface/technologies/SPR/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_SPR_MBT_6
-		texturefile = gfx/interface/technologies/SPR/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_SPR_MBT_7
@@ -588,10 +465,6 @@ spriteTypes = {
 	spriteType = {
 		name = GFX_TUR_MBT_5
 		texturefile = gfx/interface/technologies/TUR/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_TUR_MBT_6
-		texturefile = gfx/interface/technologies/TUR/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_TUR_MBT_7
@@ -638,19 +511,11 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/POL/LAND/MBT2_Leopard2PL.dds
 	}
 	spriteType = {
-		name = GFX_POL_MBT_6
-		texturefile = gfx/interface/technologies/POL/LAND/MBT2_Leopard2PL.dds
-	}
-	spriteType = {
 		name = GFX_POL_MBT_7
 		texturefile = gfx/interface/technologies/GER/LAND/MBT6.dds
 	}
 	spriteType = {
 		name = GFX_POL_MBT_8
-		texturefile = gfx/interface/technologies/GER/LAND/MBT7.dds
-	}
-	spriteType = {
-		name = GFX_POL_MBT_9
 		texturefile = gfx/interface/technologies/GER/LAND/MBT7.dds
 	}
 
@@ -676,19 +541,11 @@ spriteTypes = {
 		texturefile = gfx/interface/technologies/CAN/LAND/MBT4.dds
 	}
 	spriteType = {
-		name = GFX_CAN_MBT_6
-		texturefile = gfx/interface/technologies/GER/LAND/MBT4.dds
-	}
-	spriteType = {
 		name = GFX_CAN_MBT_7
 		texturefile = gfx/interface/technologies/GER/LAND/MBT4.dds
 	}
 	spriteType = {
 		name = GFX_CAN_MBT_8
 		texturefile = gfx/interface/technologies/CAN/LAND/MBT5.dds
-	}
-	spriteType = {
-		name = GFX_CAN_MBT_9
-		texturefile = gfx/interface/technologies/GER/LAND/MBT5.dds
 	}
 }

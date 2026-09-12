@@ -1,162 +1,206 @@
 #!/usr/bin/env python3
-##########################
-# Scripted Localisation Validation Script
-# Validates scripted localisation definitions and usage
-# Checks for: used but not defined, defined but not used
-# Based on Millennium Dawn validation framework
-##########################
-import argparse
+"""Validate scripted localisation definitions and usage in Millennium Dawn."""
+
 import glob
-import logging
 import os
 import re
-import subprocess
-import sys
+from multiprocessing import Pool
 from pathlib import Path
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Set, Tuple
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-
-# Directories to ignore during validation
-IGNORED_DIRS = ["gfx", "tools", "resources", "docs", "map"]
-
-
-# ANSI color codes for terminal output
-class Colors:
-    HEADER = "\033[95m"
-    BLUE = "\033[94m"
-    CYAN = "\033[96m"
-    GREEN = "\033[92m"
-    YELLOW = "\033[93m"
-    RED = "\033[91m"
-    ENDC = "\033[0m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
+import disk_cache
+from validate_gfx_references import sprite_names_from_gfx_text
+from validator_common import (
+    BaseValidator,
+    Colors,
+    DataCleaner,
+    FileOpener,
+    Severity,
+    find_line_number,
+    run_validator_main,
+    scan_meta_constructed_names,
+    should_skip_file,
+)
 
 
-def should_skip_file(filename: str) -> bool:
-    """Check if file should be skipped based on ignored directories
-
-    Args:
-        filename (str): path to file
-
-    Returns:
-        bool: True if file should be skipped
-    """
-    normalized_path = filename.replace("\\", "/")
-    for ignored_dir in IGNORED_DIRS:
-        if f"/{ignored_dir}/" in normalized_path or normalized_path.startswith(
-            f"{ignored_dir}/"
-        ):
-            return True
-    return False
+def _scan_defined_locs(text: str, basename: str) -> Tuple[List[str], Dict[str, str]]:
+    localisations: List[str] = []
+    paths: Dict[str, str] = {}
+    if "defined_text" in text and "name =" in text:
+        for match in re.findall(r"name\s*=\s*(\w[\w-]*)", text):
+            localisations.append(match)
+            paths[match] = basename
+    return (localisations, paths)
 
 
-def get_staged_files(mod_path: str) -> Optional[List[str]]:
-    """Get list of staged .txt, .yml, and .gui files from git
+def process_file_for_defined_localisations(
+    args: Tuple[str, bool, str],
+) -> Tuple[List[str], Dict[str, str]]:
+    filename, lowercase, mod_path = args
 
-    Args:
-        mod_path (str): path to mod folder
+    if should_skip_file(filename):
+        return ([], {})
 
-    Returns:
-        List of staged file paths, or None if not a git repo
-    """
+    if "00_scripted_localisation_FR_loc" in filename:
+        return ([], {})
+
+    text_file = FileOpener.open_text_file(
+        filename, lowercase=lowercase, strip_comments_flag=True
+    )
+    basename = os.path.basename(filename)
+    return disk_cache.per_file_cached_by_content(
+        mod_path,
+        f"scripted_loc.defined.v3.lc={1 if lowercase else 0}",
+        filename,
+        text_file,
+        lambda: _scan_defined_locs(text_file, basename),
+    )
+
+
+# Scripted loc names may contain hyphens (Communist-State_valid) and non-ASCII letters
+# (additional_income_GER_Ökosteuer); an ASCII-only class truncates both and invents findings.
+_LOC_REFERENCE_RE = re.compile(
+    r"\b(?:custom_(?:effect|trigger|prerequisite|gain_xp)_tooltip|"
+    r"localization_key)\s*=\s*(\w[\w-]*)"
+)
+# Scope chains can be multi-level: a map-mode tooltip scopes to a state, so the country
+# scripted loc is only reachable as [FROM.CONTROLLER.name]. A single-segment prefix misses
+# those calls and reports the target as unused.
+_BRACKET_LOC_RE = re.compile(r"\[((?:[A-Za-z_][A-Za-z0-9_]*\.)+)?(\w[\w-]*)\]")
+
+
+def _find_reference_line(path: str, name: str) -> int:
+    # A bare substring search lands on the wrong line: looking for `adjective` matches
+    # inside `GetAdjective`. Anchor on the call syntax instead.
     try:
-        result = subprocess.run(
-            ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
-            cwd=mod_path,
-            capture_output=True,
-            text=True,
-            check=True,
+        text = FileOpener.open_text_file(
+            path, lowercase=False, strip_comments_flag=False
         )
-        files = result.stdout.strip().split("\n")
-        # Filter for .txt, .yml, and .gui files
-        staged_files = [
-            os.path.join(mod_path, f)
-            for f in files
-            if f and (f.endswith(".txt") or f.endswith(".yml") or f.endswith(".gui"))
-        ]
-        return staged_files if staged_files else None
-    except subprocess.CalledProcessError:
-        return None
+    except OSError:
+        return 0
+
+    target = name.lower()
+    for match in _BRACKET_LOC_RE.finditer(text):
+        if match.group(2).lower() == target:
+            return text.count("\n", 0, match.start()) + 1
+    for match in _LOC_REFERENCE_RE.finditer(text):
+        if match.group(1).lower() == target:
+            return text.count("\n", 0, match.start()) + 1
+    return find_line_number(path, name, lowercase=True)
 
 
-def find_line_number(filename: str, pattern: str, lowercase: bool = True) -> int:
-    """Find the line number where a pattern first occurs in a file
-
-    Args:
-        filename (str): path to file
-        pattern (str): pattern to search for
-        lowercase (bool): whether to search case-insensitively
-
-    Returns:
-        int: line number (1-indexed) or 0 if not found
-    """
+def _find_definition_line(path: str, name: str) -> int:
+    # `name = communist` as a substring also matches `name = Communist-State_valid`.
     try:
-        with open(filename, "r", encoding="utf-8-sig") as f:
-            for line_num, line in enumerate(f, 1):
-                search_line = line.lower() if lowercase else line
-                search_pattern = pattern.lower() if lowercase else pattern
-                if search_pattern in search_line:
-                    return line_num
-    except Exception:
-        pass
-    return 0
+        text = FileOpener.open_text_file(
+            path, lowercase=False, strip_comments_flag=False
+        )
+    except OSError:
+        return 0
+
+    pattern = re.compile(
+        r"name\s*=\s*" + re.escape(name) + r"(?![A-Za-z0-9_-])", re.IGNORECASE
+    )
+    match = pattern.search(text)
+    if match:
+        return text.count("\n", 0, match.start()) + 1
+    return find_line_number(path, f"name = {name}", lowercase=True)
 
 
-class FileOpener:
-    """Utility class for file operations"""
+def _filter_bracket_loc_candidates(
+    candidates: Set[Tuple[str, bool]], defined_names: Set[str]
+) -> Set[str]:
+    defined_lower = {name.lower() for name in defined_names}
+    return {
+        name
+        for name, _scoped in candidates
+        if name.lower() in defined_lower or not name.lower().startswith("get")
+    }
 
-    @classmethod
-    def open_text_file(cls, filename: str, lowercase: bool = True) -> str:
-        """Opens and returns text file in utf-8-sig encoding
 
-        Args:
-            filename (str): text file to open
-            lowercase (bool): defines if returned str is converted to lowercase or not. Default - True
+def _scan_loc_token_candidates(
+    text: str, is_scripted_loc_file: bool
+) -> Tuple[Set[Tuple[str, bool]], Set[str]]:
+    bracketed = {
+        (member, bool(scope)) for scope, member in _BRACKET_LOC_RE.findall(text)
+    }
+    explicit = set() if is_scripted_loc_file else set(_LOC_REFERENCE_RE.findall(text))
+    return bracketed, explicit
 
-        Returns:
-            str: contents of the text file
-        """
-        try:
-            with open(filename, "r", encoding="utf-8-sig") as text_file:
-                if lowercase:
-                    return text_file.read().lower()
-                else:
-                    return text_file.read()
-        except Exception as ex:
-            logging.warning(f"Skipping the file {filename}, {ex}")
-            return ""
+
+def _scan_loc_tokens(
+    text: str, is_scripted_loc_file: bool, defined_names: Set[str] | None = None
+) -> Set[str]:
+    bracketed, explicit = _scan_loc_token_candidates(text, is_scripted_loc_file)
+    return _filter_bracket_loc_candidates(bracketed, defined_names or set()) | explicit
+
+
+def process_file_for_used_localisations(
+    args: Tuple[str, Set[str], bool, str],
+) -> Tuple[List[str], Dict[str, str]]:
+    filename, search_names, lowercase, mod_path = args
+
+    if should_skip_file(filename):
+        return ([], {})
+
+    basename = os.path.basename(filename)
+
+    text_file = FileOpener.open_text_file(
+        filename, lowercase=lowercase, strip_comments_flag=True
+    )
+
+    # Cache raw candidates (independent of search_names); filter after the cache
+    # hit so a changing defined set never invalidates the entry.
+    is_sl = "scripted_localisation" in filename
+    bracketed, explicit = disk_cache.per_file_cached_by_content(
+        mod_path,
+        f"scripted_loc.tokens.v5.lc={1 if lowercase else 0}.{'b' if is_sl else 't'}",
+        filename,
+        text_file,
+        lambda: _scan_loc_token_candidates(text_file, is_sl),
+    )
+    tokens = _filter_bracket_loc_candidates(bracketed, search_names) | explicit
+
+    # Scripted-localisation, GUI, and English localisation files use bracket
+    # syntax for scripted loc calls. Keep candidates even when undefined so
+    # the missing check can report them.
+    normalized_filename = filename.replace("\\", "/").lstrip("/")
+    is_english_yml = "localisation/english/" in normalized_filename
+    if (
+        is_sl
+        or filename.endswith(".gui")
+        or (filename.endswith(".yml") and is_english_yml)
+    ):
+        found_original = tokens
+    else:
+        search_lower = {n.lower(): n for n in search_names}
+        found_original = {
+            search_lower[t.lower()] for t in tokens if t.lower() in search_lower
+        }
+
+    if not found_original:
+        return ([], {})
+
+    localisations = list(found_original)
+    paths = {name: basename for name in found_original}
+    return (localisations, paths)
 
 
 class ScriptedLocalisation:
-    """Class for handling scripted localisation validation"""
-
     @classmethod
     def get_all_defined_localisations(
         cls,
-        mod_path: str,
-        lowercase: bool = True,
-        return_paths: bool = False,
-        staged_files: Optional[List[str]] = None,
-    ) -> Tuple[List[str], Dict[str, str]]:
-        """Parse all files and return list with all defined scripted localisations
-
-        Args:
-            mod_path (str): path to mod folder
-            lowercase (bool, optional): defines if returned list contains lowercase str or not. Defaults to True.
-            return_paths (bool, optional): defines if paths dict is returned. Defaults to False.
-            staged_files (list, optional): list of staged files to validate (if None, validates all files)
-
-        Returns:
-            tuple or list: (localisations, paths) if return_paths else localisations
-        """
+        mod_path,
+        lowercase=True,
+        return_paths=False,
+        staged_files=None,
+        workers=None,
+        pool=None,
+    ):
         localisations = []
         paths = {}
 
-        # Scripted localisation files are in common/scripted_localisation/
-        if staged_files:
+        if staged_files is not None:
             files_to_scan = [
                 f
                 for f in staged_files
@@ -166,373 +210,189 @@ class ScriptedLocalisation:
             pattern = os.path.join(mod_path, "common", "scripted_localisation", "*.txt")
             files_to_scan = glob.glob(pattern)
 
-        for filename in files_to_scan:
-            if should_skip_file(filename):
-                continue
+        args_list = [(f, lowercase, mod_path) for f in files_to_scan]
+        p = pool if pool else Pool(processes=workers)
+        results = p.map(process_file_for_defined_localisations, args_list, chunksize=10)
+        if not pool:
+            p.close()
+            p.join()
 
-            # Skip French localisation file
-            if "00_scripted_localisation_FR_loc" in filename:
-                continue
+        for locs_list, paths_dict in results:
+            localisations.extend(locs_list)
+            paths.update(paths_dict)
 
-            text_file = FileOpener.open_text_file(filename, lowercase=lowercase)
-
-            # Pattern: defined_text = { name = <name> ... }
-            if "defined_text" in text_file and "name =" in text_file:
-                # Match: name = <identifier> (including uppercase letters)
-                pattern_matches = re.findall(
-                    r"name\s*=\s*([a-zA-Z_0-9]+)", text_file if lowercase else text_file
-                )
-                if len(pattern_matches) > 0:
-                    for match in pattern_matches:
-                        localisations.append(match)
-                        paths[match] = os.path.basename(filename)
-
-        if return_paths:
-            return (localisations, paths)
-        else:
-            return localisations
+        return (localisations, paths) if return_paths else localisations
 
     @classmethod
     def get_all_used_localisations(
         cls,
-        mod_path: str,
-        defined_names: Set[str],
-        lowercase: bool = True,
-        return_paths: bool = False,
-        staged_files: Optional[List[str]] = None,
-    ) -> Tuple[List[str], Dict[str, str]]:
-        """Parse all files and return list with all used scripted localisations
-
-        Args:
-            mod_path (str): path to mod folder
-            defined_names (Set[str]): set of defined scripted localisation names to search for
-            lowercase (bool, optional): defines if returned list contains lowercase str or not. Defaults to True.
-            return_paths (bool, optional): defines if paths dict is returned. Defaults to False.
-            staged_files (list, optional): list of staged files to validate (if None, validates all files)
-
-        Returns:
-            tuple or list: (localisations, paths) if return_paths else localisations
-        """
+        mod_path,
+        defined_names,
+        lowercase=True,
+        return_paths=False,
+        staged_files=None,
+        workers=None,
+        pool=None,
+    ):
         localisations = []
         paths = {}
 
-        # Convert defined names to lowercase for searching if needed
         search_names = (
             {name.lower() for name in defined_names} if lowercase else defined_names
         )
 
-        # Determine which files to scan:
-        # - .gui files (interface definitions)
-        # - .yml files (localisation files)
-        # - .txt files ONLY in common/scripted_guis/ (scripted GUI definitions)
-        if staged_files:
+        if staged_files is not None:
             files_to_scan = [
                 f
                 for f in staged_files
-                if f.endswith(".gui")
-                or f.endswith(".yml")
-                or (f.endswith(".txt") and "scripted_guis" in f)
+                if f.endswith(".gui") or f.endswith(".yml") or f.endswith(".txt")
             ]
         else:
-            gui_files = glob.iglob(mod_path + "**/*.gui", recursive=True)
-            yml_files = glob.iglob(mod_path + "**/*.yml", recursive=True)
-            scripted_gui_files = glob.iglob(
-                mod_path + "common/scripted_guis/*.txt", recursive=True
+            gui_files = list(
+                glob.iglob(os.path.join(mod_path, "**", "*.gui"), recursive=True)
             )
-            files_to_scan = list(gui_files) + list(yml_files) + list(scripted_gui_files)
+            yml_files = list(
+                glob.iglob(
+                    os.path.join(mod_path, "localisation", "english", "**", "*.yml"),
+                    recursive=True,
+                )
+            )
+            txt_files = list(
+                glob.iglob(os.path.join(mod_path, "**", "*.txt"), recursive=True)
+            )
+            files_to_scan = gui_files + yml_files + txt_files
 
-        for filename in files_to_scan:
-            if should_skip_file(filename):
-                continue
+        args_list = [(f, search_names, lowercase, mod_path) for f in files_to_scan]
+        p = pool if pool else Pool(processes=workers)
+        results = p.map(process_file_for_used_localisations, args_list, chunksize=50)
+        if not pool:
+            p.close()
+            p.join()
 
-            # Skip the scripted localisation definition files themselves
-            if "scripted_localisation" in filename:
-                continue
+        found_names = set()
+        for locs_list, paths_dict in results:
+            for loc in locs_list:
+                if loc not in found_names:
+                    localisations.append(loc)
+                    paths[loc] = paths_dict[loc]
+                    found_names.add(loc)
 
-            text_file = FileOpener.open_text_file(filename, lowercase=lowercase)
+        # Additional pass: detect scripted locs called via meta_effect/meta_trigger
+        # template substitution (e.g. `custom_effect_tooltip = tooltip_EU_[EUXXX]_approve`).
+        # Only check names not already found to keep scanning cost low.
+        still_unfound = set(defined_names) - found_names
+        if still_unfound:
+            txt_files_for_meta = [
+                f
+                for f in files_to_scan
+                if f.endswith(".txt") and "scripted_localisation" not in f
+            ]
+            for loc in scan_meta_constructed_names(txt_files_for_meta, still_unfound):
+                if loc not in found_names:
+                    localisations.append(loc)
+                    paths[loc] = "<meta_effect>"
+                    found_names.add(loc)
 
-            # Check which defined scripted localisation names appear in this file
-            # Use simple string containment for performance (much faster than regex)
-            for name in search_names:
-                if name not in localisations:  # Only check if not already found
-                    if name in text_file:
-                        localisations.append(name)
-                        paths[name] = os.path.basename(filename)
-
-        if return_paths:
-            return (localisations, paths)
-        else:
-            return localisations
-
-
-class DataCleaner:
-    """Utility class for cleaning data and removing false positives"""
-
-    @classmethod
-    def clear_false_positives_partial_match(
-        cls, input_iter, false_positives: tuple = ()
-    ):
-        """Removes items from iterable based on partial match
-
-        Args:
-            input_iter: dict/list to remove items from
-            false_positives (tuple, optional): iterable with patterns to remove
-
-        Returns:
-            dict or list: cleaned input_iter
-        """
-        if isinstance(input_iter, dict):
-            if len(false_positives) > 0:
-                skip_list = []
-                for k in input_iter:
-                    for f in false_positives:
-                        if f in k:
-                            skip_list.append(k)
-
-                for i in skip_list:
-                    if i in input_iter:
-                        input_iter.pop(i)
-            return input_iter
-
-        elif isinstance(input_iter, list):
-            if len(false_positives) > 0:
-                skip_list = []
-                for k in input_iter:
-                    for f in false_positives:
-                        if f in k:
-                            skip_list.append(k)
-
-                input_iter = [i for i in input_iter if i not in skip_list]
-            return input_iter
+        return (localisations, paths) if return_paths else localisations
 
 
-class Validator:
-    """Main validation class that runs all checks"""
+class Validator(BaseValidator):
+    TITLE = "SCRIPTED LOCALISATION VALIDATION"
+    STAGED_EXTENSIONS = [".txt", ".yml", ".gui"]
 
-    def __init__(
+    def validate_missing_scripted_localisations(
         self,
-        mod_path: str,
-        output_file: Optional[str] = None,
-        use_colors: bool = True,
-        staged_only: bool = False,
+        false_positives,
+        defined_locs: List[str],
+        used_locs: List[str],
+        used_paths: Dict[str, str],
     ):
-        """Initialize validator with mod path
-
-        Args:
-            mod_path (str): path to mod folder (must end with /)
-            output_file (str, optional): path to output file for results
-            use_colors (bool): whether to use ANSI colors in output
-            staged_only (bool): only validate git staged files
-        """
-        if not mod_path.endswith("/"):
-            mod_path += "/"
-        self.mod_path = mod_path
-        self.errors_found = 0
-        self.output_file = output_file
-        self.use_colors = use_colors
-        self.staged_only = staged_only
-        self.staged_files = None
-        self.output_lines = []
-
-        if staged_only:
-            self.staged_files = get_staged_files(mod_path)
-            if not self.staged_files:
-                logging.warning("No staged .txt or .yml files found")
-
-    def log(self, message: str, level: str = "info"):
-        """Log message and optionally store for file output
-
-        Args:
-            message (str): message to log
-            level (str): log level (info, warning, error)
-        """
-        # Strip ANSI codes if not using colors
-        display_msg = (
-            message if self.use_colors else re.sub(r"\033\[[0-9;]+m", "", message)
+        self._log_section(
+            "Checking missing scripted localisations (used but not defined)..."
         )
 
-        if level == "info":
-            logging.info(display_msg)
-        elif level == "warning":
-            logging.warning(display_msg)
-        elif level == "error":
-            logging.error(display_msg)
+        defined_locs_lower = [loc.lower() for loc in defined_locs]
+        used_locs_lower_raw = [loc.lower() for loc in used_locs]
+        used_lower_to_original = {loc.lower(): loc for loc in used_locs}
 
-        # Store for file output (without colors)
-        file_msg = re.sub(r"\033\[[0-9;]+m", "", message)
-        self.output_lines.append(file_msg)
-
-    def get_full_path(self, basename: str, item: str) -> Optional[str]:
-        """Find full path for a file given its basename and search item
-
-        Args:
-            basename (str): file basename
-            item (str): item to search for in the file
-
-        Returns:
-            Full file path or None
-        """
-        # Search in both .txt and .gui files
-        for pattern in ["**/*.txt", "**/*.gui"]:
-            for filename in glob.iglob(self.mod_path + pattern, recursive=True):
-                if os.path.basename(filename) == basename:
-                    if should_skip_file(filename):
-                        continue
-                    # Quick check if this might be the right file
-                    try:
-                        with open(filename, "r", encoding="utf-8-sig") as f:
-                            content = f.read()
-                            if item.lower() in content.lower():
-                                return filename
-                    except:
-                        pass
-        return None
-
-    def save_output(self):
-        """Save output to file if output_file is specified"""
-        if self.output_file and self.output_lines:
-            try:
-                with open(self.output_file, "w", encoding="utf-8") as f:
-                    f.write("\n".join(self.output_lines))
-                logging.info(f"Results saved to: {self.output_file}")
-            except Exception as e:
-                logging.error(f"Failed to save output to {self.output_file}: {e}")
-
-    def validate_missing_scripted_localisations(self, false_positives: List[str]):
-        """Validate scripted localisations that are used but not defined
-
-        Args:
-            false_positives (list): list of patterns to skip
-        """
-        self.log(f"\n{'='*80}")
-        self.log(
-            f"{Colors.CYAN if self.use_colors else ''}Checking missing scripted localisations (used but not defined)...{Colors.ENDC if self.use_colors else ''}"
+        used_locs_lower = (
+            DataCleaner.clear_false_positives_partial_match(
+                used_locs_lower_raw, tuple(false_positives)
+            )
+            or []
         )
-        self.log(f"{'='*80}")
 
         results = []
-        # First get all defined localisations
-        defined_locs = ScriptedLocalisation.get_all_defined_localisations(
-            mod_path=self.mod_path, lowercase=False, staged_files=self.staged_files
-        )
-
-        # Then search for uses of those specific names
-        defined_names_set = set(defined_locs)
-        used_locs, paths = ScriptedLocalisation.get_all_used_localisations(
-            mod_path=self.mod_path,
-            defined_names=defined_names_set,
-            lowercase=False,
-            return_paths=True,
-            staged_files=self.staged_files,
-        )
-
-        # Convert to lowercase for comparison
-        defined_locs_lower = [loc.lower() for loc in defined_locs]
-        used_locs_lower = [loc.lower() for loc in used_locs]
-
-        # Clean false positives
-        used_locs_lower = DataCleaner.clear_false_positives_partial_match(
-            used_locs_lower, tuple(false_positives)
-        )
-
-        # Track which we've already reported to avoid duplicates
         reported = set()
-
-        for i, loc in enumerate(used_locs_lower):
+        for loc in used_locs_lower:
             if loc not in defined_locs_lower and loc not in reported:
-                # Get the original case version
-                original_loc = used_locs[i]
-                basename = paths.get(original_loc, paths.get(loc, "unknown"))
-
-                # Try to find the file
-                full_path = self.get_full_path(basename, loc)
+                original_loc = used_lower_to_original.get(loc) or loc
+                basename = used_paths.get(original_loc, used_paths.get(loc, "unknown"))
+                full_path = self.get_full_path(
+                    basename,
+                    original_loc,
+                    file_patterns=[
+                        "**/*.txt",
+                        "**/*.gui",
+                        "localisation/english/**/*.yml",
+                    ],
+                )
                 if full_path:
                     rel_path = os.path.relpath(full_path, self.mod_path)
-                    line_num = find_line_number(full_path, loc, lowercase=True)
-                    results.append(
-                        {"localisation": loc, "file": rel_path, "line": line_num}
-                    )
+                    line_num = _find_reference_line(full_path, loc)
+                    results.append((loc, rel_path, line_num))
                     reported.add(loc)
 
         if len(results) > 0:
             self.log(
-                f"{Colors.RED if self.use_colors else ''}Missing scripted localisations were encountered - they are referenced but not defined in common/scripted_localisation/.{Colors.ENDC if self.use_colors else ''}",
-                "error",
-            )
-            self.log(
                 f"{Colors.YELLOW if self.use_colors else ''}Note: Some of these may be regular localisation keys rather than scripted localisation. Verify manually.{Colors.ENDC if self.use_colors else ''}",
                 "warning",
             )
-            for result in results:
-                if result["line"] > 0:
-                    self.log(
-                        f"  {Colors.YELLOW if self.use_colors else ''}{result['file']}:{result['line']}{Colors.ENDC if self.use_colors else ''} - {result['localisation']}",
-                        "error",
-                    )
-                else:
-                    self.log(
-                        f"  {Colors.YELLOW if self.use_colors else ''}{result['file']}{Colors.ENDC if self.use_colors else ''} - {result['localisation']}",
-                        "error",
-                    )
-            self.log(
-                f"{Colors.RED if self.use_colors else ''}{len(results)} issues found{Colors.ENDC if self.use_colors else ''}",
-                "error",
-            )
-            self.errors_found += len(results)
-        else:
-            self.log(
-                f"{Colors.GREEN if self.use_colors else ''}✓ No issues found with missing scripted localisations{Colors.ENDC if self.use_colors else ''}"
+            self._report(
+                results,
+                "✓ No issues found with missing scripted localisations",
+                "Missing scripted localisations - referenced but not defined:",
+                Severity.ERROR,
+                category="missing-scripted-loc",
             )
 
-    def validate_unused_scripted_localisations(self, false_positives: List[str]):
-        """Validate scripted localisations that are defined but not used
-
-        Args:
-            false_positives (list): list of patterns to skip
-        """
-        self.log(f"\n{'='*80}")
-        self.log(
-            f"{Colors.CYAN if self.use_colors else ''}Checking unused scripted localisations (defined but not used)...{Colors.ENDC if self.use_colors else ''}"
-        )
-        self.log(f"{'='*80}")
-
-        results = []
-        # First get all defined localisations
-        defined_locs, paths = ScriptedLocalisation.get_all_defined_localisations(
-            mod_path=self.mod_path,
-            lowercase=False,
-            return_paths=True,
-            staged_files=self.staged_files,
+    def validate_unused_scripted_localisations(
+        self,
+        false_positives,
+        defined_locs: List[str],
+        defined_paths: Dict[str, str],
+        used_locs: List[str],
+    ):
+        self._log_section(
+            "Checking unused scripted localisations (defined but not used)..."
         )
 
-        # Then search for uses of those specific names
-        defined_names_set = set(defined_locs)
-        used_locs = ScriptedLocalisation.get_all_used_localisations(
-            mod_path=self.mod_path,
-            defined_names=defined_names_set,
-            lowercase=False,
-            staged_files=self.staged_files,
-        )
+        # Preemptive slot libraries — defined for all possible slots even if only a
+        # subset are active.  Suppress unused warnings for the unoccupied slots rather
+        # than requiring every slot to have a live caller.
+        UNUSED_ONLY_FALSE_POSITIVES = ("eu_parl_pg_party_",)
 
-        # Convert to lowercase for comparison
+        defined_lower_to_original = {loc.lower(): loc for loc in defined_locs}
         defined_locs_lower = [loc.lower() for loc in defined_locs]
         used_locs_lower = [loc.lower() for loc in used_locs]
 
-        # Clean false positives
-        defined_locs_lower = DataCleaner.clear_false_positives_partial_match(
-            defined_locs_lower, tuple(false_positives)
+        defined_locs_lower = (
+            DataCleaner.clear_false_positives_partial_match(
+                defined_locs_lower,
+                tuple(false_positives) + tuple(UNUSED_ONLY_FALSE_POSITIVES),
+            )
+            or []
         )
 
-        # Track which we've already reported to avoid duplicates
+        results = []
         reported = set()
-
-        for i, loc in enumerate(defined_locs_lower):
+        for loc in defined_locs_lower:
             if loc not in used_locs_lower and loc not in reported:
-                # Get the original case version
-                original_loc = defined_locs[i]
-                basename = paths.get(original_loc, paths.get(loc, "unknown"))
+                original_loc = defined_lower_to_original.get(loc, loc)
+                basename = defined_paths.get(
+                    original_loc or loc, defined_paths.get(loc, "unknown")
+                )
 
-                # Find the definition file
                 full_path = None
                 pattern = os.path.join(
                     self.mod_path, "common", "scripted_localisation", basename
@@ -540,7 +400,6 @@ class Validator:
                 if os.path.exists(pattern):
                     full_path = pattern
                 else:
-                    # Try to find it
                     for filename in glob.iglob(
                         os.path.join(
                             self.mod_path, "common", "scripted_localisation", "*.txt"
@@ -552,59 +411,76 @@ class Validator:
 
                 if full_path:
                     rel_path = os.path.relpath(full_path, self.mod_path)
-                    line_num = find_line_number(
-                        full_path, f"name = {loc}", lowercase=True
-                    )
-                    results.append(
-                        {"localisation": loc, "file": rel_path, "line": line_num}
-                    )
+                    line_num = _find_definition_line(full_path, loc)
+                    results.append((loc, rel_path, line_num))
                     reported.add(loc)
 
-        if len(results) > 0:
-            self.log(
-                f"{Colors.RED if self.use_colors else ''}Unused scripted localisations were encountered - they are defined but not referenced anywhere.{Colors.ENDC if self.use_colors else ''}",
-                "error",
-            )
-            for result in results:
-                if result["line"] > 0:
-                    self.log(
-                        f"  {Colors.YELLOW if self.use_colors else ''}{result['file']}:{result['line']}{Colors.ENDC if self.use_colors else ''} - {result['localisation']}",
-                        "error",
-                    )
-                else:
-                    self.log(
-                        f"  {Colors.YELLOW if self.use_colors else ''}{result['file']}{Colors.ENDC if self.use_colors else ''} - {result['localisation']}",
-                        "error",
-                    )
-            self.log(
-                f"{Colors.RED if self.use_colors else ''}{len(results)} issues found{Colors.ENDC if self.use_colors else ''}",
-                "error",
-            )
-            self.errors_found += len(results)
-        else:
-            self.log(
-                f"{Colors.GREEN if self.use_colors else ''}✓ No issues found with unused scripted localisations{Colors.ENDC if self.use_colors else ''}"
-            )
-
-    def run_all_validations(self):
-        """Run all validation checks"""
-        self.log(f"\n{'#'*80}")
-        self.log(
-            f"{Colors.BOLD if self.use_colors else ''}MILLENNIUM DAWN SCRIPTED LOCALISATION VALIDATION{Colors.ENDC if self.use_colors else ''}"
+        self._report(
+            results,
+            "✓ No issues found with unused scripted localisations",
+            "Unused scripted localisations - defined but not referenced:",
+            Severity.ERROR,
+            category="unused-scripted-loc",
         )
-        self.log(f"{'#'*80}")
-        self.log(f"Mod path: {self.mod_path}")
-        if self.staged_only:
-            self.log(
-                f"{Colors.CYAN if self.use_colors else ''}Mode: Git staged files only{Colors.ENDC if self.use_colors else ''}"
-            )
-        if self.output_file:
-            self.log(f"Output file: {self.output_file}")
 
-        # Define false positives
-        # These are common patterns that should be skipped
+    def validate_gfx_icons(self):
+        self._log_section(
+            "Checking GFX_ icon references in scripted localisation against .gfx definitions..."
+        )
+
+        # Collect all GFX_ names defined in interface/*.gfx
+        gfx_path = str(Path(self.mod_path) / "interface") + "/"
+        defined_gfx = set()
+        for filename in glob.iglob(gfx_path + "**/*.gfx", recursive=True):
+            text_file = FileOpener.open_text_file(
+                filename, lowercase=False, strip_comments_flag=False
+            )
+            defined_gfx.update(sprite_names_from_gfx_text(text_file))
+
+        # Collect all GFX_ references from scripted localisation files
+        if self.staged_files:
+            files_to_scan = [
+                f
+                for f in self.staged_files
+                if "scripted_localisation" in f and f.endswith(".txt")
+            ]
+        else:
+            pattern = os.path.join(
+                self.mod_path, "common", "scripted_localisation", "*.txt"
+            )
+            files_to_scan = glob.glob(pattern)
+
+        results = []
+        reported = set()
+        for filename in files_to_scan:
+            text_file = FileOpener.open_text_file(
+                filename, lowercase=False, strip_comments_flag=True
+            )
+            matches = re.findall(r"localization_key\s*=\s*(GFX_[^\s\}]+)", text_file)
+            for gfx_name in matches:
+                if gfx_name not in defined_gfx and gfx_name not in reported:
+                    rel_path = os.path.relpath(filename, self.mod_path)
+                    line_num = find_line_number(filename, gfx_name, lowercase=False)
+                    results.append((gfx_name, rel_path, line_num))
+                    reported.add(gfx_name)
+
+        self._report(
+            results,
+            "✓ All GFX_ icons in scripted localisation are defined in .gfx files",
+            "GFX_ icons referenced in scripted localisation but not defined in interface/*.gfx:",
+            Severity.ERROR,
+            category="gfx-icon",
+        )
+
+    def run_validations(self):
+        if self.staged_only and not self.staged_files:
+            self.log(
+                "No staged files found — skipping scripted localisation validation",
+                "warning",
+            )
+            return
+
         FALSE_POSITIVES = [
-            # Common vanilla game references
             "root.getname",
             "this.getname",
             "from.getname",
@@ -616,121 +492,82 @@ class Validator:
             "getyear",
             "getmonth",
             "getday",
-            # Common patterns that aren't scripted loc
-            "tt",
-            "_tt",
-            "_desc",
-            "_title",
-            "button",
-            "gfx_",
-            "tooltip",
-            # Color codes and formatting
-            "§",
-            "£",
+            # These are matched as substrings, so suffix entries like "tt"/"_desc" used to
+            # swallow real names (party_name_by_index_delayed_tt, opposition_party_desc,
+            # sat_N_det_tt_loc) — engine getters are already filtered by the get* prefix rule.
+            "euxxx_ep_agenda",
+            # Plain loc keys used as $KEY$ nested substitution wrappers in formable
+            # state integration tooltips \u2014 not scripted localisations
+            "gip",
+            "gis",
+            "\u00a7",
+            "\u00a3",
             "$",
-            # Variables and scope references
             "var:",
             "@",
             "[",
         ]
 
-        # Run validations
-        self.validate_missing_scripted_localisations(FALSE_POSITIVES)
-        self.validate_unused_scripted_localisations(FALSE_POSITIVES)
+        all_defined_locs, all_defined_paths = (
+            ScriptedLocalisation.get_all_defined_localisations(
+                mod_path=self.mod_path,
+                lowercase=False,
+                return_paths=True,
+                staged_files=None,
+                workers=self.workers,
+                pool=self._get_pool(),
+            )
+        )
+        all_used_locs, all_used_paths = ScriptedLocalisation.get_all_used_localisations(
+            mod_path=self.mod_path,
+            defined_names=set(all_defined_locs),
+            lowercase=False,
+            return_paths=True,
+            staged_files=None,
+            workers=self.workers,
+            pool=self._get_pool(),
+        )
 
-        # Final summary
-        self.log(f"\n{'#'*80}")
-        if self.errors_found == 0:
-            self.log(
-                f"{Colors.GREEN if self.use_colors else ''}✓ VALIDATION COMPLETE - NO ISSUES FOUND{Colors.ENDC if self.use_colors else ''}"
+        # Missing refs are staged-scope; unused checks need full-repo consumers.
+        if self.staged_only:
+            defined_locs, defined_paths = (
+                ScriptedLocalisation.get_all_defined_localisations(
+                    mod_path=self.mod_path,
+                    lowercase=False,
+                    return_paths=True,
+                    staged_files=self.staged_files,
+                    workers=self.workers,
+                    pool=self._get_pool(),
+                )
+            )
+            missing_locs, missing_paths = (
+                ScriptedLocalisation.get_all_used_localisations(
+                    mod_path=self.mod_path,
+                    defined_names=set(all_defined_locs),
+                    lowercase=False,
+                    return_paths=True,
+                    staged_files=self.staged_files,
+                    workers=self.workers,
+                    pool=self._get_pool(),
+                )
             )
         else:
-            self.log(
-                f"{Colors.RED if self.use_colors else ''}✗ VALIDATION COMPLETE - {self.errors_found} TOTAL ISSUES FOUND{Colors.ENDC if self.use_colors else ''}",
-                "error",
-            )
-        self.log(f"{'#'*80}\n")
+            defined_locs, defined_paths = all_defined_locs, all_defined_paths
+            missing_locs, missing_paths = all_used_locs, all_used_paths
 
-        # Save output if requested
-        self.save_output()
+        self.validate_missing_scripted_localisations(
+            FALSE_POSITIVES, all_defined_locs, missing_locs, missing_paths
+        )
+        self.validate_unused_scripted_localisations(
+            FALSE_POSITIVES, defined_locs, defined_paths, all_used_locs
+        )
 
-        return self.errors_found
-
-
-def main():
-    """Main entry point"""
-    parser = argparse.ArgumentParser(
-        description="Validate scripted localisation in Millennium Dawn mod",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Validate current directory
-  python validate_scripted_localisation.py
-
-  # Validate specific mod directory
-  python validate_scripted_localisation.py --path /path/to/mod
-
-  # Exit with error code on issues (useful for CI/CD)
-  python validate_scripted_localisation.py --strict
-
-  # Save output to file
-  python validate_scripted_localisation.py --output report.txt
-
-  # Validate only git staged files (for pre-commit hook)
-  python validate_scripted_localisation.py --staged --strict
-
-  # Disable colors
-  python validate_scripted_localisation.py --no-color
-        """,
-    )
-    parser.add_argument(
-        "--path",
-        type=str,
-        default=".",
-        help="Path to the mod folder (default: current directory)",
-    )
-    parser.add_argument(
-        "--strict", action="store_true", help="Exit with error code if issues are found"
-    )
-    parser.add_argument(
-        "--output", "-o", type=str, help="Save validation results to file"
-    )
-    parser.add_argument(
-        "--no-color", action="store_true", help="Disable ANSI color codes in output"
-    )
-    parser.add_argument(
-        "--staged",
-        action="store_true",
-        help="Only validate git staged files (for pre-commit hook)",
-    )
-
-    args = parser.parse_args()
-
-    # Resolve and validate path
-    mod_path = Path(args.path).resolve()
-    if not mod_path.exists():
-        logging.error(f"Error: Path does not exist: {mod_path}")
-        sys.exit(1)
-
-    if not mod_path.is_dir():
-        logging.error(f"Error: Path is not a directory: {mod_path}")
-        sys.exit(1)
-
-    # Run validation
-    validator = Validator(
-        str(mod_path),
-        output_file=args.output,
-        use_colors=not args.no_color,
-        staged_only=args.staged,
-    )
-    errors_found = validator.run_all_validations()
-
-    # Exit with appropriate code
-    if args.strict and errors_found > 0:
-        sys.exit(1)
-    else:
-        sys.exit(0)
+        # GFX icon check scans all interface/*.gfx files — skip in staged mode
+        if not self.staged_only:
+            self.validate_gfx_icons()
 
 
 if __name__ == "__main__":
-    main()
+    run_validator_main(
+        Validator, "Validate scripted localisation in Millennium Dawn mod"
+    )

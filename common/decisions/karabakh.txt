@@ -2,12 +2,12 @@ karabakh_decisions_category = {
 	NKR_armenia_send_nkr_guns = {
 		icon = GFX_decision_ISR_military_button
 		days_remove = 150
-		visible = {
+		allowed = {
 			original_tag = ARM
 		}
 		available = {
 			has_equipment = {
-				Inf_equipment > 1000
+				infantry_weapons_type > 1000
 			}
 			NOT = {
 				has_war = yes
@@ -19,7 +19,7 @@ karabakh_decisions_category = {
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision NKR_armenia_send_nkr_guns"
 			add_equipment_to_stockpile = {
-				type = infantry_weapons
+				type = infantry_weapons_1
 				amount = -1000
 			}
 		}
@@ -27,13 +27,13 @@ karabakh_decisions_category = {
 			log = "[GetDateText]: [Root.GetName]: Decision NKR_armenia_send_nkr_guns"
 			NKR = {
 				add_equipment_to_stockpile = {
-					type = infantry_weapons
+					type = infantry_weapons_1
 					amount = 1000
 				}
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	NKR_attack_stepanakert = {
@@ -41,7 +41,7 @@ karabakh_decisions_category = {
 		days_remove = 10
 
 		visible = {
-			has_country_flag = gu_stepanakert_select
+			check_variable = { NKR_artsakh_ui_selected = 1 }
 		}
 
 		available = {
@@ -71,6 +71,24 @@ karabakh_decisions_category = {
 			if = {
 				limit = {
 					original_tag = ARM
+					controls_state = 710
+					NOT = {
+						controls_state = 712
+					}
+					710 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					712 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					divisions_in_state = {
+						size > 0
+						state = 710
+					}
 				}
 				AZE = {
 					country_event = karabakh.1
@@ -98,6 +116,24 @@ karabakh_decisions_category = {
 			if = {
 				limit = {
 					original_tag = AZE
+					controls_state = 712
+					NOT = {
+						controls_state = 710
+					}
+					712 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					710 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					divisions_in_state = {
+						size > 0
+						state = 712
+					}
 				}
 				ARM = {
 					country_event = karabakh.5
@@ -124,14 +160,14 @@ karabakh_decisions_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	NKR_attack_karvachar = {
 		icon = GFX_decision_arm_kalash_button
 		days_remove = 10
 		visible = {
-			has_country_flag = gu_karvachar_select
+			check_variable = { NKR_artsakh_ui_selected = 2 }
 		}
 		available = {
 			NOT = {
@@ -159,6 +195,24 @@ karabakh_decisions_category = {
 			if = {
 				limit = {
 					original_tag = ARM
+					controls_state = 1036
+					NOT = {
+						controls_state = 712
+					}
+					1036 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					712 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					divisions_in_state = {
+						size > 0
+						state = 1036
+					}
 				}
 				AZE = {
 					country_event = karabakh.1
@@ -186,6 +240,24 @@ karabakh_decisions_category = {
 			if = {
 				limit = {
 					original_tag = AZE
+					controls_state = 712
+					NOT = {
+						controls_state = 1036
+					}
+					712 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					1036 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					divisions_in_state = {
+						size > 0
+						state = 712
+					}
 				}
 				ARM = {
 					country_event = karabakh.5
@@ -213,7 +285,7 @@ karabakh_decisions_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -221,7 +293,7 @@ karabakh_decisions_category = {
 		icon = GFX_decision_arm_kalash_button
 		days_remove = 10
 		visible = {
-			has_country_flag = gu_hadrut_select
+			check_variable = { NKR_artsakh_ui_selected = 3 }
 		}
 
 		available = {
@@ -251,6 +323,24 @@ karabakh_decisions_category = {
 			if = {
 				limit = {
 					original_tag = ARM
+					controls_state = 1037
+					NOT = {
+						controls_state = 712
+					}
+					1037 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					712 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					divisions_in_state = {
+						size > 0
+						state = 1037
+					}
 				}
 				AZE = {
 					country_event = karabakh.1
@@ -278,6 +368,24 @@ karabakh_decisions_category = {
 			if = {
 				limit = {
 					original_tag = AZE
+					controls_state = 712
+					NOT = {
+						controls_state = 1037
+					}
+					712 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					1037 = {
+						NOT = {
+							has_border_war = yes
+						}
+					}
+					divisions_in_state = {
+						size > 0
+						state = 712
+					}
 				}
 				ARM = {
 					country_event = karabakh.5
@@ -305,24 +413,21 @@ karabakh_decisions_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	NKR_conduct_drone_recon = {
+		fixed_random_seed = no
 		icon = GFX_decision_arm_drone_button
 		days_remove = 10
 		visible = {
-			OR = {
-				has_country_flag = gu_hadrut_select
-				has_country_flag = gu_karvachar_select
-				has_country_flag = gu_stepanakert_select
-			}
+			check_variable = { NKR_artsakh_ui_selected > 0 }
 		}
 		available = {
 			NOT = {
 				has_country_flag = drone_recent_was
 			}
-			has_tech = land_Drone_equipment
+			has_tech = land_drone_equipment_type
 			custom_trigger_tooltip = {
 				tooltip = incres_tech_incr_succ_tt
 			}
@@ -363,7 +468,7 @@ karabakh_decisions_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	#######NEGOTIATIONS
@@ -372,13 +477,11 @@ karabakh_decisions_category = {
 		days_remove = 15
 		cost = 75
 
-		visible = {
+		allowed = {
 			original_tag = ARM
-			NOT = {
-				has_country_flag = gu_first_stage
-				has_country_flag = gu_second_stage
-				has_country_flag = gu_third_stage
-			}
+		}
+		visible = {
+			check_variable = { NKR_artsakh_stage = 0 }
 		}
 
 		available = {
@@ -398,7 +501,7 @@ karabakh_decisions_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	NKR_armenia_second_posistion = {
@@ -406,13 +509,11 @@ karabakh_decisions_category = {
 		days_remove = 15
 		cost = 75
 
-		visible = {
+		allowed = {
 			original_tag = AZE
-			has_country_flag = gu_first_stage
-			NOT = {
-				has_country_flag = gu_second_stage
-				has_country_flag = gu_third_stage
-			}
+		}
+		visible = {
+			check_variable = { NKR_artsakh_stage = 1 }
 		}
 
 		available = {
@@ -432,7 +533,7 @@ karabakh_decisions_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	NKR_armenia_third_posistion = {
@@ -441,12 +542,11 @@ karabakh_decisions_category = {
 		cost = 75
 
 
-		visible = {
+		allowed = {
 			original_tag = AZE
-			has_country_flag = gu_second_stage
-			NOT = {
-				has_country_flag = gu_third_stage
-			}
+		}
+		visible = {
+			check_variable = { NKR_artsakh_stage = 2 }
 		}
 
 		available = {
@@ -466,7 +566,7 @@ karabakh_decisions_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -476,9 +576,11 @@ karabakh_decisions_category = {
 		cost = 75
 
 
-		visible = {
+		allowed = {
 			original_tag = AZE
-			has_country_flag = gu_third_stage
+		}
+		visible = {
+			check_variable = { NKR_artsakh_stage = 3 }
 		}
 
 		available = {
@@ -498,7 +600,7 @@ karabakh_decisions_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -507,9 +609,9 @@ karabakh_decisions_category = {
 		days_remove = 15
 		fire_only_once = yes
 		cost = 100
+		war_with_on_complete = AZE
 
-
-		visible = {
+		allowed = {
 			original_tag = ARM
 		}
 
@@ -533,6 +635,7 @@ karabakh_decisions_category = {
 			log = "[GetDateText]: [Root.GetName]: NKR_armenia_annex_nkr"
 			add_country_leader_trait = ARM_united_armenians_trait
 			set_country_flag = karabakh_regulated_flag
+			remove_ideas = ARM_has_artsakh_idea
 			annex_country = {
 				target = NKR
 				transfer_troops = yes
@@ -554,7 +657,7 @@ karabakh_decisions_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	NKR_azer_attack_nkr = {
@@ -563,18 +666,26 @@ karabakh_decisions_category = {
 		fire_only_once = yes
 		custom_cost_trigger = {
 			command_power > 100
+			has_political_power > 99
 		}
-		custom_cost_text = command_power_more_than_100
+		custom_cost_text = command_power_100_pp_100
+		ai_hint_pp_cost = 100
 
-		visible = {
+		allowed = {
 			original_tag = AZE
+		}
+		visible = {
 			country_exists = NKR
 		}
 
+		war_with_on_complete = AZE
+
 		available = {
 			NOT = {
-				has_war = yes
-				has_country_flag = negot_recent_was
+				OR = {
+					has_war = yes
+					has_country_flag = negot_recent_was
+				}
 			}
 			country_exists = NKR
 			OR = {
@@ -610,7 +721,7 @@ karabakh_decisions_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 }

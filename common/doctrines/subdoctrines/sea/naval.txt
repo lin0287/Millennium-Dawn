@@ -14,10 +14,29 @@ carrier_operations = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
-			num_of_naval_factories < 1
+			num_of_naval_factories < 4
+		}
+		modifier = {
+			add = 12
+			has_government = democratic
+			num_of_naval_factories > 6
+		}
+		modifier = {
+			add = 8
+			is_faction_leader = yes
+			num_of_naval_factories > 5
+		}
+		modifier = {
+			add = 6
+			has_expansionist_government = yes
+			num_of_naval_factories > 5
+		}
+		modifier = {
+			add = 12
+			original_tag = CHI
+			num_of_naval_factories > 4
 		}
 	}
 
@@ -50,7 +69,6 @@ carrier_operations = {
 	mastery = {
 		multiplier = 1
 		sub_units = { carrier }
-		equipment = { }
 	}
 }
 
@@ -69,10 +87,19 @@ helicopter_landing_ships = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 8
+			has_government = democratic
+			num_of_naval_factories > 4
+		}
+		modifier = {
+			add = 5
+			has_expansionist_government = yes
+			num_of_naval_factories > 4
 		}
 	}
 
@@ -110,7 +137,6 @@ helicopter_landing_ships = {
 	mastery = {
 		multiplier = 1
 		sub_units = { helicopter_operator }
-		equipment = { }
 	}
 }
 
@@ -140,8 +166,8 @@ escort_carriers = {
 	equipment_bonus = {
 		helicopter_operator = {
 			carrier_size = 1
-			max_strength = -0.3
-			build_cost_ic = 0.05
+			max_strength = -0.1
+			build_cost_ic = 0.1
 			instant = yes
 		}
 	}
@@ -167,7 +193,6 @@ escort_carriers = {
 	mastery = {
 		multiplier = 1
 		sub_units = { helicopter_operator }
-		equipment = { }
 	}
 }
 
@@ -187,10 +212,15 @@ lords_of_the_sea = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
-			num_of_naval_factories < 1
+			num_of_naval_factories < 3
+		}
+		modifier = {
+			add = 8
+			has_government = communism
+			is_major_power = yes
+			num_of_naval_factories > 3
 		}
 	}
 
@@ -258,7 +288,6 @@ lords_of_the_sea = {
 	mastery = {
 		multiplier = 1
 		sub_units = { battleship battle_cruiser }
-		equipment = { }
 	}
 }
 
@@ -355,7 +384,7 @@ carrier_escorts = {
 
 	mastery = {
 		multiplier = 1
-		sub_units = { cruiser battle_cruiser destroyer }
+		sub_units = { cruiser battle_cruiser destroyer screen_destroyer }
 		equipment = { }
 	}
 }
@@ -381,14 +410,19 @@ fleet_cruisers = {
 			factor = 0
 			num_of_naval_factories < 1
 		}
+		modifier = {
+			add = 12
+			original_tag = CHI
+			num_of_naval_factories > 3
+		}
 	}
 
 	# EFFECTS
 	cruiser = {
-		max_organisation = 0.05
+		max_organisation = 5
 	}
 	battle_cruiser = {
-		max_organisation = 0.05
+		max_organisation = 5
 	}
 
 	rewards = {
@@ -449,7 +483,6 @@ fleet_cruisers = {
 	mastery = {
 		multiplier = 1
 		sub_units = { cruiser battle_cruiser }
-		equipment = { }
 	}
 }
 
@@ -469,10 +502,20 @@ destroyer_fleet = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 8
+			is_minor_power = yes
+			num_of_naval_factories > 1
+		}
+		modifier = {
+			add = 5
+			NOT = { has_expansionist_government = yes }
+			is_minor_power = yes
+			num_of_naval_factories > 1
 		}
 	}
 
@@ -545,7 +588,7 @@ destroyer_fleet = {
 
 	mastery = {
 		multiplier = 1
-		sub_units = { destroyer stealth_destroyer }
+		sub_units = { destroyer screen_destroyer stealth_destroyer }
 		equipment = { }
 	}
 }
@@ -616,11 +659,11 @@ support_destroyers = {
 		early_warning_patrols = {
 			equipment_bonus = {
 				destroyer = {
-					surface_detection  = 0.075
+					surface_detection = 0.075
 					instant = yes
 				}
 				stealth_destroyer = {
-					surface_detection  = 0.125
+					surface_detection = 0.125
 					instant = yes
 				}
 			}
@@ -629,7 +672,7 @@ support_destroyers = {
 
 	mastery = {
 		multiplier = 1
-		sub_units = { destroyer stealth_destroyer }
+		sub_units = { destroyer screen_destroyer stealth_destroyer }
 		equipment = { }
 	}
 }
@@ -682,15 +725,15 @@ frigate_capitals = {
 		enhanced_missile_defenses = {
 			equipment_bonus = {
 				heavy_frigate = {
-					armor_value = 0.05
-					max_strength = 0.05
+					armor_value = 0.1
+					max_strength = 0.1
 				}
 			}
 		}
 		improved_ship_systems = {
 			heavy_frigate = {
 				max_organisation = 0.1
-				surface_detection = 0.05
+				surface_detection = 0.1
 			}
 		}
 		improved_gun_systems = {
@@ -705,8 +748,8 @@ frigate_capitals = {
 		electronic_warfare_systems = {
 			equipment_bonus = {
 				heavy_frigate = {
-					surface_detection = 0.05
-					surface_visibility = -0.1
+					armor_value = 0.1
+					max_strength = 0.1
 				}
 			}
 		}
@@ -715,7 +758,6 @@ frigate_capitals = {
 	mastery = {
 		multiplier = 1
 		sub_units = { heavy_frigate }
-		equipment = { }
 	}
 }
 
@@ -804,11 +846,11 @@ multirole_frigates = {
 		light_scouts = {
 			equipment_bonus = {
 				frigate = {
-					surface_detection  = 0.1
+					surface_detection = 0.1
 					instant = yes
 				}
 				stealth_frigate = {
-					surface_detection  = 0.15
+					surface_detection = 0.15
 					instant = yes
 				}
 			}
@@ -817,7 +859,7 @@ multirole_frigates = {
 
 	mastery = {
 		multiplier = 1
-		sub_units = { stealth_frigate frigate }
+		sub_units = { stealth_frigate frigate heavy_frigate }
 		equipment = { }
 	}
 }
@@ -930,7 +972,6 @@ anti_sub_corvette = {
 	mastery = {
 		multiplier = 1
 		sub_units = { corvette stealth_corvette }
-		equipment = { }
 	}
 }
 
@@ -1028,11 +1069,11 @@ anti_air_corvette = {
 		early_warning_ships = {
 			equipment_bonus = {
 				corvette = {
-					surface_detection  = 0.1
+					surface_detection = 0.1
 					instant = yes
 				}
 				stealth_corvette = {
-					surface_detection  = 0.15
+					surface_detection = 0.15
 					instant = yes
 				}
 			}
@@ -1042,7 +1083,6 @@ anti_air_corvette = {
 	mastery = {
 		multiplier = 1
 		sub_units = { corvette stealth_corvette }
-		equipment = { }
 	}
 }
 
@@ -1069,6 +1109,10 @@ stealth_escorts = {
 	}
 
 	# EFFECTS
+	stealth_destroyer = {
+		naval_range = 0.05
+		naval_speed = 0.05
+	}
 	stealth_corvette = {
 		naval_range = 0.05
 		naval_speed = 0.05
@@ -1081,70 +1125,87 @@ stealth_escorts = {
 	rewards = {
 		advanced_radar_systems = {
 			equipment_bonus = {
+				stealth_destroyer = {
+					surface_detection = 0.10
+					instant = yes
+				}
 				stealth_frigate = {
-					surface_detection = 0.15
+					surface_detection = 0.10
 					instant = yes
 				}
 				stealth_corvette = {
-					surface_detection = 0.15
+					surface_detection = 0.10
 					instant = yes
 				}
 			}
 		}
 		stealth_coatings = {
 			equipment_bonus = {
+				stealth_destroyer = {
+					surface_visibility = -0.10
+					instant = yes
+				}
 				stealth_frigate = {
-					surface_visibility = -0.15
+					surface_visibility = -0.10
 					instant = yes
 				}
 				stealth_corvette = {
-					surface_visibility = -0.15
+					surface_visibility = -0.10
 					instant = yes
 				}
 			}
 		}
 		electronic_warfare_training = {
 			equipment_bonus = {
+				stealth_destroyer = {
+					armor_value = 0.1
+					instant = yes
+				}
 				stealth_frigate = {
-					surface_visibility = -0.15
-					surface_detection = 0.15
+					armor_value = 0.1
 					instant = yes
 				}
 				stealth_corvette = {
-					surface_visibility = -0.15
-					surface_detection = 0.15
+					armor_value = 0.1
 					instant = yes
 				}
 			}
 		}
 		strike_from_nowhere = {
 			equipment_bonus = {
+				stealth_destroyer = {
+					hg_attack = 0.1
+					hg_armor_piercing = 0.05
+					instant = yes
+				}
 				stealth_frigate = {
-					hg_attack = 0.075
-					hg_armor_piercing = 0.025
+					hg_attack = 0.1
+					hg_armor_piercing = 0.05
 					instant = yes
 				}
 				stealth_corvette = {
-					hg_attack = 0.075
-					hg_armor_piercing = 0.025
+					hg_attack = 0.1
+					hg_armor_piercing = 0.05
 					instant = yes
 				}
 			}
 		}
 		high_coordinated_strikes = {
+			stealth_destroyer = {
+				max_organisation = 1
+			}
 			stealth_frigate = {
-				max_organisation = 0.1
+				max_organisation = 1
 			}
 			stealth_corvette = {
-				max_organisation = 0.15
+				max_organisation = 1
 			}
 		}
 	}
 
 	mastery = {
 		multiplier = 1
-		sub_units = { stealth_frigate stealth_corvette }
-		equipment = { }
+		sub_units = { stealth_destroyer stealth_frigate stealth_corvette }
 	}
 }
 
@@ -1164,10 +1225,14 @@ escort_attack_subs = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 10
+			has_government = democratic
+			is_major_power = yes
 		}
 	}
 
@@ -1206,7 +1271,6 @@ escort_attack_subs = {
 	mastery = {
 		multiplier = 1
 		sub_units = { attack_submarine }
-		equipment = { }
 	}
 }
 
@@ -1225,10 +1289,20 @@ hunter_killer_subs = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 10
+			has_government = communism
+			is_major_power = yes
+		}
+		modifier = {
+			add = 5
+			has_expansionist_government = yes
+			has_government = communism
+			is_major_power = yes
 		}
 	}
 
@@ -1269,7 +1343,6 @@ hunter_killer_subs = {
 	mastery = {
 		multiplier = 1
 		sub_units = { attack_submarine }
-		equipment = { }
 	}
 }
 
@@ -1288,10 +1361,20 @@ missile_boats = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 8
+			NOT = { is_major_power = yes }
+			num_of_naval_factories > 1
+		}
+		modifier = {
+			add = 6
+			has_expansionist_government = yes
+			NOT = { is_major_power = yes }
+			num_of_naval_factories > 1
 		}
 	}
 
@@ -1339,7 +1422,6 @@ missile_boats = {
 	mastery = {
 		multiplier = 1
 		sub_units = { missile_submarine }
-		equipment = { }
 	}
 }
 
@@ -1359,10 +1441,19 @@ raiding_fleets = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 8
+			NOT = { is_major_power = yes }
+			num_of_naval_factories > 1
+		}
+		modifier = {
+			add = 6
+			has_expansionist_government = yes
+			NOT = { is_major_power = yes }
 		}
 	}
 
@@ -1424,10 +1515,19 @@ naval_supremacy = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 10
+			is_major_power = yes
+			num_of_naval_factories > 5
+		}
+		modifier = {
+			add = 6
+			is_faction_leader = yes
+			num_of_naval_factories > 4
 		}
 	}
 
@@ -1470,10 +1570,23 @@ coastal_defense = {
 
 	ai_will_do = {
 		base = 1
-		#dont waste time here if you don't have naval factories
 		modifier = {
 			factor = 0
 			num_of_naval_factories < 1
+		}
+		modifier = {
+			add = 8
+			is_minor_power = yes
+			num_of_naval_factories > 1
+		}
+		modifier = {
+			add = 5
+			has_country_flag = european_nation_flag
+			NOT = { is_major_power = yes }
+		}
+		modifier = {
+			factor = 0.4
+			has_expansionist_government = yes
 		}
 	}
 

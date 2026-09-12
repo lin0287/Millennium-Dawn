@@ -38,12 +38,27 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_primary_sector_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_fossil_fuel_industry_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_farmers_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 5
+				OR = {
+					check_variable = { resource_produced@oil > 15 }
+					check_variable = { resource_produced@steel > 15 }
+					check_variable = { resource_produced@tungsten > 15 }
+					check_variable = { resource_produced@chromium > 15 }
+					check_variable = { resource_produced@aluminium > 15 }
+				}
+			}
 		}
 	}
 	generic_initiate_secondary_sector_5_year_plan = {
@@ -84,12 +99,22 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_secondary_sector_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_labour_unions_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_industrial_conglomerates_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 25
+				original_tag = CHI
+				num_of_civilian_factories < 150
+			}
 		}
 	}
 	generic_initiate_tertiary_sector_5_year_plan = {
@@ -127,6 +152,7 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_tertiary_sector_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
@@ -135,6 +161,10 @@ subparty_policies_category = {
 			change_small_medium_business_owners_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_international_bankers_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
 		}
 	}
 	generic_initiate_infrastructure_5_year_plan = {
@@ -176,10 +206,21 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_infrastructure_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_industrial_conglomerates_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 15
+				any_owned_state = {
+					check_variable = { building_level@internet_station < 3 }
+				}
+			}
 		}
 	}
 	generic_initiate_military_5_year_plan = {
@@ -224,6 +265,7 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_military_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
@@ -231,9 +273,25 @@ subparty_policies_category = {
 			set_temp_variable = { temp_opinion = 10 }
 			change_defense_industry_opinion = yes
 		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				threat > 0.49
+			}
+			modifier = {
+				add = 10
+				threat > 0.59
+			}
+			modifier = {
+				add = 10
+				threat > 0.74
+			}
+		}
 	}
 	generic_initiate_naval_5_year_plan = {
-		icon = generic_construction
+		icon = GFX_decision_generic_merge_plant_ship
 
 		visible = {
 			OR = {
@@ -266,10 +324,22 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_naval_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_maritime_industry_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 5
+				has_war = yes
+				any_owned_state = {
+					is_coastal = yes
+				}
+			}
 		}
 	}
 	generic_initiate_technology_5_year_plan = {
@@ -307,8 +377,13 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_technology_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
 		}
 	}
 	generic_initiate_energy_5_year_plan = {
@@ -348,8 +423,13 @@ subparty_policies_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_initiate_energy_5_year_plan"
 			set_temp_variable = { temp_opinion = 10 }
 			change_communist_cadres_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
 		}
 	}
 
@@ -367,9 +447,9 @@ subparty_policies_category = {
 		cost = 100
 
 		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision generic_admit_5_year_plan_failure"
 			custom_effect_tooltip = TT_ABANDON_5_YEAR_PLAN
 			hidden_effect = {
-				set_ruling_leader = yes
 				set_leader = yes
 			}
 			if = {
@@ -405,12 +485,15 @@ subparty_policies_category = {
 				remove_decision = generic_initiate_energy_5_year_plan
 			}
 			add_stability = -0.10
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.10 }
 			set_temp_variable = { temp_outlook_increase = -0.10 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			set_temp_variable = { temp_opinion = -10 }
 			change_communist_cadres_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 0
 		}
 	}
 
@@ -446,7 +529,7 @@ subparty_policies_category = {
 		}
 
 		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision combat_biggest_influencer_decision"
+			log = "[GetDateText]: [Root.GetName]: Decision generic_nationalise_biggest_influencer_industries"
 			set_temp_variable = { percent_change = -5 }
 			set_temp_variable = { influencer_index = 0 }
 			change_current_influencer_index_percentage = yes
@@ -524,6 +607,9 @@ subparty_policies_category = {
 			}
 		}
 
+		ai_will_do = {
+			base = 0
+		}
 	}
 
 	generic_nationalise_second_biggest_influencer_industries = {
@@ -556,7 +642,7 @@ subparty_policies_category = {
 		}
 
 		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision combat_biggest_influencer_decision"
+			log = "[GetDateText]: [Root.GetName]: Decision generic_nationalise_second_biggest_influencer_industries"
 			set_temp_variable = { percent_change = -5 }
 			set_temp_variable = { influencer_index = 1 }
 			change_current_influencer_index_percentage = yes
@@ -634,6 +720,9 @@ subparty_policies_category = {
 			}
 		}
 
+		ai_will_do = {
+			base = 0
+		}
 	}
 
 	#For autocrats (Western autocrats pos. 0, Emerging autocrats pos. 7, Neutral autocrats pos. 13, oligarchs pos. 15, fascists pos. 21 military junta pos. 22)
@@ -642,7 +731,7 @@ subparty_policies_category = {
 		cost = 200
 
 		visible = {
-			is_in_array = { ruling_party = 21 }	#fascists
+			nationalist_fascist_are_in_power = yes	#fascists
 		}
 
 		available = {
@@ -656,6 +745,10 @@ subparty_policies_category = {
 			add_ideas = IP_paramilitary_units_formed
 			set_temp_variable = { temp_opinion = 5 }
 			change_the_military_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 5
 		}
 	}
 }

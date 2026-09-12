@@ -1,4 +1,4 @@
-﻿# Author(s): AngriestBird, DrCthulhuFace
+# Author(s): AngriestBird, DrCthulhuFace
 add_namespace = spain
 
 # Index of Events:
@@ -13,36 +13,30 @@ country_event = {
 	id = spain.1
 	title = spain.1.t
 	desc = spain.1.d
-	trigger = {
-		original_tag = SPR
-	}
 	picture = GFX_canary_islands_flag
 	is_triggered_only = yes
 	fire_only_once = yes
+
+	trigger = { original_tag = SPR }
 
 	# Stifle the Movement
 	option = {
 		name = spain.1.a
 		log = "[GetDateText]: [This.GetName]: spain.1.a executed"
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = -15 }
 		SPR_modify_cultural_opinion = yes
-		if = { limit = { NOT = { is_in_array = { ruling_party = 20 } } }
-			set_party_index_to_ruling_party = yes
+		if = { limit = { NOT = { check_variable = { ruling_party = 20 } } }
 			set_temp_variable = { party_popularity_increase = -0.04 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
-
-		hidden_effect = {
-			set_country_flag = SPR_stifled_canarios_movement
-		}
+		change_relative_party_popularity = yes
+		hidden_effect = { set_country_flag = SPR_stifled_canarios_movement }
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				is_historical_focus_on = no
 				add = 5
@@ -54,26 +48,19 @@ country_event = {
 	option = {
 		name = spain.1.b
 		log = "[GetDateText]: [This.GetName]: spain.1.b executed"
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-		if = { limit = { NOT = { is_in_array = { ruling_party = 20 } } }
-			set_party_index_to_ruling_party = yes
+		if = { limit = { NOT = { check_variable = { ruling_party = 20 } } }
 			set_temp_variable = { party_popularity_increase = -0.02 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
-
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
-
-		hidden_effect = {
-			set_country_flag = SPR_limited_canarios_movement
-		}
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				is_historical_focus_on = yes
 				add = 5
@@ -86,22 +73,16 @@ country_event = {
 		name = spain.1.c
 		log = "[GetDateText]: [This.GetName]: spain.1.c executed"
 		custom_effect_tooltip = SPR_spain_1_c_tt
-
-		if = { limit = { NOT = { is_in_array = { ruling_party = 20 } } }
-			set_party_index_to_ruling_party = yes
+		if = { limit = { NOT = { check_variable = { ruling_party = 20 } } }
 			set_temp_variable = { party_popularity_increase = 0.02 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
 		add_stability = 0.03
-		hidden_effect = {
-			set_country_flag = SPR_unhinged_canarios_movement
-		}
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				is_historical_focus_on = no
 				add = 5
@@ -117,31 +98,24 @@ country_event = {
 	desc = spain.2.d
 	picture = GFX_bilbao
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Keep the Status Quo
 	option = {
 		name = spain.2.a
 		log = "[GetDateText]: [This.GetName]: spain.2.a executed"
-
 		add_political_power = 50
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_bilbao_convention_status_quo
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Limit Their Freedoms
 	option = {
 		name = spain.2.b
 		log = "[GetDateText]: [This.GetName]: spain.2.b executed"
-
 		add_political_power = -25
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -5 }
@@ -149,23 +123,18 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_bilbao_convention_limit_freedoms
-		ai_chance = {
-			factor = 0.25
-		}
+		ai_chance = { base = 0.25 }
 	}
-
 
 	# Crush all Resistance
 	option = {
 		name = spain.2.c
 		log = "[GetDateText]: [This.GetName]: spain.2.b executed"
-
 		add_political_power = -50
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -10 }
@@ -173,14 +142,13 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_bilbao_convention_crush_basque
 		ai_chance = {
-			factor = 0.25
+			base = 0.25
 			modifier = {
 				factor = 1.5
 				has_elections = no
@@ -200,31 +168,24 @@ country_event = {
 	desc = spain.3.d
 	picture = GFX_lugo
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Keep the Status Quo
 	option = {
 		name = spain.3.a
 		log = "[GetDateText]: [This.GetName]: spain.3.a executed"
-
 		add_political_power = 50
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_lugo_convention_status_quo
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Limit Their Freedoms
 	option = {
 		name = spain.3.b
 		log = "[GetDateText]: [This.GetName]: spain.3.b executed"
-
 		add_political_power = -25
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = -5 }
@@ -232,23 +193,18 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_lugo_convention_limit_freedoms
-		ai_chance = {
-			factor = 0.25
-		}
+		ai_chance = { base = 0.25 }
 	}
-
 
 	# Crush all Resistance
 	option = {
 		name = spain.3.c
 		log = "[GetDateText]: [This.GetName]: spain.3.b executed"
-
 		add_political_power = -50
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = -10 }
@@ -256,15 +212,12 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_lugo_convention_crush_galegos
-		ai_chance = {
-			factor = 0.25
-		}
+		ai_chance = { base = 0.25 }
 	}
 }
 
@@ -275,31 +228,24 @@ country_event = {
 	desc = spain.4.d
 	picture = GFX_barcelona_photo
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Keep the Status Quo
 	option = {
 		name = spain.4.a
 		log = "[GetDateText]: [This.GetName]: spain.4.a executed"
-
 		add_political_power = 50
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_barcelona_convention_status_quo
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Limit Their Freedoms
 	option = {
 		name = spain.4.b
 		log = "[GetDateText]: [This.GetName]: spain.4.b executed"
-
 		add_political_power = -25
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
@@ -307,24 +253,18 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_barcelona_convention_limit_freedoms
-		ai_chance = {
-			factor = 0.25
-
-		}
+		ai_chance = { base = 0.25 }
 	}
-
 
 	# Crush all Resistance
 	option = {
 		name = spain.4.c
 		log = "[GetDateText]: [This.GetName]: spain.4.b executed"
-
 		add_political_power = -50
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -10 }
@@ -332,15 +272,12 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_barcelona_crush_the_catalans
-		ai_chance = {
-			factor = 0.25
-		}
+		ai_chance = { base = 0.25 }
 	}
 }
 
@@ -351,31 +288,24 @@ country_event = {
 	desc = spain.5.d
 	picture = GFX_sevilla
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Keep the Status Quo
 	option = {
 		name = spain.5.a
 		log = "[GetDateText]: [This.GetName]: spain.5.a executed"
-
 		add_political_power = 50
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_seville_convention_status_quo
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Limit Their Freedoms
 	option = {
 		name = spain.5.b
 		log = "[GetDateText]: [This.GetName]: spain.5.b executed"
-
 		add_political_power = -25
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = -5 }
@@ -383,23 +313,18 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_seville_convention_limit_freedoms
-		ai_chance = {
-			factor = 0.25
-		}
+		ai_chance = { base = 0.25 }
 	}
-
 
 	# Crush all Resistance
 	option = {
 		name = spain.5.c
 		log = "[GetDateText]: [This.GetName]: spain.5.b executed"
-
 		add_political_power = -50
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -10 }
@@ -407,15 +332,12 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
-
-		set_country_flag = SPR_seville_crush_the_andalucia
-		ai_chance = {
-			factor = 0.25
-		}
+		change_relative_party_popularity = yes
+		set_country_flag = SPR_seville_crush_the_andalusia
+		ai_chance = { base = 0.25 }
 	}
 }
 
@@ -426,9 +348,8 @@ country_event = {
 	desc = spain.6.d
 	picture = GFX_political_deal
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Revoke Citizenship
 	option = {
@@ -442,10 +363,10 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.07 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		custom_effect_tooltip = SPR_revoking_citizenship_northerner_tt
 		unlock_decision_tooltip = SPR_revoke_galician_citizenship_decision
 		unlock_decision_tooltip = SPR_revoke_basque_citizenship_decision
@@ -464,13 +385,12 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.07 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_stability = 0.02
 		add_political_power = 75
-		set_country_flag = SPR_a_soft_approach_northerner_flag
 	}
 
 	# Reconciliation aka on second thought
@@ -482,9 +402,7 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = -0.04 }
 		set_temp_variable = { temp_outlook_increase = -0.07 }
-		add_relative_party_popularity = yes
-
-		set_country_flag = SPR_reconciliation_northerner_flag
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -495,9 +413,8 @@ country_event = {
 	desc = spain.7.d
 	picture = GFX_political_deal
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Revoke Citizenship
 	option = {
@@ -511,15 +428,16 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.07 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		custom_effect_tooltip = SPR_revoking_citizenship_southerner_tt
 		unlock_decision_tooltip = SPR_revoke_catalonian_citizenship_decision
-		unlock_decision_tooltip = SPR_revoke_andalucian_citizenship_decision
+		unlock_decision_tooltip = SPR_revoke_andalusian_citizenship_decision
 		set_country_flag = SPR_revoke_citizenship_southerner_flag
 	}
+
 	# Softer Approach
 	option = {
 		name = spain.7.b
@@ -532,14 +450,14 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.07 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_stability = 0.02
 		add_political_power = 75
-		set_country_flag = SPR_a_soft_approach_southerner_flag
 	}
+
 	# Reconciliation
 	option = {
 		name = spain.7.c
@@ -549,9 +467,7 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = -0.04 }
 		set_temp_variable = { temp_outlook_increase = -0.07 }
-		add_relative_party_popularity = yes
-
-		set_country_flag = SPR_reconciliation_southerner_flag
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -564,42 +480,35 @@ country_event = {
 	id = spain.8
 	title = spain.8.t
 	desc = spain.8.d
-	picture = GFX_politics_negotiations
+	picture = GFX_basque_flag
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.8.a
 		log = "[GetDateText]: [This.GetName]: spain.8.a executed"
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.8.b
 		log = "[GetDateText]: [This.GetName]: spain.8.b executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.003 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.003
+			}
+		}
 		modify_treasury_effect = yes
-
 		add_political_power = -25
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -610,30 +519,23 @@ country_event = {
 	desc = spain.9.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.9.a
 		log = "[GetDateText]: [This.GetName]: spain.9.a executed"
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.01 }
-		add_relative_party_popularity = yes
-		ai_chance = {
-			factor = 1
-		}
+		change_relative_party_popularity = yes
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.9.b
 		log = "[GetDateText]: [This.GetName]: spain.9.b executed"
-
 		random_list = {
 			25 = {
 				# riot
@@ -663,11 +565,9 @@ country_event = {
 				}
 			}
 		}
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
@@ -675,7 +575,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -683,7 +582,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -691,7 +589,6 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -699,22 +596,17 @@ country_event = {
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.9.c
 		log = "[GetDateText]: [This.GetName]: spain.9.c executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -744,11 +636,9 @@ country_event = {
 				}
 			}
 		}
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -756,7 +646,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -764,7 +653,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.45 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -772,19 +660,15 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.6 }
 			modify_treasury_effect = yes
-
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.75 }
 			modify_treasury_effect = yes
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.035 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -796,42 +680,44 @@ country_event = {
 	desc = spain.10.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.10.a
 		log = "[GetDateText]: [This.GetName]: spain.10.a executed"
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		88 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.10.b
 		log = "[GetDateText]: [This.GetName]: spain.10.b executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -861,110 +747,135 @@ country_event = {
 				}
 			}
 		}
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -5 }
 			SPR_modify_cultural_opinion = yes
-
 			88 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.8
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.8
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.8
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.8
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
-
 			88 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.6
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.6
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.6
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.6
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
-
 			88 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.4
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.4
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.4
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.4
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
-
 			88 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.2
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.2
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.2
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.2
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
-
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -976,9 +887,8 @@ country_event = {
 	desc = spain.11.d
 	picture = GFX_guardia_civil
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.11.a
@@ -986,21 +896,28 @@ country_event = {
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		add_manpower = -20
-
 		88 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
 	}
@@ -1014,39 +931,33 @@ country_event = {
 	desc = spain.12.d
 	picture = GFX_politics_negotiations
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.12.a
 		log = "[GetDateText]: [This.GetName]: spain.12.a executed"
-
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.12.b
 		log = "[GetDateText]: [This.GetName]: spain.12.b executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.003 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.003
+			}
+		}
 		modify_treasury_effect = yes
 		add_political_power = -25
-
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -1057,9 +968,8 @@ country_event = {
 	desc = spain.13.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.13.a
@@ -1068,20 +978,16 @@ country_event = {
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.13.b
 		log = "[GetDateText]: [This.GetName]: spain.13.b executed"
-
 		random_list = {
 			25 = {
 				# riot
@@ -1111,11 +1017,9 @@ country_event = {
 				}
 			}
 		}
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
@@ -1123,7 +1027,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -1131,7 +1034,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -1139,7 +1041,6 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -1147,23 +1048,17 @@ country_event = {
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
-
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.13.c
 		log = "[GetDateText]: [This.GetName]: spain.13.c executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -1196,7 +1091,6 @@ country_event = {
 			if = { limit = { has_idea = police_01 }
 				set_temp_variable = { treasury_change = -0.15 }
 				modify_treasury_effect = yes
-
 				set_temp_variable = { culture_index = 2 }
 				set_temp_variable = { cultural_opinion = -3 }
 				SPR_modify_cultural_opinion = yes
@@ -1204,7 +1098,6 @@ country_event = {
 			if = { limit = { has_idea = police_02 }
 				set_temp_variable = { treasury_change = -0.3 }
 				modify_treasury_effect = yes
-
 				set_temp_variable = { culture_index = 2 }
 				set_temp_variable = { cultural_opinion = -2 }
 				SPR_modify_cultural_opinion = yes
@@ -1212,7 +1105,6 @@ country_event = {
 			if = { limit = { has_idea = police_03 }
 				set_temp_variable = { treasury_change = -0.45 }
 				modify_treasury_effect = yes
-
 				set_temp_variable = { culture_index = 2 }
 				set_temp_variable = { cultural_opinion = -1 }
 				SPR_modify_cultural_opinion = yes
@@ -1220,19 +1112,15 @@ country_event = {
 			if = { limit = { has_idea = police_04 }
 				set_temp_variable = { treasury_change = -0.6 }
 				modify_treasury_effect = yes
-
 			}
 			if = { limit = { has_idea = police_05 }
 				set_temp_variable = { treasury_change = -0.75 }
 				modify_treasury_effect = yes
 			}
-
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.035 }
-			add_relative_party_popularity = yes
-
+			change_relative_party_popularity = yes
 			ai_chance = {
-				factor = 1
+				base = 1
 			}
 	}
 }
@@ -1244,42 +1132,44 @@ country_event = {
 	desc = spain.14.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.14.a
 		log = "[GetDateText]: [This.GetName]: spain.14.a executed"
-
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		944 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.14.b
 		log = "[GetDateText]: [This.GetName]: spain.14.b executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -1309,109 +1199,135 @@ country_event = {
 				}
 			}
 		}
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -5 }
 			SPR_modify_cultural_opinion = yes
-
 			944 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.8
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.8
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.8
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.8
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
-
 			944 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.6
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.6
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.6
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.6
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
-
 			944 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.4
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.4
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.4
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.4
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
-
 			944 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.2
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.2
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.2
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.2
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 2 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1423,32 +1339,37 @@ country_event = {
 	desc = spain.15.d
 	picture = GFX_guardia_civil
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.15.a
 		log = "[GetDateText]: [This.GetName]: spain.15.a executed"
-
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		add_manpower = -20
-
 		944 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
 	}
@@ -1460,41 +1381,35 @@ country_event = {
 	id = spain.16
 	title = spain.16.t
 	desc = spain.16.d
-	picture = GFX_politics_negotiations
+	picture = GFX_catalonian_flag
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.16.a
 		log = "[GetDateText]: [This.GetName]: spain.16.a executed"
-
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.16.b
 		log = "[GetDateText]: [This.GetName]: spain.16.b executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.003 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.003
+			}
+		}
 		modify_treasury_effect = yes
 		add_political_power = -25
-
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -1505,9 +1420,8 @@ country_event = {
 	desc = spain.17.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.17.a
@@ -1516,15 +1430,10 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.01 }
-		add_relative_party_popularity = yes
-
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -1560,12 +1469,9 @@ country_event = {
 				}
 			}
 		}
-
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
@@ -1573,7 +1479,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -1581,7 +1486,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -1589,7 +1493,6 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -1597,15 +1500,11 @@ country_event = {
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -1641,12 +1540,9 @@ country_event = {
 				}
 			}
 		}
-
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -1654,7 +1550,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -1662,7 +1557,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.45 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -1670,19 +1564,15 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.6 }
 			modify_treasury_effect = yes
-
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.75 }
 			modify_treasury_effect = yes
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.035 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1694,36 +1584,39 @@ country_event = {
 	desc = spain.18.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.18.a
 		log = "[GetDateText]: [This.GetName]: spain.18.a executed"
-
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		86 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
@@ -1758,111 +1651,135 @@ country_event = {
 				}
 			}
 		}
-
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -5 }
 			SPR_modify_cultural_opinion = yes
-
 			86 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.8
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.8
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.8
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.8
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
-
 			86 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.6
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.6
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.6
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.6
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
-
 			86 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.4
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.4
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.4
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.4
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
-
 			86 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.2
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.2
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.2
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.2
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 0 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
-
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1874,9 +1791,8 @@ country_event = {
 	desc = spain.19.d
 	picture = GFX_guardia_civil
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.19.a
@@ -1884,80 +1800,80 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		add_manpower = -20
-
 		86 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
 	}
 }
 
-#Andalucia
-# Andalucians Support Us
+#andalusia
+# andalusians Support Us
 country_event = {
 	id = spain.20
 	title = spain.20.t
 	desc = spain.20.d
-	picture = GFX_politics_negotiations
+	picture = GFX_andalusian_flag
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.20.a
 		log = "[GetDateText]: [This.GetName]: spain.20.a executed"
-
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.20.b
 		log = "[GetDateText]: [This.GetName]: spain.20.b executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.003 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.003
+			}
+		}
 		modify_treasury_effect = yes
 		add_political_power = -25
-
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
-# andalucian Protests
+# andalusian Protests
 country_event = {
 	id = spain.21
 	title = spain.21.t
 	desc = spain.21.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.21.a
@@ -1966,20 +1882,16 @@ country_event = {
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.21.b
 		log = "[GetDateText]: [This.GetName]: spain.21.b executed"
-
 		random_list = {
 			25 = {
 				# riot
@@ -2009,12 +1921,9 @@ country_event = {
 				}
 			}
 		}
-
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
@@ -2022,7 +1931,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -2030,7 +1938,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -2038,7 +1945,6 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -2046,22 +1952,17 @@ country_event = {
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.21.c
 		log = "[GetDateText]: [This.GetName]: spain.21.c executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -2091,12 +1992,9 @@ country_event = {
 				}
 			}
 		}
-
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
@@ -2104,7 +2002,6 @@ country_event = {
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
@@ -2112,7 +2009,6 @@ country_event = {
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.45 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
@@ -2120,66 +2016,64 @@ country_event = {
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.6 }
 			modify_treasury_effect = yes
-
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.75 }
 			modify_treasury_effect = yes
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.035 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
 
-# andalucian Riots
+# andalusian Riots
 country_event = {
 	id = spain.22
 	title = spain.22.t
 	desc = spain.22.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.22.a
 		log = "[GetDateText]: [This.GetName]: spain.22.a executed"
-
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		93 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.22.b
 		log = "[GetDateText]: [This.GetName]: spain.22.b executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -2209,147 +2103,177 @@ country_event = {
 				}
 			}
 		}
-
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -5 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.8
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.8
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.8
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.8
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.6
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.6
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.6
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.6
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.4
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.4
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.4
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.4
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.2
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.2
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.2
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.2
+					}
 				}
 			}
 		}
 		if = { limit = { has_idea = police_05 }
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { culture_index = 3 }
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
-
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
 
-# Clashes with police in andalucia
+# Clashes with police in andalusia
 country_event = {
 	id = spain.23
 	title = spain.23.t
 	desc = spain.23.d
 	picture = GFX_guardia_civil
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.23.a
 		log = "[GetDateText]: [This.GetName]: spain.23.a executed"
-
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		add_manpower = -20
-
 		93 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
 	}
@@ -2361,41 +2285,35 @@ country_event = {
 	id = spain.24
 	title = spain.24.t
 	desc = spain.24.d
-	picture = GFX_politics_negotiations
+	picture = GFX_canary_islands_flag
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.24.a
 		log = "[GetDateText]: [This.GetName]: spain.24.a executed"
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.24.b
 		log = "[GetDateText]: [This.GetName]: spain.24.b executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.003 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.003
+			}
+		}
 		modify_treasury_effect = yes
 		add_political_power = -25
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -2406,9 +2324,8 @@ country_event = {
 	desc = spain.25.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.25.a
@@ -2417,20 +2334,16 @@ country_event = {
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.01 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.25.b
 		log = "[GetDateText]: [This.GetName]: spain.25.b executed"
-
 		random_list = {
 			25 = {
 				# riot
@@ -2460,33 +2373,28 @@ country_event = {
 				}
 			}
 		}
-
 		set_temp_variable = { culture_index = 4 }
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
 		}
 		else_if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.2 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
 		}
 		else_if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
 		}
 		else_if = { limit = { has_idea = police_04 }
 			set_temp_variable = { treasury_change = -0.4 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
@@ -2494,20 +2402,16 @@ country_event = {
 			set_temp_variable = { treasury_change = -0.5 }
 			modify_treasury_effect = yes
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	option = {
 		name = spain.25.c
 		log = "[GetDateText]: [This.GetName]: spain.25.c executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -2537,27 +2441,22 @@ country_event = {
 				}
 			}
 		}
-
-
 		set_temp_variable = { culture_index = 4 }
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
 		}
 		else_if = { limit = { has_idea = police_02 }
 			set_temp_variable = { treasury_change = -0.3 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
 		}
 		else_if = { limit = { has_idea = police_03 }
 			set_temp_variable = { treasury_change = -0.45 }
 			modify_treasury_effect = yes
-
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
@@ -2569,13 +2468,10 @@ country_event = {
 			set_temp_variable = { treasury_change = -0.75 }
 			modify_treasury_effect = yes
 		}
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.035 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -2587,42 +2483,44 @@ country_event = {
 	desc = spain.26.d
 	picture = GFX_politics_protest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.26.a
 		log = "[GetDateText]: [This.GetName]: spain.26.a executed"
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		93 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.26.b
 		log = "[GetDateText]: [This.GetName]: spain.26.b executed"
-
 		random_list = {
 			50 = {
 				# riot
@@ -2652,26 +2550,33 @@ country_event = {
 				}
 			}
 		}
-
 		set_temp_variable = { culture_index = 4 }
 		if = { limit = { has_idea = police_01 }
 			set_temp_variable = { treasury_change = -0.1 }
 			modify_treasury_effect = yes
 			set_temp_variable = { cultural_opinion = -5 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.8
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.8
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.8
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.8
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.8
+					}
 				}
 			}
 		}
@@ -2680,19 +2585,27 @@ country_event = {
 			modify_treasury_effect = yes
 			set_temp_variable = { cultural_opinion = -4 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.6
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.6
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.6
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.6
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.6
+					}
 				}
 			}
 		}
@@ -2701,19 +2614,27 @@ country_event = {
 			modify_treasury_effect = yes
 			set_temp_variable = { cultural_opinion = -3 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.4
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.4
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.4
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.4
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.4
+					}
 				}
 			}
 		}
@@ -2722,19 +2643,27 @@ country_event = {
 			modify_treasury_effect = yes
 			set_temp_variable = { cultural_opinion = -2 }
 			SPR_modify_cultural_opinion = yes
-
 			93 = {
-				damage_building = {
-					type = infrastructure
-					damage = 0.2
+				if = {
+					limit = { infrastructure > 0 }
+					damage_building = {
+						type = infrastructure
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = offices
-					damage = 0.2
+				if = {
+					limit = { offices > 0 }
+					damage_building = {
+						type = offices
+						damage = 0.2
+					}
 				}
-				damage_building = {
-					type = industrial_complex
-					damage = 0.2
+				if = {
+					limit = { industrial_complex > 0 }
+					damage_building = {
+						type = industrial_complex
+						damage = 0.2
+					}
 				}
 			}
 		}
@@ -2744,7 +2673,6 @@ country_event = {
 			set_temp_variable = { cultural_opinion = -1 }
 			SPR_modify_cultural_opinion = yes
 		}
-
 		ai_chance = {
 			base = 1
 		}
@@ -2758,32 +2686,37 @@ country_event = {
 	desc = spain.27.d
 	picture = GFX_guardia_civil
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.23.a
 		log = "[GetDateText]: [This.GetName]: spain.23.a executed"
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		add_manpower = -20
-
 		93 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.0
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
-			damage_building = {
-				type = industrial_complex
-				damage = 1.0
+			if = {
+				limit = { industrial_complex > 0 }
+				damage_building = {
+					type = industrial_complex
+					damage = 1.0
+				}
 			}
 		}
 	}
@@ -2796,15 +2729,13 @@ country_event = {
 	desc = spain.50.d
 	picture = GFX_toreador
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Ban bullfighting
 	option = {
 		name = spain.50.a
 		log = "[GetDateText]: [This.GetName]: spain.50.a executed"
-
 		add_political_power = -50
 		add_stability = 0.03
 		set_temp_variable = { culture_index = 0 }
@@ -2813,14 +2744,12 @@ country_event = {
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
-
 		hidden_effect = {
 			# Banning Early prevents the Catalonian & Mallorca Event Chain
-			set_country_flag = SPR_banned_bullfighting_flag
 			country_event = { id = spain.51 days = 45 random_days = 45 }
 		}
 		ai_chance = {
-			factor = 0.05
+			base = 0.05
 			modifier = {
 				is_historical_focus_on = no
 				factor = 1.5
@@ -2832,7 +2761,6 @@ country_event = {
 	option = {
 		name = spain.50.b
 		log = "[GetDateText]: [This.GetName]: spain.50.b executed"
-
 		add_political_power = -25
 		add_stability = 0.01
 		set_temp_variable = { culture_index = 0 }
@@ -2841,14 +2769,12 @@ country_event = {
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = 1 }
 		SPR_modify_cultural_opinion = yes
-
 		hidden_effect = {
 			# Catalonia event chain will trigger but Mallorca event chain will not
-			set_country_flag = SPR_banned_killing_the_bull_flag
 			country_event = { id = spain.52 days = 45 random_days = 45 }
 		}
 		ai_chance = {
-			factor = 0.05
+			base = 0.05
 			modifier = {
 				is_historical_focus_on = no
 				factor = 3
@@ -2868,16 +2794,10 @@ country_event = {
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		custom_effect_tooltip = SPR_allow_bullfighting_tt
-
-		hidden_effect = {
-			# Both Catalonia and Mallorca will have their event channels
-			set_country_flag = SPR_allowed_the_practice_to_continue_flag
-		}
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				is_historical_focus_on = yes
 				factor = 1.25
@@ -2893,9 +2813,8 @@ country_event = {
 	desc = spain.51.d
 	picture = GFX_const_court_spain
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Repeal the Ban
 	# Reverts to pre-ban state.
@@ -2905,20 +2824,13 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
-
-		hidden_effect = {
-			clr_country_flag = SPR_banned_bullfighting_flag
-		}
-		ai_chance = {
-			factor = 0
-		}
+		change_relative_party_popularity = yes
+		ai_chance = { base = 0 }
 	}
 
 	# Challenge the Court
@@ -2926,13 +2838,9 @@ country_event = {
 	option = {
 		name = spain.51.b
 		log = "[GetDateText]: [This.GetName]: spain.51.b executed"
-
 		activate_mission = SPR_challenge_the_court_ban_bull_mission
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
-
 }
 
 # Spanish Constitutional Court Determines Killing the Bull Partially Unconstitutional
@@ -2942,9 +2850,8 @@ country_event = {
 	desc = spain.52.d
 	picture = GFX_const_court_spain
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Repeal the Killing of the Bull
 	option = {
@@ -2953,31 +2860,21 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
-
-		hidden_effect = {
-			clr_country_flag = SPR_banned_killing_the_bull_flag
-		}
-		ai_chance = {
-			factor = 0
-		}
+		change_relative_party_popularity = yes
+		ai_chance = { base = 0 }
 	}
 
 	# Challenge the Court
 	option = {
 		name = spain.52.b
 		log = "[GetDateText]: [This.GetName]: spain.52.b executed"
-
 		activate_mission = SPR_challenge_the_court_killing_bull_mission
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -3005,9 +2902,8 @@ country_event = {
 	}
 	picture = GFX_const_court_spain
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# The Ban is Upheld
 	option = {
@@ -3019,12 +2915,9 @@ country_event = {
 			}
 		}
 		log = "[GetDateText]: [This.GetName]: spain.53.a executed"
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.015 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = 50
-
 		hidden_effect = {
 			clr_country_flag = SPR_banfighting_is_upheld
 			clr_country_flag = SPR_bankilling_is_upheld
@@ -3041,15 +2934,10 @@ country_event = {
 			}
 		}
 		log = "[GetDateText]: [This.GetName]: spain.53.b executed"
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.015 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
-
 		hidden_effect = {
-			clr_country_flag = SPR_banned_bullfighting_flag
-			clr_country_flag = SPR_banned_killing_the_bull_flag
 			clr_country_flag = SPR_banfighting_is_unconstitutional
 			clr_country_flag = SPR_bankilling_is_unconstitutional
 		}
@@ -3063,9 +2951,8 @@ country_event = {
 	desc = spain.54.d
 	picture = GFX_spain_elections
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Host the Referendum
 	option = {
@@ -3079,7 +2966,6 @@ country_event = {
 		set_temp_variable = { temp_failure_rate = 65 }
 		subtract_from_temp_variable = { temp_failure_rate = popularity }
 		custom_effect_tooltip = SPR_referendum_chance_tt
-
 		country_event = { id = spain.55 days = 30 }
 	}
 }
@@ -3091,9 +2977,8 @@ country_event = {
 	desc = spain.55.d
 	picture = GFX_spain_elections
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Referendum Day!
 	option = {
@@ -3105,44 +2990,36 @@ country_event = {
 		add_to_temp_variable = { temp_success_rate = popularity }
 		set_temp_variable = { temp_failure_rate = 65 }
 		subtract_from_temp_variable = { temp_failure_rate = popularity }
-
 		if = { limit = { has_country_flag = SPR_pro_ban_campaign }
 			add_to_temp_variable = { temp_success_rate = 5 }
 			subtract_from_temp_variable = { temp_failure_rate = 5 }
 		}
-
 		random_list = {
 			temp_success_rate = {
 				set_temp_variable = { culture_index = 0 }
 				set_temp_variable = { cultural_opinion = 2 }
 				SPR_modify_cultural_opinion = yes
-				set_party_index_to_ruling_party = yes
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_political_power = 100
-
 				set_country_flag = SPR_results_passed
 			}
 			temp_failure_rate = {
-
 				set_temp_variable = { culture_index = 0 }
 				set_temp_variable = { cultural_opinion = -3 }
 				SPR_modify_cultural_opinion = yes
-				set_party_index_to_ruling_party = yes
 				set_temp_variable = { party_popularity_increase = -0.03 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				set_temp_variable = { party_index = 20 }
 				set_temp_variable = { party_popularity_increase = 0.02 }
 				set_temp_variable = { temp_outlook_increase = 0.02 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_political_power = -50
-
 				set_country_flag = SPR_results_failed
-				hidden_effect = {
-					clr_country_flag = SPR_banned_bullfighting_flag
-					clr_country_flag = SPR_banned_killing_the_bull_flag
-				}
 			}
+		}
+		hidden_effect = {
+			country_event = { id = spain.56 days = 1 }
 		}
 	}
 }
@@ -3153,21 +3030,16 @@ country_event = {
 	title = spain.56.t
 	desc = {
 		text = spain.56.d
-		trigger = {
-			has_country_flag = SPR_results_passed
-		}
+		trigger = { has_country_flag = SPR_results_passed }
 	}
 	desc = {
 		text = spain.56.d2
-		trigger = {
-			has_country_flag = SPR_results_failed
-		}
+		trigger = { has_country_flag = SPR_results_failed }
 	}
 	picture = GFX_spain_elections
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Another Referendum Completed
 	option = {
@@ -3178,9 +3050,8 @@ country_event = {
 				set_temp_variable = { culture_index = 0 }
 				set_temp_variable = { cultural_opinion = 2 }
 				SPR_modify_cultural_opinion = yes
-				set_party_index_to_ruling_party = yes
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_political_power = 100
 			}
 		}
@@ -3198,9 +3069,8 @@ country_event = {
 	desc = spain.57.d
 	picture = GFX_spain_throne
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# The Carlists Will Rise
 	option = {
@@ -3210,7 +3080,7 @@ country_event = {
 		set_variable = { Monarchist_leader = 2 } # Skips Bourbon Shit
 		set_variable = { Western_Autocracy_leader = 2 }
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				add = 20
 				is_historical_focus_on = no
@@ -3224,7 +3094,7 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: spain.57.b executed"
 		set_country_flag = SPR_bourbon_monarchist
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0.5
 				is_historical_focus_on = no
@@ -3240,9 +3110,8 @@ country_event = {
 	desc = spain.58.d
 	picture = GFX_message_signing
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# A New Monarchy
 	option = {
@@ -3253,29 +3122,15 @@ country_event = {
 		set_temp_variable = { party_index = 0 }
 		set_temp_variable = { party_popularity_increase = 0.05 }
 		set_temp_variable = { temp_outlook_increase = 0.05 }
-		add_relative_party_popularity = yes
-
-
+		change_relative_party_popularity = yes
 		custom_effect_tooltip = SPR_spain_58_a_tt
 		hidden_effect = {
-			clear_array = ruling_party
-			clear_array = gov_coalition_array
-			add_to_array = { ruling_party = 0 }
-			update_government_coalition_strength = yes
-			update_party_name = yes
-			set_coalition_drift = yes
-			set_ruling_leader = yes
-			set_leader = yes
-			set_politics = {
-				ruling_party = democratic
-				elections_allowed = no
-			}
+			set_temp_variable = { rul_party_temp = 0 }
+			set_temp_variable = { disable_elections = 1 }
+			change_ruling_party_effect = yes
 		}
-
 		set_country_flag = SPR_constitutional_monarchy_flag
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Return to Absolutism
@@ -3287,29 +3142,15 @@ country_event = {
 		set_temp_variable = { party_index = 23 }
 		set_temp_variable = { party_popularity_increase = 0.05 }
 		set_temp_variable = { temp_outlook_increase = 0.05 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		custom_effect_tooltip = SPR_spain_58_b_tt
 		hidden_effect = {
-			clear_array = ruling_party
-			clear_array = gov_coalition_array
-			add_to_array = { ruling_party = 23 }
-			update_government_coalition_strength = yes
-			update_party_name = yes
-			set_coalition_drift = yes
-			set_ruling_leader = yes
-			set_leader = yes
-			set_politics = {
-				ruling_party = nationalist
-				elections_allowed = no
-			}
+			set_temp_variable = { rul_party_temp = 23 }
+			set_temp_variable = { disable_elections = 1 }
+			change_ruling_party_effect = yes
 		}
-
-
 		set_country_flag = SPR_absolutist_monarchy_flag
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -3320,9 +3161,8 @@ country_event = {
 	desc = spain.59.d
 	picture = GFX_politics_speak
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# A New Democratic
 	option = {
@@ -3342,17 +3182,16 @@ country_event = {
 	desc = spain.60.d
 	picture = GFX_iberia_united
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Declare the Union
 	option = {
 		name = spain.60.a
 		log = "[GetDateText]: [This.GetName]: spain.60.a executed"
-		set_cosmetic_tag = IBR_AUTH_S
+		set_cosmetic_tag = IBR
 		add_war_support = 0.05
-		news_event = { id = spain.61 }
+		news_event = spain.61
 	}
 }
 
@@ -3364,14 +3203,10 @@ news_event = {
 	picture = GFX_iberia_united_news
 	is_triggered_only = yes
 	major = yes
-	trigger = {
-		original_tag = SPR
-	}
 
-	option = {
-		name = spain.61.a
-		log = "[GetDateText]: [This.GetName]: spain.61.a executed"
-	}
+	trigger = { original_tag = SPR }
+
+	option = { name = spain.61.a }
 }
 
 # Demand The Portuguese Throne
@@ -3393,28 +3228,19 @@ country_event = {
 						target = POR
 						transfer_troops = yes
 					}
-					POR = {
-						every_unit_leader = {
-							set_nationality = SPR
-						}
-					}
+					POR = { every_unit_leader = { set_nationality = SPR } }
 				}
 			}
 			else = {
 				POR = {
-					OVERLORD = {
-						end_puppet = PREV
-					}
-					SPR = {
-						puppet = PREV
-					}
+					OVERLORD = { end_puppet = PREV }
+					SPR = { puppet = PREV }
 				}
 			}
 		}
-		SPR = { country_event = { id = spain.63 } }
-
+		SPR = { country_event = spain.63 }
 		ai_chance = {
-			factor = 4
+			base = 4
 			modifier = {
 				factor = 2
 				is_in_faction = no
@@ -3463,21 +3289,16 @@ country_event = {
 	option = {
 		name = spain.62.b
 		log = "[GetDateText]: [This.GetName]: spain.62.b executed"
-		trigger = {
-			SPR = { has_country_flag = SPR_bourbon_monarchist }
-		}
-
+		trigger = { SPR = { has_country_flag = SPR_bourbon_monarchist } }
 		effect_tooltip = {
 			add_opinion_modifier = { target = SPR modifier = SPR_tried_to_annex_us }
 			set_temp_variable = { percent_change = -10 }
 			set_temp_variable = { tag_index = FROM.ID }
-			set_temp_variable = { influence_target = THIS.id }
 			change_influence_percentage = yes
 		}
-
-		SPR = { country_event = { id = spain.64 } }
+		SPR = { country_event = spain.64 }
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
 				factor = 2
 				is_in_faction = yes
@@ -3500,22 +3321,17 @@ country_event = {
 	# Fuck off Carlists
 	option = {
 		name = spain.62.c
-		trigger = {
-			SPR = { has_country_flag = SPR_carlist_rising }
-		}
+		trigger = { SPR = { has_country_flag = SPR_carlist_rising } }
 		log = "[GetDateText]: [Root.GetName]: event spain.62.c"
-
 		effect_tooltip = {
 			add_opinion_modifier = { target = SPR modifier = SPR_tried_to_annex_us }
 			set_temp_variable = { percent_change = -10 }
 			set_temp_variable = { tag_index = FROM.ID }
-			set_temp_variable = { influence_target = THIS.id }
 			change_influence_percentage = yes
 		}
-
-		SPR = { country_event = { id = spain.64 } }
+		SPR = { country_event = spain.64 }
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
 				factor = 2
 				is_in_faction = yes
@@ -3543,17 +3359,15 @@ country_event = {
 	desc = spain.63.d
 	picture = GFX_politics_talks
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Direct Rule for Now
 	option = {
 		name = spain.63.a
 		log = "[GetDateText]: [Root.GetName]: event spain.63.a"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		annex_country = {
 			target = POR
 			transfer_troops = yes
@@ -3575,9 +3389,8 @@ country_event = {
 				days = 180
 			}
 		}
-
 		ai_chance = { # AI Forced to Optimal Path
-			factor = 0
+			base = 0
 		}
 	}
 
@@ -3585,15 +3398,10 @@ country_event = {
 	option = {
 		name = spain.63.b
 		log = "[GetDateText]: [Root.GetName]: event spain.63.b"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		if = { limit = { POR = { is_subject = yes } }
-			POR = {
-				OVERLORD = {
-					end_puppet = PREV
-				}
-			}
+			POR = { OVERLORD = { end_puppet = PREV } }
 		}
 		puppet = POR
 		set_temp_variable = { percent_change = 15 }
@@ -3612,10 +3420,7 @@ country_event = {
 				days = 180
 			}
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -3626,17 +3431,15 @@ country_event = {
 	desc = spain.64.d
 	picture = GFX_politics_talks
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Invade the Inferior Spanish
 	option = {
 		name = spain.64.a
 		log = "[GetDateText]: [Root.GetName]: event spain.64.a"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_war_support = -0.05
 		set_temp_variable = { percent_change = -10 }
 		set_temp_variable = { tag_index = THIS.id }
@@ -3646,6 +3449,9 @@ country_event = {
 			array = POR.owned_states
 			add_claim_by = SPR
 		}
+		set_temp_variable = { wargoal_on = FROM }
+		set_temp_variable = { wargoal_type = 2 }
+		add_threat_from_wargoal_effect = yes
 		create_wargoal = {
 			target = FROM
 			type = annex_everything
@@ -3654,10 +3460,7 @@ country_event = {
 			target = FROM
 			modifier = SPR_tried_to_annex_us
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -3668,6 +3471,7 @@ country_event = {
 	desc = spain.65.d
 	picture = GFX_politics_demands
 	is_triggered_only = yes
+
 	trigger = {
 		OR = {
 			original_tag = ADO
@@ -3681,29 +3485,29 @@ country_event = {
 		name = spain.65.a
 		log = "[GetDateText]: [Root.GetName]: event spain.65.a"
 		effect_tooltip = {
-			if = { limit = { NOT = { has_global_flag = GAME_RULE_microstates_removed } }
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_game_rule = { rule = remove_micro_states option = tiny }
+							has_game_rule = { rule = remove_micro_states option = smaller }
+							has_game_rule = { rule = remove_micro_states option = insignificant }
+						}
+					}
+				}
 				SPR = {
 					annex_country = {
 						target = ADO
 						transfer_troops = yes
 					}
-					ADO = {
-						every_unit_leader = {
-							set_nationality = SPR
-						}
-					}
+					ADO = { every_unit_leader = { set_nationality = SPR } }
 				}
 			}
-			else = {
-				SPR = {
-					transfer_state = 945
-				}
-			}
+			else = { SPR = { transfer_state = 945 } }
 		}
-
-		SPR = { country_event = { id = spain.66 } }
+		SPR = { country_event = spain.66 }
 		ai_chance = {
-			factor = 10
+			base = 10
 			modifier = {
 				factor = 5
 				SPR = { is_ai = yes }
@@ -3718,6 +3522,8 @@ country_event = {
 		effect_tooltip = {
 			SPR = {
 				add_state_claim = 945
+				set_temp_variable = { wargoal_on = PREV }
+				add_threat_from_wargoal_effect = yes
 				create_wargoal = {
 					target = PREV
 					type = take_claimed_state
@@ -3725,11 +3531,8 @@ country_event = {
 				}
 			}
 		}
-
-		SPR = { country_event = { id = spain.67 } }
-		ai_chance = {
-			factor = 2
-		}
+		SPR = { country_event = spain.67 }
+		ai_chance = { base = 2 }
 	}
 }
 
@@ -3740,18 +3543,25 @@ country_event = {
 	desc = spain.66.d
 	picture = GFX_politics_talks
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Haha Lila Hemd
 	option = {
 		name = spain.66.a
 		log = "[GetDateText]: [Root.GetName]: event spain.66.a"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
-		if = { limit = { NOT = { has_global_flag = GAME_RULE_microstates_removed } }
+		change_relative_party_popularity = yes
+		if = {
+			limit = {
+				NOT = {
+					OR = {
+						has_game_rule = { rule = remove_micro_states option = tiny }
+						has_game_rule = { rule = remove_micro_states option = smaller }
+						has_game_rule = { rule = remove_micro_states option = insignificant }
+					}
+				}
+			}
 			for_each_scope_loop = {
 				array = ADO.core_states
 				add_core_of = SPR
@@ -3760,17 +3570,9 @@ country_event = {
 				target = ADO
 				transfer_troops = yes
 			}
-			ADO = {
-				every_unit_leader = {
-					set_nationality = SPR
-				}
-			}
+			ADO = { every_unit_leader = { set_nationality = SPR } }
 		}
-		else = {
-			SPR = {
-				transfer_state = 945
-			}
-		}
+		else = { SPR = { transfer_state = 945 } }
 		if = { limit = { has_idea = SPR_a_great_victory_for_spain_idea }
 			modify_timed_idea = {
 				idea = SPR_a_great_victory_for_spain_idea
@@ -3793,23 +3595,23 @@ country_event = {
 	desc = spain.67.d
 	picture = GFX_politics_talks
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Haha Lila Hemd
 	option = {
 		name = spain.67.a
 		log = "[GetDateText]: [This.GetName]: spain.67.a executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_war_support = -0.05
 		set_temp_variable = { percent_change = -10 }
 		set_temp_variable = { tag_index = THIS.id }
 		set_temp_variable = { influence_target = FROM.id }
 		change_influence_percentage = yes
 		add_state_claim = 945
+		set_temp_variable = { wargoal_on = FROM }
+		add_threat_from_wargoal_effect = yes
 		create_wargoal = {
 			target = FROM
 			type = take_claimed_state
@@ -3840,9 +3642,9 @@ country_event = {
 				transfer_state = 19
 			}
 		}
-		FROM = { country_event = { id = spain.69 } }
+		FROM = { country_event = spain.69 }
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
 				factor = 1.50
 				strength_ratio = {
@@ -3886,6 +3688,8 @@ country_event = {
 		effect_tooltip = {
 			SPR = {
 				add_state_core = 19
+				set_temp_variable = { wargoal_on = THIS }
+				add_threat_from_wargoal_effect = yes
 				create_wargoal = {
 					target = THIS
 					type = take_core_state
@@ -3893,9 +3697,9 @@ country_event = {
 				}
 			}
 		}
-		FROM = { country_event = { id = spain.70 } }
+		FROM = { country_event = spain.70 }
 		ai_chance = {
-			factor = 10
+			base = 10
 			modifier = {
 				factor = 5
 				19 = { is_owned_by = ENG }
@@ -3933,9 +3737,8 @@ country_event = {
 	desc = spain.69.d
 	picture = GFX_Gibraltar
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Another Victory for Spain!
 	option = {
@@ -3943,11 +3746,10 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: spain.69.a executed"
 		add_state_core = 19
 		transfer_state = 19
-
 		set_temp_variable = { party_index = 23 }
 		set_temp_variable = { party_popularity_increase = 0.05 }
 		set_temp_variable = { temp_outlook_increase = 0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		if = { limit = { has_idea = SPR_a_great_victory_for_spain_idea }
 			modify_timed_idea = {
 				idea = SPR_a_great_victory_for_spain_idea
@@ -3970,9 +3772,8 @@ country_event = {
 	desc = spain.70.d
 	picture = GFX_Gibraltar
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Fuck them!
 	option = {
@@ -3980,15 +3781,14 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: spain.70.a executed"
 		add_war_support = 0.05
 		add_state_core = 19
+		set_temp_variable = { wargoal_on = FROM }
+		add_threat_from_wargoal_effect = yes
 		create_wargoal = {
 			target = FROM
 			type = take_core_state
 			generator = { 19 }
 		}
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -4002,10 +3802,7 @@ news_event = {
 	major = yes
 
 	# A Worrying Development
-	option = {
-		name = spain.71.a
-		log = "[GetDateText]: [This.GetName]: spain.71.a executed"
-	}
+	option = { name = spain.71.a }
 }
 
 # The LGBTQA Stance
@@ -4015,25 +3812,20 @@ country_event = {
 	desc = spain.72.d
 	picture = GFX_politics_speak
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# A New Stance
 	option = {
 		name = spain.72.a
 		log = "[GetDateText]: [This.GetName]: spain.72.a executed"
-
 		if = { limit = { has_idea = SPR_anti_lgbtqa_stance_idea }
 			swap_ideas = {
 				add_idea = SPR_pro_lgbtqa_stance_idea
 				remove_idea = SPR_anti_lgbtqa_stance_idea
 			}
 		}
-		else = {
-			add_ideas = SPR_pro_lgbtqa_stance_idea
-		}
-
+		else = { add_ideas = SPR_pro_lgbtqa_stance_idea }
 		if = { limit = { has_country_flag = SPR_ban_gays_stance_conserv_flag }
 			clr_country_flag = SPR_ban_gays_stance_conserv_flag
 		}
@@ -4041,20 +3833,15 @@ country_event = {
 			clr_country_flag = SPR_status_quo_stance_conserv_flag
 		}
 		set_country_flag = SPR_pro_gay_stance_conserv_flag
-
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
-
 
 	# Maintain the Status Quo
 	option = {
 		name = spain.72.b
 		log = "[GetDateText]: [This.GetName]: spain.72.b executed"
-
 		add_political_power = 150
-
+		remove_ideas = SPR_lgbtq_affirmations_idea
 		if = { limit = { has_country_flag = SPR_ban_gays_stance_conserv_flag }
 			clr_country_flag = SPR_ban_gays_stance_conserv_flag
 		}
@@ -4062,25 +3849,21 @@ country_event = {
 			clr_country_flag = SPR_pro_gay_stance_conserv_flag
 		}
 		set_country_flag = SPR_status_quo_stance_conserv_flag
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Ban Gays
 	option = {
 		name = spain.72.c
 		log = "[GetDateText]: [This.GetName]: spain.72.c executed"
-		if = { limit = { has_idea = SPR_anti_lgbtqa_stance_idea }
+		if = { limit = { has_idea = SPR_pro_lgbtqa_stance_idea }
 			swap_ideas = {
 				add_idea = SPR_anti_lgbtqa_stance_idea
 				remove_idea = SPR_pro_lgbtqa_stance_idea
 			}
 		}
-		else = {
-			add_ideas = SPR_anti_lgbtqa_stance_idea
-		}
-
+		else = { add_ideas = SPR_anti_lgbtqa_stance_idea }
+		remove_ideas = SPR_lgbtq_affirmations_idea
 		if = { limit = { has_country_flag = SPR_pro_gay_stance_conserv_flag }
 			clr_country_flag = SPR_pro_gay_stance_conserv_flag
 		}
@@ -4088,9 +3871,7 @@ country_event = {
 			clr_country_flag = SPR_status_quo_stance_conserv_flag
 		}
 		set_country_flag = SPR_ban_gays_stance_conserv_flag
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 }
 
@@ -4101,9 +3882,8 @@ country_event = {
 	desc = spain.73.d
 	picture = GFX_politics_speak
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Full Parental Veto
 	option = {
@@ -4112,11 +3892,8 @@ country_event = {
 		add_ideas = SPR_parental_choice_on_all_topics_idea
 		add_stability = -0.05
 		add_political_power = -100
-
 		set_country_flag = SPR_pin_parental_education_full_flag
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# Veto on Sexual Education and Other Controversial Topics
@@ -4126,23 +3903,17 @@ country_event = {
 		add_ideas = SPR_parental_choice_on_controversial_idea
 		add_stability = -0.05
 		add_political_power = -50
-
 		set_country_flag = SPR_pin_parental_education_controversial_flag
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# Actually... we shouldn't do this
 	option = {
 		name = spain.73.c
 		log = "[GetDateText]: [Root.GetName]: event spain.73.c"
-
 		add_stability = 0.05
 		add_political_power = 100
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 }
 
@@ -4153,20 +3924,16 @@ country_event = {
 	desc = spain.74.d
 	picture = GFX_politics_speak
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# A Harsh Stance
 	option = {
 		name = spain.74.a
 		log = "[GetDateText]: [Root.GetName]: event spain.74.a"
 		add_ideas = SPR_a_harsh_nativism_stance_idea
-
 		set_country_flag = SPR_harsh_nativism_stance_flag
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# A Softer Stance
@@ -4174,13 +3941,9 @@ country_event = {
 		name = spain.74.b
 		log = "[GetDateText]: [Root.GetName]: event spain.74.b"
 		add_ideas = SPR_a_soft_nativism_stance_idea
-
 		set_country_flag = SPR_soft_nativism_stance_flag
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
-
 }
 
 # Return of Falangism
@@ -4190,9 +3953,8 @@ country_event = {
 	desc = spain.75.d
 	picture = GFX_politics_speak
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Glory to Spain!
 	option = {
@@ -4201,11 +3963,10 @@ country_event = {
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.05 }
 		set_temp_variable = { temp_outlook_increase = 0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = 100
-
 		news_event = spain.76
-		ai_chance = { factor = 1 }
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -4218,10 +3979,7 @@ news_event = {
 	is_triggered_only = yes
 	major = yes
 
-	option = {
-		name = spain.76.a
-		log = "[GetDateText]: [This.GetName]: spain.76.a executed"
-	}
+	option = { name = spain.76.a }
 }
 
 # The New Falangist Woman
@@ -4229,22 +3987,18 @@ country_event = {
 	id = spain.77
 	title = spain.77.t
 	desc = spain.77.d
-	is_triggered_only = yes
 	picture = GFX_politics_speak
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# Women Serve the Homefront
 	option = {
 		name = spain.77.a
 		log = "[GetDateText]: [This.GetName]: spain.77.a executed"
 		add_ideas = SPR_women_belong_on_the_homefront_idea
-
 		set_country_flag = SPR_women_homefront_idea_flag
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# Strength is in Choice
@@ -4252,11 +4006,8 @@ country_event = {
 		name = spain.77.b
 		log = "[GetDateText]: [This.GetName]: spain.77.b executed"
 		add_ideas = SPR_women_choose_idea
-
 		set_country_flag = SPR_women_choose_idea_flag
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -4265,61 +4016,64 @@ country_event = {
 	id = spain.78
 	title = spain.78.t
 	desc = spain.78.d
-	is_triggered_only = yes
 	picture = GFX_politics_demands
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# The French Execution
 	option = {
 		name = spain.78.a
 		log = "[GetDateText]: [This.GetName]: spain.78.a executed"
-		set_country_flag = party23_banned
-		set_country_flag = party1_banned
+		set_temp_variable = { party_index = 22 }
+		ban_party_scripted_call = yes
+		set_temp_variable = { party_index = 0 }
+		ban_party_scripted_call = yes
 		custom_effect_tooltip = SPR_execution_of_the_monarchy_tt
 		custom_effect_tooltip = SPR_monarchs_banned_tt
 		if = { limit = { check_variable = { party_pop_array^23 > 0 } }
-			set_temp_variable_to_ruling_party = yes
+			set_temp_variable = { party_index = ruling_party }
 			set_temp_variable = { party_popularity_increase = party_pop_array^23 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
 		if = { limit = { check_variable = { party_pop_array^0 > 0 } }
 			set_temp_variable = { party_index = 0 }
 			set_temp_variable = { party_popularity_increase = party_pop_array^0 }
 			multiply_temp_variable = { party_popularity_increase = -1 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
-
 		set_global_flag = SPR_french_execution_gangnam_flag
-		ai_chance = {
-			factor = 0
+		hidden_effect = {
+			news_event = { id = spain.79 days = 1 }
 		}
+		ai_chance = { base = 0 }
 	}
 
 	# Depose the Monarchs
 	option = {
 		name = spain.78.b
 		log = "[GetDateText]: [This.GetName]: spain.78.b executed"
-		set_country_flag = party23_banned
-		set_country_flag = party1_banned
+		set_temp_variable = { party_index = 22 }
+		ban_party_scripted_call = yes
+		set_temp_variable = { party_index = 0 }
+		ban_party_scripted_call = yes
 		custom_effect_tooltip = SPR_monarchs_banned_tt
 		if = { limit = { check_variable = { party_pop_array^23 > 0 } }
-			set_temp_variable_to_ruling_party = yes
+			set_temp_variable = { party_index = ruling_party }
 			set_temp_variable = { party_popularity_increase = party_pop_array^23 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
 		if = { limit = { check_variable = { party_pop_array^0 > 0 } }
 			set_temp_variable = { party_index = 0 }
 			set_temp_variable = { party_popularity_increase = party_pop_array^0 }
 			multiply_temp_variable = { party_popularity_increase = -1 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
-
 		set_global_flag = SPR_chavy_deposition_of_monarchs_flag
-		ai_chance = {
-			factor = 1
+		hidden_effect = {
+			news_event = { id = spain.79 days = 1 }
 		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -4328,40 +4082,28 @@ news_event = {
 	id = spain.79
 	title = {
 		text = spain.79.t1
-		trigger = {
-			has_global_flag = SPR_french_execution_gangnam_flag
-		}
+		trigger = { has_global_flag = SPR_french_execution_gangnam_flag }
 	}
 	title = {
 		text = spain.79.t2
-		trigger = {
-			has_global_flag = SPR_chavy_deposition_of_monarchs_flag
-		}
+		trigger = { has_global_flag = SPR_chavy_deposition_of_monarchs_flag }
 	}
 	desc = {
 		text = spain.79.d1
-		trigger = {
-			has_global_flag = SPR_french_execution_gangnam_flag
-		}
+		trigger = { has_global_flag = SPR_french_execution_gangnam_flag }
 	}
 	desc = {
 		text = spain.79.d2
-		trigger = {
-			has_global_flag = SPR_chavy_deposition_of_monarchs_flag
-		}
+		trigger = { has_global_flag = SPR_chavy_deposition_of_monarchs_flag }
 	}
 	picture = GFX_news_election_rally
 	is_triggered_only = yes
 	major = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# A New Way for Spain
-	option = {
-		name = spain.79.a
-		log = "[GetDateText]: [This.GetName]: spain.79.a executed"
-	}
+	option = { name = spain.79.a }
 }
 
 # The Emancipation of the New Woman
@@ -4369,11 +4111,10 @@ country_event = {
 	id = spain.80
 	title = spain.80.t
 	desc = spain.80.d
-	is_triggered_only = yes
 	picture = GFX_politics_demands
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# Yes
 	option = {
@@ -4388,36 +4129,29 @@ country_event = {
 	id = spain.81
 	title = spain.81.t
 	desc = spain.81.d
-	is_triggered_only = yes
 	picture = GFX_politics_demands
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# Citizenship for All
 	option = {
 		name = spain.81.a
 		log = "[GetDateText]: [This.GetName]: spain.81.a executed"
-
 		if = {
 			limit = { has_idea = SPR_idea_open_borders_1 }
-
 			swap_ideas = {
 				remove_idea = SPR_idea_open_borders_1
 				add_idea = SPR_idea_open_borders_2
 			}
 		}
-		else = {
-			add_ideas = SPR_idea_open_borders_1
-		}
-
+		else = { add_ideas = SPR_idea_open_borders_1 }
 	}
 
 	# Visa Status
 	option = {
 		name = spain.81.b
 		log = "[GetDateText]: [This.GetName]: spain.81.b executed"
-
 		add_ideas = SPR_idea_visa_programs
 	}
 
@@ -4427,16 +4161,12 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: spain.82.c executed"
 		if = {
 			limit = { has_idea = SPR_anti_immigration_policies_idea }
-
 			swap_ideas = {
 				remove_idea = SPR_anti_immigration_policies_idea
 				add_idea = SPR_anti_immigration_policies_idea_2
 			}
 		}
-		else = {
-			add_ideas = SPR_anti_immigration_policies_idea
-		}
-
+		else = { add_ideas = SPR_anti_immigration_policies_idea }
 	}
 }
 
@@ -4445,11 +4175,10 @@ country_event = {
 	id = spain.83
 	title = spain.83.t
 	desc = spain.83.d
-	is_triggered_only = yes
 	picture = GFX_politics_autocracy
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# The Night of Broken Vitoria
 	option = {
@@ -4460,13 +4189,12 @@ country_event = {
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -15 }
 		SPR_modify_cultural_opinion = yes
-
 		custom_effect_tooltip = SPR_the_following_may_happen_tt
 		random_list = {
 			30 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_war_support = 0.05
 				add_political_power = 150
 				88 = { remove_core_of = NAV }
@@ -4475,14 +4203,13 @@ country_event = {
 			70 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = -0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_stability = -0.02
 				88 = { add_manpower = -2000 }
 			}
 		}
-
 		set_country_flag = SPR_night_of_broken_vitora_flag
-		country_event = { id = spain.84 }
+		country_event = spain.84
 	}
 
 	# Round the Conspirators
@@ -4494,13 +4221,12 @@ country_event = {
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		custom_effect_tooltip = SPR_the_following_may_happen_tt
 		random_list = {
 			40 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_war_support = 0.025
 				add_political_power = 75
 				set_country_flag = SPR_choice_1
@@ -4508,14 +4234,13 @@ country_event = {
 			60 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = -0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_stability = -0.02
 				88 = { add_manpower = -2000 }
 			}
 		}
-
 		set_country_flag = SPR_round_up_the_conspirators_flag
-		country_event = { id = spain.84 }
+		country_event = spain.84
 	}
 }
 
@@ -4534,7 +4259,7 @@ country_event = {
 		text = spain.84.d2
 		trigger = {
 			has_country_flag = SPR_night_of_broken_vitora_flag
-	 		has_country_flag = SPR_choice_1
+			 has_country_flag = SPR_choice_1
 		}
 	}
 	desc = {
@@ -4551,11 +4276,10 @@ country_event = {
 			has_country_flag = SPR_choice_1
 		}
 	}
-	is_triggered_only = yes
 	picture = GFX_politics_autocracy
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# The Night of Broken Vitoria
 	option = {
@@ -4566,7 +4290,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = 0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_war_support = 0.05
 					add_political_power = 150
 					88 = { remove_core_of = NAV }
@@ -4576,7 +4300,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = -0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = -0.02
 					88 = { add_manpower = -2000 }
 				}
@@ -4588,7 +4312,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = 0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_war_support = 0.025
 					add_political_power = 75
 				}
@@ -4597,7 +4321,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = -0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = -0.02
 					88 = { add_manpower = -2000 }
 				}
@@ -4612,31 +4336,26 @@ country_event = {
 	id = spain.85
 	title = spain.85.t
 	desc = spain.85.d
+	picture = GFX_prestige_tanker
+	is_triggered_only = yes
+
 	trigger = {
 		tag = SPR
 		date > 2002.1.1
 	}
-	picture = GFX_prestige_tanker
-	is_triggered_only = yes
 
 	# Haha Pink Shirt - Oil
 	option = {
 		name = spain.85.a
 		log = "[GetDateText]: [This.GetName]: spain.85.b executed"
-
 		set_temp_variable = { treasury_change = -2.5 }
 		modify_treasury_effect = yes
-
 		add_manpower = -3000
-
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = -3 }
 		SPR_modify_cultural_opinion = yes
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.07 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		# Penalty in the Coastline
 		944 = { add_dynamic_modifier = { modifier = SPR_oil_spill days = 1460 } }
 		89 = { add_dynamic_modifier = { modifier = SPR_oil_spill days = 1460 } }
@@ -4644,7 +4363,6 @@ country_event = {
 		1055 = { add_dynamic_modifier = { modifier = SPR_oil_spill days = 1460 } }
 		60 = { add_dynamic_modifier = { modifier = SPR_oil_spill days = 1460 } }
 		958 = { add_dynamic_modifier = { modifier = SPR_oil_spill days = 1460 } }
-
 		set_country_flag = SPR_prestige_oil_spill
 		if = { limit = { has_completed_focus = SPR_el_oro_negro }
 			add_stability = -0.05
@@ -4657,11 +4375,10 @@ country_event = {
 	id = spain.86
 	title = spain.86.t
 	desc = spain.86.d
-	is_triggered_only = yes
 	picture = GFX_politics_autocracy
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# The Night of Broken Barcelona
 	option = {
@@ -4672,13 +4389,12 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -15 }
 		SPR_modify_cultural_opinion = yes
-
 		custom_effect_tooltip = SPR_the_following_may_happen_tt
 		random_list = {
 			30 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_war_support = 0.05
 				add_political_power = 150
 				86 = { remove_core_of = CAT }
@@ -4687,14 +4403,13 @@ country_event = {
 			70 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = -0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_stability = -0.02
 				86 = { add_manpower = -2000 }
 			}
 		}
-
 		set_country_flag = SPR_blueshirts_barcelona_flag
-		country_event = { id = spain.87 }
+		country_event = spain.87
 	}
 
 	# Round the Conspirators
@@ -4706,13 +4421,12 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
-
 		custom_effect_tooltip = SPR_the_following_may_happen_tt
 		random_list = {
 			40 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_war_support = 0.025
 				add_political_power = 75
 				set_country_flag = SPR_bar_choice_1
@@ -4720,14 +4434,13 @@ country_event = {
 			60 = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = -0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 				add_stability = -0.02
 				86 = { add_manpower = -2000 }
 			}
 		}
-
 		set_country_flag = SPR_round_up_the_conspirators_barcelona_flag
-		country_event = { id = spain.87 }
+		country_event = spain.87
 	}
 }
 
@@ -4746,7 +4459,7 @@ country_event = {
 		text = spain.87.d2
 		trigger = {
 			has_country_flag = SPR_blueshirts_barcelona_flag
-	 		has_country_flag = SPR_bar_choice_1
+			 has_country_flag = SPR_bar_choice_1
 		}
 	}
 	desc = {
@@ -4763,11 +4476,10 @@ country_event = {
 			has_country_flag = SPR_bar_choice_1
 		}
 	}
-	is_triggered_only = yes
 	picture = GFX_politics_autocracy
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# The Night of Broken Barcelona
 	option = {
@@ -4778,7 +4490,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = 0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_war_support = 0.05
 					add_political_power = 150
 					88 = { remove_core_of = CAT }
@@ -4788,7 +4500,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = -0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = -0.02
 					88 = { add_manpower = -2000 }
 				}
@@ -4800,7 +4512,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = 0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_war_support = 0.025
 					add_political_power = 75
 				}
@@ -4809,7 +4521,7 @@ country_event = {
 				effect_tooltip = {
 					set_temp_variable = { party_index = 21 }
 					set_temp_variable = { party_popularity_increase = -0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = -0.02
 					88 = { add_manpower = -2000 }
 				}
@@ -4824,11 +4536,10 @@ country_event = {
 	id = spain.201
 	title = spain.201.t
 	desc = spain.201.d
-	is_triggered_only = yes
 	picture = GFX_2005_migrant_crisis
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	#Refuse Immigrants
 	option = {
@@ -4840,21 +4551,16 @@ country_event = {
 				NOT = { has_idea = SPR_idea_open_borders_2 }
 			}
 		}
-
-		set_temp_variable = { modify_eurosceptic = -0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = 0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		if = { limit = { has_idea = SPR_anti_immigration_policies_idea }
 			swap_ideas = {
 				remove_idea = SPR_anti_immigration_policies_idea
 				add_idea = SPR_anti_immigration_policies_idea_2
 			}
 		}
-		else = {
-			add_ideas = SPR_anti_immigration_policies_idea
-		}
-
+		else = { add_ideas = SPR_anti_immigration_policies_idea }
 		set_country_flag = SPR_refused_immigrants
 		set_country_flag = SPR_mirgrant_crisis_start
 	}
@@ -4871,11 +4577,9 @@ country_event = {
 				NOT = { has_idea = SPR_anti_immigration_policies_idea_2 }
 			}
 		}
-
-		set_temp_variable = { modify_eurosceptic = 0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = -0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		if = { limit = { has_idea = SPR_idea_open_borders_1 }
 			swap_ideas = {
 				remove_idea = SPR_idea_open_borders_1
@@ -4885,7 +4589,6 @@ country_event = {
 		else = {
 			add_ideas = SPR_idea_open_borders_1
 		}
-
 		set_country_flag = SPR_mirgrant_crisis_start
 	}
 
@@ -4899,15 +4602,11 @@ country_event = {
 				NOT = { has_idea = SPR_anti_immigration_policies_idea_2 }
 			}
 		}
-
-		set_temp_variable = { modify_eurosceptic = 0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = -0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		set_country_flag = SPR_increased_immigration
-
 		add_ideas = SPR_idea_increased_immigration
-
 		set_country_flag = SPR_mirgrant_crisis_start
 	}
 }
@@ -4917,29 +4616,23 @@ country_event = {
 	id = spain.202
 	title = spain.202.t
 	desc = spain.202.d
-	is_triggered_only = yes
 	picture = GFX_ceuta_border_thingy
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# Nonlethal Response
 	option = {
 		name = spain.202.a
 		log = "[GetDateText]: [This.GetName]: spain.202.a executed"
 		add_stability = -0.02
-
 		every_other_country = {
-			limit = {
-				has_government = democratic
-			}
-
+			limit = { has_government = democratic }
 			add_opinion_modifier = {
 				target = SPR
 				modifier = small_decrease
 			}
 		}
-
 		set_country_flag = SPR_ceuta_assault
 	}
 
@@ -4956,22 +4649,18 @@ country_event = {
 				NOT = { has_idea = SPR_idea_visa_programs }
 			}
 		}
-
-		set_temp_variable = { modify_eurosceptic = 0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = -0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		every_other_country = {
 			limit = {
 				has_government = democratic
 			}
-
 			add_opinion_modifier = {
 				target = SPR
 				modifier = large_decrease
 			}
 		}
-
 		set_country_flag = SPR_ceuta_assault
 		set_country_flag = SPR_border_massacre
 	}
@@ -4988,14 +4677,11 @@ country_event = {
 				NOT = { has_idea = SPR_anti_immigration_policies_idea_2 }
 			}
 		}
-
-		set_temp_variable = { modify_eurosceptic = -0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = 0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		if = {
 			limit = { has_idea = SPR_idea_open_borders_1 }
-
 			swap_ideas = {
 				remove_idea = SPR_idea_open_borders_1
 				add_idea = SPR_idea_open_borders_2
@@ -5004,7 +4690,6 @@ country_event = {
 		else = {
 			add_ideas = SPR_idea_open_borders_1
 		}
-
 		set_country_flag = SPR_ceuta_assault
 	}
 }
@@ -5014,29 +4699,23 @@ country_event = {
 	id = spain.203
 	title = spain.203.t
 	desc = spain.203.d
-	is_triggered_only = yes
 	picture = GFX_melila_border_thingy
-	trigger = {
-		original_tag = SPR
-	}
+	is_triggered_only = yes
+
+	trigger = { original_tag = SPR }
 
 	# Nonlethal Response
 	option = {
 		name = spain.203.a
 		log = "[GetDateText]: [This.GetName]: spain.203.c executed"
 		add_stability = -0.02
-
 		every_other_country = {
-			limit = {
-				has_government = democratic
-			}
-
+			limit = { has_government = democratic }
 			add_opinion_modifier = {
 				target = SPR
 				modifier = small_decrease
 			}
 		}
-
 		set_country_flag = SPR_mellila_assault
 	}
 
@@ -5051,22 +4730,16 @@ country_event = {
 			}
 		}
 		log = "[GetDateText]: [This.GetName]: spain.203.c executed"
-
-		set_temp_variable = { modify_eurosceptic = 0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = -0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		every_other_country = {
-			limit = {
-				has_government = democratic
-			}
-
+			limit = { has_government = democratic }
 			add_opinion_modifier = {
 				target = SPR
 				modifier = large_decrease
 			}
 		}
-
 		set_country_flag = SPR_border_massacre
 		set_country_flag = SPR_mellila_assault
 	}
@@ -5081,21 +4754,16 @@ country_event = {
 			}
 		}
 		log = "[GetDateText]: [This.GetName]: spain.203.c executed"
-		set_temp_variable = { modify_eurosceptic = -0.05 }
-		set_temp_variable = { modify_eurosceptic_target = ROOT }
-		eurosceptic_change = yes
-
+		set_temp_variable = { modify_europeanism = 0.05 }
+		set_temp_variable = { modify_europeanism_target = ROOT }
+		europeanism_change = yes
 		if = { limit = { has_idea = SPR_idea_open_borders_1 }
-
 			swap_ideas = {
 				remove_idea = SPR_idea_open_borders_1
 				add_idea = SPR_idea_open_borders_2
 			}
 		}
-		else = {
-			add_ideas = SPR_idea_open_borders_1
-		}
-
+		else = { add_ideas = SPR_idea_open_borders_1 }
 		set_country_flag = SPR_mellila_assault
 	}
 }
@@ -5122,12 +4790,11 @@ country_event = {
 		if = {
 			limit = {
 				OR = {
-					is_in_array = { ruling_party = 0 }
-					is_in_array = { ruling_party = 23 }
+					western_autocrats_are_in_power = yes
+					check_variable = { ruling_party = 23 }
 				}
 			}
 			hidden_effect = {
-				set_ruling_leader = yes
 				set_leader = yes
 			}
 		}
@@ -5144,15 +4811,11 @@ country_event = {
 	title = spain.205.t
 	desc = {
 		text = spain.205.d1
-		trigger = {
-			NOT = { has_country_flag = SPR_carlists_chosen }
-		}
+		trigger = { NOT = { has_country_flag = SPR_carlists_chosen } }
 	}
 	desc = {
 		text = spain.205.d2
-		trigger = {
-			has_country_flag = SPR_carlists_chosen
-		}
+		trigger = { has_country_flag = SPR_carlists_chosen }
 	}
 	picture = GFX_death_of_Carlos_hugo
 	is_triggered_only = yes
@@ -5170,12 +4833,11 @@ country_event = {
 			if = {
 				limit = {
 					OR = {
-						is_in_array = { ruling_party = 0 }
-						is_in_array = { ruling_party = 23 }
+						western_autocrats_are_in_power = yes
+						check_variable = { ruling_party = 23 }
 					}
 				}
 				hidden_effect = {
-					set_ruling_leader = yes
 					set_leader = yes
 				}
 			}
@@ -5194,12 +4856,10 @@ country_event = {
 	desc = spain.206.d
 	picture = GFX_albert_riviera
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
-	immediate = {
-		set_country_flag = SPR_cidudanos_forms
-	}
+
+	trigger = { original_tag = SPR }
+
+	immediate = { set_country_flag = SPR_cidudanos_forms }
 
 	option = {
 		name = spain.206.a
@@ -5207,7 +4867,7 @@ country_event = {
 		set_temp_variable = { party_index = 2 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.04 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -5218,9 +4878,9 @@ country_event = {
 	desc = spain.207.d
 	picture = GFX_santiago_pascal
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
+
 	immediate = {
 		clr_country_flag = SPR_espana_2000_forms
 		set_country_flag = SPR_vox_forms
@@ -5232,7 +4892,7 @@ country_event = {
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.04 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -5243,12 +4903,10 @@ country_event = {
 	desc = spain.208.d
 	picture = GFX_espana_2000
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
-	immediate = {
-		set_country_flag = SPR_espana_2000_forms
-	}
+
+	trigger = { original_tag = SPR }
+
+	immediate = { set_country_flag = SPR_espana_2000_forms }
 
 	option = {
 		name = spain.208.a
@@ -5256,7 +4914,7 @@ country_event = {
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.04 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -5267,12 +4925,10 @@ country_event = {
 	desc = spain.209.d
 	picture = GFX_aes
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
-	immediate = {
-		set_country_flag = SPR_alternativa_espana_forms
-	}
+
+	trigger = { original_tag = SPR }
+
+	immediate = { set_country_flag = SPR_alternativa_espana_forms }
 
 	option = {
 		name = spain.209.a
@@ -5280,7 +4936,7 @@ country_event = {
 		set_temp_variable = { party_index = 14 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.04 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -5289,14 +4945,12 @@ country_event = {
 	id = spain.210
 	title = spain.210.t
 	desc = spain.210.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_podemos_rally
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
-	immediate = {
-		set_country_flag = SPR_unidos_podemos_forms
-	}
+
+	trigger = { original_tag = SPR }
+
+	immediate = { set_country_flag = SPR_unidos_podemos_forms }
 
 	option = {
 		name = spain.210.a
@@ -5304,7 +4958,7 @@ country_event = {
 		set_temp_variable = { party_index = 18 }
 		set_temp_variable = { party_popularity_increase = 0.04 }
 		set_temp_variable = { temp_outlook_increase = 0.04 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 	}
 }
 
@@ -5313,11 +4967,11 @@ country_event = {
 	id = spain.211
 	title = spain.211.t
 	desc = spain.211.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_podemos_rally
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
+
 	immediate = {
 		clr_country_flag = SPR_unidos_podemos_forms
 		set_country_flag = SPR_unidas_podemos_forms
@@ -5326,7 +4980,6 @@ country_event = {
 	option = {
 		name = spain.211.a
 		log = "[GetDateText]: [This.GetName]: spain.211.a executed"
-
 		add_political_power = 50
 	}
 }
@@ -5338,17 +4991,14 @@ country_event = {
 	desc = spain.212.d
 	picture = GFX_bilbao
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.212.a
 		log = "[GetDateText]: [This.GetName]: spain.212.a executed"
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
@@ -5362,17 +5012,14 @@ country_event = {
 	desc = spain.213.d
 	picture = GFX_lugo
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.213.a
 		log = "[GetDateText]: [This.GetName]: spain.212.a executed"
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 2 }
 		set_temp_variable = { cultural_opinion = 2 }
 		SPR_modify_cultural_opinion = yes
@@ -5384,22 +5031,22 @@ country_event = {
 	id = spain.214
 	title = spain.214.t
 	desc = spain.214.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_eta_bombing
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.214.a
 		log = "[GetDateText]: [This.GetName]: spain.214.b executed"
-
 		add_manpower = -99
-
 		91 = {
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
 		}
 	}
@@ -5412,26 +5059,20 @@ country_event = {
 	desc = spain.215.d
 	picture = GFX_political_deal
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.215.a
 		log = "[GetDateText]: [This.GetName]: spain.215.b executed"
-
 		add_political_power = -25
-
 		swap_ideas = {
 			remove_idea = SPR_idea_the_eta_1
 			add_idea = SPR_idea_the_eta_2
 		}
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_eta_down_1
 	}
 }
 
@@ -5440,32 +5081,39 @@ country_event = {
 	id = spain.216
 	title = spain.216.t
 	desc = spain.216.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_eta_arrest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.216.a
-		log = "[GetDateText]: [This.GetName]: spain.216.b executed"
-
+		log = "[GetDateText]: [This.GetName]: spain.216.a executed"
 		88 = {
-			damage_building = {
-				type = rail_way
-				damage = 1
+			if = {
+				limit = { rail_way > 0 }
+				damage_building = {
+					type = rail_way
+					damage = 1
+				}
 			}
 		}
 		90 = {
-			damage_building = {
-				type = rail_way
-				damage = 1
+			if = {
+				limit = { rail_way > 0 }
+				damage_building = {
+					type = rail_way
+					damage = 1
+				}
 			}
 		}
 		91 = {
-			damage_building = {
-				type = rail_way
-				damage = 1
+			if = {
+				limit = { rail_way > 0 }
+				damage_building = {
+					type = rail_way
+					damage = 1
+				}
 			}
 		}
 	}
@@ -5476,22 +5124,22 @@ country_event = {
 	id = spain.217
 	title = spain.217.t
 	desc = spain.217.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_2006_madrid_airport_bombing
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.217.a
 		log = "[GetDateText]: [This.GetName]: spain.217.b executed"
-
 		add_manpower = -54
-
 		91 = {
-			damage_building = {
-				type = air_base
-				damage = 1
+			if = {
+				limit = { air_base > 0 }
+				damage_building = {
+					type = air_base
+					damage = 1
+				}
 			}
 		}
 	}
@@ -5502,28 +5150,22 @@ country_event = {
 	id = spain.218
 	title = spain.218.t
 	desc = spain.218.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_basque_referendum
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.218.a
 		log = "[GetDateText]: [This.GetName]: spain.218.b executed"
-
 		add_political_power = -25
-
 		swap_ideas = {
 			remove_idea = SPR_idea_the_eta_2
 			add_idea = SPR_idea_the_eta_3
 		}
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_eta_down_2
 	}
 }
 
@@ -5534,21 +5176,17 @@ country_event = {
 	desc = spain.219.d
 	picture = GFX_ETA_leader_arrest
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.219.a
 		log = "[GetDateText]: [This.GetName]: spain.219.b executed"
-
 		add_political_power = -25
-
 		swap_ideas = {
 			remove_idea = SPR_idea_the_eta_3
 			add_idea = SPR_idea_the_eta_4
 		}
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
@@ -5562,27 +5200,29 @@ country_event = {
 	desc = spain.220.d
 	picture = GFX_guardia_civil_bombing
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.220.a
 		log = "[GetDateText]: [This.GetName]: spain.220.b executed"
-
 		add_manpower = -67
-
 		90 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
 			}
 		}
-
 		94 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
 			}
 		}
 	}
@@ -5595,23 +5235,17 @@ country_event = {
 	desc = spain.221.d
 	picture = GFX_eta_ceasefire
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.221.a
 		log = "[GetDateText]: [This.GetName]: spain.221.b executed"
-
 		add_political_power = -25
-
 		remove_ideas = SPR_idea_the_eta_4
-
 		set_temp_variable = { culture_index = 1 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		set_country_flag = SPR_eta_down_3
 	}
 }
 
@@ -5622,44 +5256,56 @@ country_event = {
 	desc = spain.222.d
 	picture = GFX_murcia_attack
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.222.a
 		log = "[GetDateText]: [This.GetName]: spain.222.b executed"
-
 		add_manpower = -5
-
 		90 = {
-			damage_building = {
-				type = infrastructure
-				damage = 1.5
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 1.5
+				}
 			}
 		}
 		970 = {
-			damage_building = {
-				type = infrastructure
-				damage = 0.5
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 0.5
+				}
 			}
 		}
 		92 = {
-			damage_building = {
-				type = infrastructure
-				damage = 0.5
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 0.5
+				}
 			}
 		}
 		93 = {
-			damage_building = {
-				type = infrastructure
-				damage = 0.5
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 0.5
+				}
 			}
 		}
 		1040 = {
-			damage_building = {
-				type = infrastructure
-				damage = 0.5
+			if = {
+				limit = { infrastructure > 0 }
+				damage_building = {
+					type = infrastructure
+					damage = 0.5
+				}
 			}
 		}
 	}
@@ -5670,22 +5316,22 @@ country_event = {
 	id = spain.223
 	title = spain.223.t
 	desc = spain.223.d
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_eta_bombing
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.223.a
 		log = "[GetDateText]: [This.GetName]: spain.223.b executed"
-
 		add_manpower = -42
-
 		91 = {
-			damage_building = {
-				type = offices
-				damage = 1.0
+			if = {
+				limit = { offices > 0 }
+				damage_building = {
+					type = offices
+					damage = 1.0
+				}
 			}
 		}
 	}
@@ -5697,13 +5343,14 @@ country_event = {
 	title = spain.230.t
 	desc = spain.230.d
 	picture = GFX_2006_catalan_refer
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.230.a
@@ -5712,10 +5359,7 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 1 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
@@ -5724,20 +5368,16 @@ country_event = {
 		set_temp_variable = { party_index = 1 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -3 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
-
 }
 
 # 2010 - Early - Spanish Constitutional Court Nullifies the State of Autonomy
@@ -5746,13 +5386,14 @@ country_event = {
 	title = spain.231.t
 	desc = spain.231.d
 	picture = GFX_const_court_spain
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.231.a
@@ -5761,7 +5402,6 @@ country_event = {
 		set_temp_variable = { cultural_opinion = -15 }
 		SPR_modify_cultural_opinion = yes
 		add_stability = -0.05
-
 		hidden_effect = { country_event = { id = spain.232 days = 40 random_hours = 48 } }
 	}
 }
@@ -5772,13 +5412,14 @@ country_event = {
 	title = spain.232.t
 	desc = spain.232.d
 	picture = GFX_2010_catalan_prot
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.232.a
@@ -5796,25 +5437,22 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
 	}
 
 	option = {
 		name = spain.232.c
 		log = "[GetDateText]: [This.GetName]: spain.232.c executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.08 }
 		set_temp_variable = { temp_outlook_increase = -0.08 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 6 }
 		SPR_modify_cultural_opinion = yes
 	}
-
 }
 
 # 2012 - Catalonia Demands Independence
@@ -5823,43 +5461,38 @@ country_event = {
 	title = spain.233.t
 	desc = spain.233.d
 	picture = GFX_2012_catalan_prot
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	# Let Catalonia Go Free
 	option = {
 		name = spain.233.a
 		log = "[GetDateText]: [This.GetName]: spain.233.a executed"
 		custom_effect_tooltip = SPR_catalonia_is_free_tt
-
 		CAT = {
 			transfer_state = 86
 			inherit_technology = FROM
 		}
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_stability = 0.05
-
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# Tighten the Grip
 	option = {
 		name = spain.233.b
 		log = "[GetDateText]: [This.GetName]: spain.233.b executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -10 }
 		SPR_modify_cultural_opinion = yes
@@ -5872,13 +5505,14 @@ country_event = {
 	title = spain.234.t
 	desc = spain.234.d
 	picture = GFX_2012_catalan_prot
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.234.a
@@ -5896,25 +5530,22 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
 	}
 
 	option = {
 		name = spain.234.c
 		log = "[GetDateText]: [This.GetName]: spain.234.c executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.08 }
 		set_temp_variable = { temp_outlook_increase = -0.08 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 6 }
 		SPR_modify_cultural_opinion = yes
 	}
-
 }
 
 # 2014 - Catalan Way
@@ -5923,13 +5554,14 @@ country_event = {
 	title = spain.235.t
 	desc = spain.235.d
 	picture = GFX_2014_catalan_prot
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.235.a
@@ -5947,25 +5579,22 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
 	}
 
 	option = {
 		name = spain.235.c
 		log = "[GetDateText]: [This.GetName]: spain.235.c executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.08 }
 		set_temp_variable = { temp_outlook_increase = -0.08 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 6 }
 		SPR_modify_cultural_opinion = yes
 	}
-
 }
 
 # 2014 - Self-Determination Referendum
@@ -5974,13 +5603,14 @@ country_event = {
 	title = spain.236.t
 	desc = spain.236.d
 	picture = GFX_2014_catalan_refer
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	# Referendum
 	option = {
@@ -5998,20 +5628,18 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
 		set_temp_variable = { temp_outlook_increase = -0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
 	}
 
 	option = {
 		name = spain.236.c
 		log = "[GetDateText]: [This.GetName]: spain.236.c executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.06 }
 		set_temp_variable = { temp_outlook_increase = -0.06 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
@@ -6024,13 +5652,14 @@ country_event = {
 	title = spain.237.t
 	desc = spain.237.d
 	picture = GFX_2016_catalan_prot
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.237.a
@@ -6048,25 +5677,22 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
 	}
 
 	option = {
 		name = spain.237.c
 		log = "[GetDateText]: [This.GetName]: spain.237.c executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.08 }
 		set_temp_variable = { temp_outlook_increase = -0.08 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 6 }
 		SPR_modify_cultural_opinion = yes
 	}
-
 }
 
 # 2017 - Catalonian Decalaration of Independence
@@ -6075,47 +5701,41 @@ country_event = {
 	title = spain.238.t
 	desc = spain.238.d
 	picture = GFX_2017_catalan_refer
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 86
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	# Let Catalonia Go Free
 	option = {
 		name = spain.238.a
 		log = "[GetDateText]: [This.GetName]: spain.238.a executed"
 		custom_effect_tooltip = SPR_catalonia_is_free_tt
-
 		CAT = {
 			transfer_state = 86
 			inherit_technology = SPR
 		}
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_stability = 0.05
-
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# Tighten the Grip
 	option = {
 		name = spain.238.b
 		log = "[GetDateText]: [This.GetName]: spain.238.b executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -10 }
 		SPR_modify_cultural_opinion = yes
-
 		hidden_effect = {
 			country_event = { id = spain.239 days = 4 }
 		}
@@ -6128,13 +5748,14 @@ country_event = {
 	title = spain.239.t
 	desc = spain.239.d
 	picture = GFX_catalan_leader_byebye
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	# Bastard
 	option = {
@@ -6154,13 +5775,14 @@ country_event = {
 	title = spain.240.t
 	desc = spain.240.d
 	picture = GFX_catalan_leaders_trial
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.240.a
@@ -6169,7 +5791,6 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -4 }
 		SPR_modify_cultural_opinion = yes
-
 		hidden_effect = {
 			country_event = { id = spain.241 days = 7 random_days = 14 }
 		}
@@ -6182,13 +5803,14 @@ country_event = {
 	title = spain.241.t
 	desc = spain.241.d
 	picture = GFX_2019_2020_catalan_protests
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.241.a
@@ -6206,20 +5828,18 @@ country_event = {
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.05 }
 		set_temp_variable = { temp_outlook_increase = -0.05 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -50
 	}
 
 	option = {
 		name = spain.241.c
 		log = "[GetDateText]: [This.GetName]: spain.241.c executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.08 }
 		set_temp_variable = { temp_outlook_increase = -0.08 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { culture_index = 0 }
 		set_temp_variable = { cultural_opinion = 6 }
 		SPR_modify_cultural_opinion = yes
@@ -6232,15 +5852,16 @@ country_event = {
 	title = spain.242.t
 	desc = spain.242.d
 	picture = GFX_2021_catalan_pardon_monamieletmesuckyour
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 96
 		NOT = { CAT = { is_subject_of = SPR } }
 		NOT = { has_country_flag = CAT_revolted_against_spain }
-		nationalist_fascists_are_not_in_power_or_coalition = yes
-		nationalist_right_wing_populists_are_not_in_power_or_coalition = yes
+		nationalist_fascists_are_in_power_or_coalition = no
+		nationalist_right_wing_populists_are_in_power_or_coalition = no
 	}
-	is_triggered_only = yes
 
 	# Pardon them
 	option = {
@@ -6258,51 +5879,47 @@ country_event = {
 	title = spain.243.t
 	desc = spain.243.d
 	picture = GFX_const_court_spain
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 95
 	}
-	is_triggered_only = yes
 
 	# Ignore the Courts
 	option = {
 		name = spain.243.a
 		log = "[GetDateText]: [This.GetName]: spain.243.a executed"
-
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = -5 }
 		SPR_modify_cultural_opinion = yes
 		set_temp_variable = { party_index = 21 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
-		add_relative_party_popularity = yes
-
-		ai_chance = {
-			factor = 0
-		}
+		change_relative_party_popularity = yes
+		ai_chance = { base = 0 }
 	}
 
 	# Pay Damages to Cubillo
 	option = {
 		name = spain.243.b
 		log = "[GetDateText]: [This.GetName]: spain.243.b executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.01 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.01
+			}
+		}
 		modify_treasury_effect = yes
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
-
 }
 
 # 2012 - Death of Antonio Cubillo
@@ -6311,39 +5928,35 @@ country_event = {
 	title = spain.244.t
 	desc = spain.244.d
 	picture = GFX_death_Antonio_Cubillo
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 95
 	}
-	is_triggered_only = yes
 
 	# Host a State Sponosored Funeral
 	option = {
 		name = spain.244.a
 		log = "[GetDateText]: [This.GetName]: spain.244.a executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.01 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.01
+			}
+		}
 		modify_treasury_effect = yes
 		set_temp_variable = { culture_index = 4 }
 		set_temp_variable = { cultural_opinion = 5 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# A Sad Day for the Canary Islands
 	option = {
 		name = spain.244.b
-		log = "[GetDateText]: [This.GetName]: spain.244.b executed"
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
-
 }
 
 # 2005 - Metropol Parasol Project
@@ -6353,40 +5966,35 @@ country_event = {
 	desc = spain.245.d
 	picture = GFX_euro_papermoney
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.245.a
 		log = "[GetDateText]: [This.GetName]: spain.245.a executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.03 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.03
+			}
+		}
 		modify_treasury_effect = yes
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = 6 }
 		SPR_modify_cultural_opinion = yes
-
 		set_country_flag = SPR_metropol_parasol_project_money
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	option = {
 		name = spain.245.b
 		log = "[GetDateText]: [This.GetName]: spain.245.b executed"
-
 		add_political_power = -150
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
 		set_country_flag = SPR_metropol_parasol_project_political
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# Do Not Condone this Project
@@ -6394,17 +6002,13 @@ country_event = {
 	option = {
 		name = spain.245.c
 		log = "[GetDateText]: [This.GetName]: spain.245.c executed"
-
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = -3 }
 		SPR_modify_cultural_opinion = yes
 		custom_effect_tooltip = SPR_ignores_the_metropol_parasol_project_tt
 		set_country_flag = SPR_metropol_parasol_project_ignored
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
-
 }
 
 # 2008 - Funding Request for Metropol Parasol Project
@@ -6413,44 +6017,40 @@ country_event = {
 	title = spain.246.t
 	desc = spain.246.d
 	picture = GFX_metropol_parasol_construction
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { has_country_flag = SPR_metropol_parasol_project_ignored }
 	}
-	is_triggered_only = yes
 
 	# Give them the Money
 	option = {
 		name = spain.246.a
 		log = "[GetDateText]: [This.GetName]: spain.245.a executed"
-
-		set_temp_variable = { treasury_change = gdp_total }
-		multiply_temp_variable = { treasury_change = -0.03 }
+		set_temp_variable = {
+			treasury_change = {
+				value = gdp_total
+				multiply = -0.03
+			}
+		}
 		modify_treasury_effect = yes
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = 3 }
 		SPR_modify_cultural_opinion = yes
-
 		modify_country_flag = { flag = SPR_metropol_parasol_project_money value = 2 }
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# We Are Strapped for Cash
 	option = {
 		name = spain.246.b
 		log = "[GetDateText]: [This.GetName]: spain.246.b executed"
-
 		set_temp_variable = { culture_index = 3 }
 		set_temp_variable = { cultural_opinion = -2 }
 		SPR_modify_cultural_opinion = yes
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
-
 }
 
 # 2009 to 2011 - Completion of the Project
@@ -6459,27 +6059,25 @@ country_event = {
 	title = spain.247.t
 	desc = spain.247.d
 	picture = GFX_metropol_parasol_completed
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { has_country_flag = SPR_metropol_parasol_project_ignored }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.247.a
 		log = "[GetDateText]: [This.GetName]: spain.247.b executed"
 		add_stability = 0.05
 		add_political_power = 150
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_country_flag = SPR_metropol_parsol_project_complete
 		clr_country_flag = SPR_metropol_parasol_project_money
 		clr_country_flag = SPR_metropol_parasol_project_political
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 }
 
@@ -6490,9 +6088,8 @@ country_event = {
 	desc = spain.248.d
 	picture = GFX_FIshing_boat
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Deal
 	option = {
@@ -6500,7 +6097,7 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: spain.248.a executed"
 		add_political_power = -25
 		add_opinion_modifier = { target = MOR modifier = SPR_agreed_to_moroccan_deal }
-		reverse_add_opinion_modifier = { target = MOR modifier = SPR_failure_to_reach_a_deal }
+		reverse_add_opinion_modifier = { target = MOR modifier = SPR_agreed_to_moroccan_deal }
 		set_temp_variable = { percent_change = 2 }
 		set_temp_variable = { tag_index = SPR.id }
 		set_temp_variable = { influence_target = MOR.id }
@@ -6510,11 +6107,11 @@ country_event = {
 	# No Deal!
 	option = {
 		name = spain.248.b
-		log = "[GetDateText]: [This.GetName]: spain.248.a executed"
+		log = "[GetDateText]: [This.GetName]: spain.248.b executed"
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { percent_change = -3 }
 		set_temp_variable = { tag_index = SPR.id }
 		set_temp_variable = { influence_target = MOR.id }
@@ -6531,38 +6128,38 @@ country_event = {
 	desc = spain.253.d
 	picture = GFX_Sagrada_Familia
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	option = {
 		name = spain.253.a
 		log = "[GetDateText]: [This.GetName]: spain.253.a executed"
 		if = { limit = { NOT = { has_completed_focus = SPR_monument_maintenance } }
-			set_temp_variable = { treasury_change = gdp_total }
-			multiply_temp_variable = { treasury_change = -0.05 }
+			set_temp_variable = {
+				treasury_change = {
+					value = gdp_total
+					multiply = -0.05
+				}
+			}
 			modify_treasury_effect = yes
 			add_stability = 0.02
 		}
 		else = {
-			set_temp_variable = { treasury_change = gdp_total }
-			multiply_temp_variable = { treasury_change = -0.075 }
+			set_temp_variable = {
+				treasury_change = {
+					value = gdp_total
+					multiply = -0.075
+				}
+			}
 			modify_treasury_effect = yes
 			add_stability = 0.04
 		}
-
 		custom_effect_tooltip = SPR_sagrada_familia_construction_finishes_sooner_tt
 		set_country_flag = SPR_sagra_familia_additional_funding_flag
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
-	option = {
-		name = spain.253.b
-		log = "[GetDateText]: [This.GetName]: spain.253.b executed"
-	}
-
+	option = { name = spain.253.b }
 }
 
 # 2017-2028 - Construction of the Sagrada Famila Completes
@@ -6571,11 +6168,12 @@ country_event = {
 	title = spain.254.t
 	desc = spain.254.d
 	picture = GFX_Sagrada_Familia
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { has_country_flag = SPR_sagrada_familia_complete_flag }
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.253.a
@@ -6593,15 +6191,13 @@ country_event = {
 	desc = spain.255.d
 	picture = GFX_2004_madrid_train_bomb
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Blame the ETA
 	option = {
 		name = spain.255.a
 		log = "[GetDateText]: [This.GetName]: spain.255.a executed"
-
 		# Heavy Penalty to Basque Opinion and minor to others
 		# Reward for Support is MUCH larger in this event
 		random_list = {
@@ -6609,10 +6205,9 @@ country_event = {
 			# Heavy Penalty to popularity and stability
 			50 = {
 				effect_tooltip = {
-					set_party_index_to_ruling_party = yes
 					set_temp_variable = { party_popularity_increase = -0.08 }
 					set_temp_variable = { temp_outlook_increase = -0.08 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					set_temp_variable = { culture_index = 1 }
 					set_temp_variable = { cultural_opinion = -20 }
 					SPR_modify_cultural_opinion = yes
@@ -6624,10 +6219,9 @@ country_event = {
 			# Populartity Gain and some stability
 			30 = {
 				effect_tooltip = {
-					set_party_index_to_ruling_party = yes
 					set_temp_variable = { party_popularity_increase = 0.03 }
 					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					set_temp_variable = { culture_index = 1 }
 					set_temp_variable = { cultural_opinion = -20 }
 					SPR_modify_cultural_opinion = yes
@@ -6647,7 +6241,7 @@ country_event = {
 			country_event = { id = spain.257 random_days = 5 }
 		}
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -6655,17 +6249,15 @@ country_event = {
 	option = {
 		name = spain.255.b
 		log = "[GetDateText]: [This.GetName]: spain.255.b executed"
-
 		# Reward for Support is MUCH larger in this event
 		random_list = {
 			# Manipulation
 			# Medium Penalty to Popluation and Stability
 			30 = {
 				effect_tooltip = {
-					set_party_index_to_ruling_party = yes
 					set_temp_variable = { party_popularity_increase = -0.08 }
 					set_temp_variable = { temp_outlook_increase = -0.08 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = -0.075
 				}
 				set_country_flag = SPR_mdbombings_islamists_worst_case
@@ -6674,10 +6266,9 @@ country_event = {
 			# Small Popularity gain no stability
 			50 = {
 				effect_tooltip = {
-					set_party_index_to_ruling_party = yes
 					set_temp_variable = { party_popularity_increase = 0.03 }
 					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = 0.025
 				}
 				set_country_flag = SPR_mdbombings_islamists_best_case
@@ -6699,16 +6290,14 @@ country_event = {
 	option = {
 		name = spain.255.c
 		log = "[GetDateText]: [This.GetName]: spain.255.c executed"
-
 		# Some money and political power
 		random_list = {
 			# Medium Popularity loss
 			50 = {
 				effect_tooltip = {
-					set_party_index_to_ruling_party = yes
 					set_temp_variable = { party_popularity_increase = -0.05 }
 					set_temp_variable = { temp_outlook_increase = -0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = -0.05
 				}
 				set_country_flag = SPR_mdbombings_weak_government_case
@@ -6716,10 +6305,9 @@ country_event = {
 			# Medium Popularity
 			50 = {
 				effect_tooltip = {
-					set_party_index_to_ruling_party = yes
 					set_temp_variable = { party_popularity_increase = 0.05 }
 					set_temp_variable = { temp_outlook_increase = 0.05 }
-					add_relative_party_popularity = yes
+					change_relative_party_popularity = yes
 					add_stability = 0.05
 				}
 				set_country_flag = SPR_mdbombings_supportive_government_case
@@ -6735,17 +6323,15 @@ country_event = {
 	title = spain.256.t
 	desc = {
 		text = spain.256.d1
-		trigger = {
-			has_country_flag = SPR_mdbombings_weak_government_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_weak_government_case }
 	}
 	desc = {
 		text = spain.256.d2
-		trigger = {
-			has_country_flag = SPR_mdbombings_supportive_government_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_supportive_government_case }
 	}
 	picture = GFX_politics_speak
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		OR = {
@@ -6753,30 +6339,24 @@ country_event = {
 			has_country_flag = SPR_mdbombings_supportive_government_case
 		}
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.256.a
 		log = "[GetDateText]: [This.GetName]: spain.256.a executed"
 		if = { limit = { has_country_flag = SPR_mdbombings_weak_government_case }
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.05 }
 			set_temp_variable = { temp_outlook_increase = -0.05 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_stability = -0.05
 		}
 		else_if = { limit = { has_country_flag = SPR_mdbombings_supportive_government_case }
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = 0.05 }
 			set_temp_variable = { temp_outlook_increase = 0.05 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_stability = 0.05
 		}
-		else = {
-			add_political_power = 100
-		}
+		else = { add_political_power = 100 }
 	}
-
 }
 
 # Blame the ETA/Blame the Terrorists Response
@@ -6804,41 +6384,31 @@ country_event = {
 	}
 	desc = {
 		text = spain.257.d1
-		trigger = {
-			has_country_flag = SPR_mdbombings_eta_worst_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_eta_worst_case }
 	}
 	desc = {
 		text = spain.257.d2
-		trigger = {
-			has_country_flag = SPR_mdbombings_eta_best_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_eta_best_case }
 	}
 	desc = {
 		text = spain.257.d3
-		trigger = {
-			has_country_flag = SPR_mdbombings_eta_whatever_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_eta_whatever_case }
 	}
 	desc = {
 		text = spain.257.d4
-		trigger = {
-			has_country_flag = SPR_mdbombings_islamists_worst_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_islamists_worst_case }
 	}
 	desc = {
 		text = spain.257.d5
-		trigger = {
-			has_country_flag = SPR_mdbombings_islamists_best_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_islamists_best_case }
 	}
 	desc = {
 		text = spain.257.d6
-		trigger = {
-			has_country_flag = SPR_mdbombings_islamists_whatever_case
-		}
+		trigger = { has_country_flag = SPR_mdbombings_islamists_whatever_case }
 	}
-	picture = GFX_politics_speak
+	picture = GFX_jose_speech
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		OR = {
@@ -6850,26 +6420,23 @@ country_event = {
 			has_country_flag = SPR_mdbombings_islamists_whatever_case
 		}
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.257.a
 		log = "[GetDateText]: [This.GetName]: spain.257.a executed"
 		if = { limit = { has_country_flag = SPR_mdbombings_eta_worst_case }
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.08 }
 			set_temp_variable = { temp_outlook_increase = -0.08 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -20 }
 			SPR_modify_cultural_opinion = yes
 			add_stability = -0.075
 		}
 		else_if = { limit = { has_country_flag = SPR_mdbombings_eta_best_case }
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = 0.03 }
 			set_temp_variable = { temp_outlook_increase = 0.03 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			set_temp_variable = { culture_index = 1 }
 			set_temp_variable = { cultural_opinion = -20 }
 			SPR_modify_cultural_opinion = yes
@@ -6879,25 +6446,21 @@ country_event = {
 			add_political_power = -100
 		}
 		else_if = { limit = { has_country_flag = SPR_mdbombings_islamists_worst_case }
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.08 }
 			set_temp_variable = { temp_outlook_increase = -0.08 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_stability = -0.075
 		}
 		else_if = { limit = { has_country_flag = SPR_mdbombings_islamists_best_case }
-			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = 0.03 }
 			set_temp_variable = { temp_outlook_increase = 0.03 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_stability = 0.025
 		}
 		else_if = { limit = { has_country_flag = SPR_mdbombings_islamists_whatever_case }
 			add_political_power = -100
 		}
-		else = {
-			add_political_power = 100
-		}
+		else = { add_political_power = 100 }
 	}
 }
 
@@ -6907,22 +6470,21 @@ country_event = {
 	title = spain.258.t
 	desc = spain.258.d
 	picture = GFX_barcelona_terror
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 86
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.258.a
 		log = "[GetDateText]: [This.GetName]: spain.258.a executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_stability = 0.01
 	}
-
 }
 
 # 2017 - Barcelona Terror Attacks
@@ -6931,11 +6493,12 @@ country_event = {
 	title = spain.259.t
 	desc = spain.259.d
 	picture = GFX_barcelona_terror
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		owns_state = 86
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.259.a
@@ -6944,11 +6507,9 @@ country_event = {
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		add_manpower = -15
 	}
-
 }
 
 # 2021 - Murcia Terror Attack
@@ -6957,13 +6518,14 @@ country_event = {
 	title = spain.260.t
 	desc = spain.260.d
 	picture = GFX_murcia_attack
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { has_government = fascism }
-		neutrality_neutral_muslim_brotherhood_are_not_in_power = yes
+		neutrality_neutral_muslim_brotherhood_are_in_power = no
 		owns_state = 969
 	}
-	is_triggered_only = yes
 
 	option = {
 		name = spain.260.a
@@ -6972,8 +6534,7 @@ country_event = {
 		set_temp_variable = { party_index = 20 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		add_manpower = -6
 	}
 }
@@ -6984,23 +6545,21 @@ country_event = {
 	title = spain.261.t
 	desc = spain.261.d
 	picture = GFX_Gibraltar
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { owns_state = 19 }
 	}
-	is_triggered_only = yes
 
 	# Contest the Referendum
 	option = {
 		name = spain.261.a
 		log = "[GetDateText]: [This.GetName]: spain.261.a executed"
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
 		set_temp_variable = { temp_outlook_increase = -0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = -150
-
 		# Whomever Owns Gibraltar
 		if = { limit = { ENG = { owns_state = 19 } }
 			ENG = { country_event = { id = spain.262 random_days = 15 } }
@@ -7023,8 +6582,6 @@ country_event = {
 	# Gibnraltar Remains
 	option = {
 		name = spain.261.b
-		log = "[GetDateText]: [This.GetName]: spain.261.b executed"
-
 		# Nothing for this option
 		ai_chance = {
 			base = 50
@@ -7042,28 +6599,24 @@ country_event = {
 	id = spain.262
 	title = spain.262.t
 	desc = spain.262.d
-	picture = GFX_politics_protest # TODO: Replace with an image
-	trigger = {
-		owns_state = 19
-	}
+	picture = GFX_spain_gibraltar
 	is_triggered_only = yes
+
+	trigger = { owns_state = 19 }
 
 	# Concede the Rock to Spain
 	option = {
 		name = spain.262.a
 		log = "[GetDateText]: [This.GetName]: spain.262.a executed"
-
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.03 }
 		set_temp_variable = { temp_outlook_increase = -0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		effect_tooltip = {
 			SPR = {
 				add_state_core = 19
 				transfer_state = 19
 			}
 		}
-
 		hidden_effect = {
 			SPR = {
 				set_country_flag = SPR_conecede_the_rock_referendum_flag
@@ -7074,12 +6627,8 @@ country_event = {
 			base = 10
 			modifier = {
 				factor = 2
-				OR = {
-					AND = {
-						check_variable = { influence_array^0 = SPR }
-						check_variable = { influence_array_val^0 > 49.99 }
-					}
-				}
+				check_variable = { influence_array^0 = SPR }
+				check_variable = { influence_array_val^0 > 49.99 }
 			}
 			modifier = {
 				factor = 0
@@ -7087,16 +6636,11 @@ country_event = {
 			}
 		}
 	}
+
 	option = {
 		name = spain.262.b
 		log = "[GetDateText]: [This.GetName]: spain.262.b executed"
-
-		effect_tooltip = {
-			SPR = {
-				add_political_power = -25
-			}
-		}
-
+		effect_tooltip = { SPR = { add_political_power = -25 } }
 		hidden_effect = {
 			SPR = {
 				set_country_flag = SPR_declined_the_rock_referendum_flag
@@ -7115,7 +6659,6 @@ country_event = {
 			}
 		}
 	}
-
 }
 
 # Returned Response from England
@@ -7123,81 +6666,56 @@ country_event = {
 	id = spain.263
 	title = {
 		text = spain.263.t1
-		trigger = {
-			has_country_flag = SPR_declined_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_declined_the_rock_referendum_flag }
 	}
 	title = {
 		text = spain.263.t2
-		trigger = {
-			has_country_flag = SPR_conecede_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_conecede_the_rock_referendum_flag }
 	}
 	desc = {
 		text = spain.263.d1
-		trigger = {
-			has_country_flag = SPR_declined_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_declined_the_rock_referendum_flag }
 	}
 	desc = {
 		text = spain.263.d2
-		trigger = {
-			has_country_flag = SPR_conecede_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_conecede_the_rock_referendum_flag }
 	}
-	picture = GFX_politics_protest # TODO: Replace with an image
+	picture = GFX_spain_gibraltar
 	is_triggered_only = yes
-	trigger = {
-		original_tag = SPR
-	}
+
+	trigger = { original_tag = SPR }
 
 	# Issue a Insult
 	option = {
 		name = spain.263.a
-		trigger = {
-			has_country_flag = SPR_declined_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_declined_the_rock_referendum_flag }
 		log = "[GetDateText]: [This.GetName]: spain.263.a executed"
-
 		set_temp_variable = { percent_change = -2 }
 		set_temp_variable = { tag_index = SPR.id }
 		set_temp_variable = { influence_target = FROM.id }
 		change_influence_percentage = yes
-
 		add_opinion_modifier = { target = FROM modifier = SPR_declined_gibraltar_insult }
-		ai_chance = {
-			factor = 0
-		}
+		ai_chance = { base = 0 }
 	}
 
 	# The People Chose Their Path
 	option = {
 		name = spain.263.b
-		trigger = {
-			has_country_flag = SPR_declined_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_declined_the_rock_referendum_flag }
 		log = "[GetDateText]: [This.GetName]: spain.263.b executed"
-
 		add_opinion_modifier = { target = FROM modifier = SPR_declined_gibraltar }
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 
 	# The Rock Is Ours!
 	option = {
 		name = spain.263.c
-		trigger = {
-			has_country_flag = SPR_conecede_the_rock_referendum_flag
-		}
+		trigger = { has_country_flag = SPR_conecede_the_rock_referendum_flag }
 		log = "[GetDateText]: [This.GetName]: spain.263.c executed"
 		add_state_core = 19
 		transfer_state = 19
 		add_stability = 0.02
-
-		ai_chance = {
-			factor = 1
-		}
+		ai_chance = { base = 1 }
 	}
 }
 
@@ -7206,15 +6724,18 @@ country_event = {
 	id = spain.264
 	title = spain.264.t
 	desc = spain.264.d
-	picture = GFX_spain_throne # TODO: Replace with better image
+	picture = GFX_spain_royal_corruption_trial
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { # General conditionals to use any of these leaders in this group
-			has_global_flag = SPR_chavy_deposition_of_monarchs_flag
-			has_global_flag = SPR_french_execution_gangnam_flag
+			OR = {
+				has_global_flag = SPR_chavy_deposition_of_monarchs_flag
+				has_global_flag = SPR_french_execution_gangnam_flag
+			}
 		}
 	}
-	is_triggered_only = yes
 
 	# Strip her of titles
 	option = {
@@ -7230,11 +6751,11 @@ country_event = {
 		set_temp_variable = { party_index = 0 }
 		set_temp_variable = { party_popularity_increase = -0.02 }
 		set_temp_variable = { temp_outlook_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 23 }
 		set_temp_variable = { party_popularity_increase = -0.02 }
 		set_temp_variable = { temp_outlook_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		add_political_power = 50
 	}
 }
@@ -7244,15 +6765,18 @@ country_event = {
 	id = spain.265
 	title = spain.265.t
 	desc = spain.265.d
-	picture = GFX_spain_throne # TODO: Replace with better image
+	picture = GFX_spain_royal_corruption_trial
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { # General conditionals to use any of these leaders in this group
-			has_global_flag = SPR_chavy_deposition_of_monarchs_flag
-			has_global_flag = SPR_french_execution_gangnam_flag
+			OR = {
+				has_global_flag = SPR_chavy_deposition_of_monarchs_flag
+				has_global_flag = SPR_french_execution_gangnam_flag
+			}
 		}
 	}
-	is_triggered_only = yes
 
 	# Unfortunate
 	option = {
@@ -7261,11 +6785,11 @@ country_event = {
 		set_temp_variable = { party_index = 0 }
 		set_temp_variable = { party_popularity_increase = -0.02 }
 		set_temp_variable = { temp_outlook_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		set_temp_variable = { party_index = 23 }
 		set_temp_variable = { party_popularity_increase = -0.02 }
 		set_temp_variable = { temp_outlook_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		random = {
 			chance = 5
 			increase_corruption = yes
@@ -7278,7 +6802,9 @@ country_event = {
 	id = spain.266
 	title = spain.266.t
 	desc = spain.266.d
-	picture = GFX_spain_throne # TODO: Replace with better image
+	picture = GFX_spain_ceuta_melilla
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		NOT = { has_government = nationalist }
@@ -7286,17 +6812,14 @@ country_event = {
 		owns_state = 495
 		owns_state = 632
 	}
-	is_triggered_only = yes
 
 	# Visit the Cities
 	option = {
 		name = spain.266.a
 		log = "[GetDateText]: [This.GetName]: spain.266.a executed"
-		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		MOR = {
 			add_opinion_modifier = { target = SPR modifier = SPR_visited_ceuta }
 			country_event = { id = spain.267 days = 7 }
@@ -7313,8 +6836,6 @@ country_event = {
 	# Do not visit the Cities
 	option = {
 		name = spain.266.b
-		log = "[GetDateText]: [This.GetName]: spain.266.b executed"
-
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -7330,7 +6851,9 @@ country_event = {
 	id = spain.267
 	title = spain.267.t
 	desc = spain.267.d
-	picture = GFX_spain_throne # TODO: Replace with better image
+	picture = GFX_spain_ceuta_melilla
+	is_triggered_only = yes
+
 	trigger = {
 		original_tag = MOR
 		SPR = {
@@ -7340,7 +6863,6 @@ country_event = {
 			owns_state = 632
 		}
 	}
-	is_triggered_only = yes
 
 	# Disavow the Visit
 	option = {
@@ -7349,16 +6871,12 @@ country_event = {
 		set_temp_variable = { party_index = 14 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
 		set_temp_variable = { temp_outlook_increase = 0.03 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = 0.01 }
 		set_temp_variable = { temp_outlook_increase = 0.01 }
-		add_relative_party_popularity = yes
-
-		ai_chance = {
-			base = 1
-		}
+		change_relative_party_popularity = yes
+		ai_chance = { base = 1 }
 	}
 
 	# It is their city...
@@ -7368,19 +6886,14 @@ country_event = {
 		set_temp_variable = { party_index = 14 }
 		set_temp_variable = { party_popularity_increase = 0.05 }
 		set_temp_variable = { temp_outlook_increase = 0.05 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		set_party_index_to_ruling_party = yes
 		set_temp_variable = { party_popularity_increase = -0.02 }
 		set_temp_variable = { temp_outlook_increase = -0.02 }
-		add_relative_party_popularity = yes
-
-		ai_chance = {
-			base = 0
-		}
+		change_relative_party_popularity = yes
+		ai_chance = { base = 0 }
 	}
 }
-
 
 # The 2000 Elections
 country_event = {
@@ -7388,9 +6901,7 @@ country_event = {
 	title = spain.500.t
 	desc = {
 		text = spain.500.d
-		trigger = {
-			check_variable = { largest_party = 1 }
-		}
+		trigger = { check_variable = { largest_party = 1 } }
 	}
 	desc = {
 		text = spain.500.d3
@@ -7415,11 +6926,13 @@ country_event = {
 	}
 	picture = GFX_election_day
 	is_triggered_only = yes
+
 	trigger = {
 		original_tag = SPR
 		has_country_flag = generic_election_killswitch
 		has_country_flag = SPR_initial_election_flag
 	}
+
 	immediate = {
 		set_variable = { largest_party = -1 }
 		find_highest_in_array = {
@@ -7430,14 +6943,11 @@ country_event = {
 		# Value
 		set_variable = { largest_party = index }
 		set_variable = { largest_party_val = value }
-
 		log = "Largest Party: [?largest_party] and Largest Party Value: [?largest_party_val]"
-
 		# Checks if the United Left / PSOE are in coalition
 		if = { limit = { has_country_flag = SPR_psoe_united_coalition }
 			set_variable = { psoe_united_left = party_pop_array^3 }
 			add_to_variable = { psoe_united_left = party_pop_array^5 }
-
 			if = {
 				limit = {
 					check_variable = {
@@ -7458,10 +6968,8 @@ country_event = {
 			check_variable = { largest_party = 1 }
 		}
 		log = "[GetDateText]: [This.GetName]: spain.500.a executed"
-
 		add_political_power = 100
 		add_stability = 0.05
-
 		# Clearing Shit
 		clear_variable = largest_party
 		clear_variable = largest_party_val
@@ -7469,6 +6977,7 @@ country_event = {
 		clr_country_flag = SPR_psoe_united_coalition
 		clr_country_flag = SPR_initial_election_flag
 	}
+
 	option = {
 		name = spain.500.b
 		log = "[GetDateText]: [This.GetName]: spain.500.b executed"
@@ -7476,60 +6985,10 @@ country_event = {
 			NOT = { check_variable = { largest_party = 1 } }
 			NOT = { check_variable = { largest_party = 3 } }
 		}
-
 		hidden_effect = {
-			clear_array = ruling_party
-			clear_array = gov_coalition_array
-			add_to_array = { ruling_party = largest_party }
-			update_government_coalition_strength = yes
-			update_party_name = yes
-			set_coalition_drift = yes
-			set_ruling_leader = yes
-			set_leader = yes
+			set_temp_variable = { rul_party_temp = largest_party }
+			change_ruling_party_effect = yes
 		}
-		if = { limit = { check_variable = { largest_party < 4 } }
-			set_politics = {
-				ruling_party = democratic
-				elections_allowed = yes
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = { largest_party > 3 }
-				check_variable = { largest_party < 11 }
-			}
-			set_politics = {
-				ruling_party = communism
-				elections_allowed = yes
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = { largest_party > 9 }
-				check_variable = { largest_party < 12 }
-			}
-			set_politics = {
-				ruling_party = fascism
-				elections_allowed = yes
-			}
-		}
-		else_if = {
-			limit = {
-				check_variable = { largest_party > 11 }
-				check_variable = { largest_party < 20 }
-			}
-			set_politics = {
-				ruling_party = neutrality
-				elections_allowed = yes
-			}
-		}
-		else_if = { limit = { check_variable = { largest_party > 19 } }
-			set_politics = {
-				ruling_party = nationalist
-				elections_allowed = yes
-			}
-		}
-
 		# Clearing Shit
 		clear_variable = largest_party
 		clear_variable = largest_party_val
@@ -7537,47 +6996,26 @@ country_event = {
 		clr_country_flag = SPR_psoe_united_coalition
 		clr_country_flag = SPR_initial_election_flag
 	}
+
 	option = {
 		name = spain.500.c
 		log = "[GetDateText]: [This.GetName]: spain.500.c executed"
 		trigger = {
 			check_variable = { largest_party = 3 }
 		}
-
 		if = { limit = { has_country_flag = SPR_psoe_united_coalition }
 			hidden_effect = {
-				clear_array = ruling_party
-				clear_array = gov_coalition_array
-				add_to_array = { ruling_party = 3 }
-				add_to_array = { gov_coalition_array = 5 }
-				update_government_coalition_strength = yes
-				update_party_name = yes
-				set_coalition_drift = yes
-				set_ruling_leader = yes
-				set_leader = yes
-			}
-			set_politics = {
-				ruling_party = democratic
-				elections_allowed = yes
+				set_temp_variable = { rul_party_temp = 3 }
+				set_temp_variable = { col_one = 5 }
+				change_ruling_party_effect = yes
 			}
 		}
 		else = {
 			hidden_effect = {
-				clear_array = ruling_party
-				clear_array = gov_coalition_array
-				add_to_array = { ruling_party = 3 }
-				update_government_coalition_strength = yes
-				update_party_name = yes
-				set_coalition_drift = yes
-				set_ruling_leader = yes
-				set_leader = yes
-			}
-			set_politics = {
-				ruling_party = democratic
-				elections_allowed = yes
+				set_temp_variable = { rul_party_temp = 3 }
+				change_ruling_party_effect = yes
 			}
 		}
-
 		# Clearing Shit
 		clear_variable = largest_party
 		clear_variable = largest_party_val
@@ -7592,32 +7030,31 @@ country_event = {
 	id = spain.501
 	title = spain.501.t
 	desc = spain.501.d
+	picture = GFX_election_day
+	is_triggered_only = yes
+
 	trigger = {
 		tag = SPR
-		date < 2001.1.1
 	}
-	is_triggered_only = yes
 
 	# Sign the Pre-Elect Pact
 	option = {
 		name = spain.501.a
 		log = "[GetDateText]: [This.GetName]: spain.501.b executed"
-
 		# PSOE Loses Support
 		set_temp_variable = { party_index = 3 }
 		set_temp_variable = { party_popularity_increase = -0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		# United Left Loses Support
 		set_temp_variable = { party_index = 5 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		# PP Gains Popularity
 		set_temp_variable = { party_index = 1 }
 		set_temp_variable = { party_popularity_increase = 0.02 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 		# Reactionries Gain Support
 		set_temp_variable = { party_index = 6 }
-		add_relative_party_popularity = yes
-
+		change_relative_party_popularity = yes
 		custom_effect_tooltip = SPR_psoe_united_coalition_forms_coalition
 		set_country_flag = SPR_psoe_united_coalition
 	}
@@ -7626,10 +7063,9 @@ country_event = {
 	option = {
 		name = spain.501.b
 		log = "[GetDateText]: [This.GetName]: spain.501.b executed"
-
 		# PSOE Gains Support
 		set_temp_variable = { party_index = 3 }
 		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
+		change_relative_party_popularity = yes
 	}
 }

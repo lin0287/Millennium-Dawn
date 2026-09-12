@@ -1,16 +1,25 @@
-﻿capital = 885
+capital = 885
 2000.1.1 = {
+	set_variable = { currency_strength = 0.75 }
 	set_cosmetic_tag = BRA
+	set_country_flag = antarctica_ccas_member
+	set_country_flag = antarctica_ccamlr_member
 	set_country_flag = dynamic_flag
 	set_country_flag = dynamic_rebel_flag
 	set_country_flag = generic_election_killswitch
+	set_country_flag = is_getting_esco_subsidies
+	add_to_array = { global.unesco_recipients = THIS }
+	set_country_flag = is_getting_cdf_subsidies
+	add_to_array = { global.uncdf_recipients = THIS }
+	add_dynamic_modifier = { modifier = un_aid_subsidies_modifier }
 
 	complete_special_project = sp:sp_aircraft_project
+	complete_special_project = sp:sp_space_program
 	complete_special_project = sp:sp_helicopter_project
 	complete_special_project = sp:sp_composite_production
 	complete_special_project = sp:sp_naval_vessel_project
-	#This needs to be one less than the starting number to work properly
-	set_variable = { startup_composite_fac_needed = 1 }
+	complete_special_project = sp:sp_nuclear_energy
+	complete_special_project = sp:sp_awacs_project
 
 	set_technology = {
 		nuclear_technology = 1
@@ -23,37 +32,34 @@
 		night_vision_1 = 1
 		Anti_tank_0 = 1
 		AT_upgrade_1 = 1
-		AA_upgrade_1 = 1
-		infantry_weapons = 1
-		infantry_weapons1 = 1
-		infantry_weapons2 = 1
-		infantry_weapons3 = 1
+		infantry_weapons_1 = 1
+		infantry_weapons_2 = 1
+		infantry_weapons_3 = 1
+		infantry_weapons_4 = 1
 		support_weapons = 1
 		squad_automatic_weapon = 1
-		special_forces = 1
-		command_control_equipment = 1
+		special_forces_tech_1 = 1
+		cnc_equipment_1 = 1
 		combat_eng_equipment = 1
 		Heavy_Anti_tank_0 = 1
-		util_vehicle_0 = 1
 		util_vehicle_1 = 1
 		util_vehicle_2 = 1
-		body_armor_1980 = 1
-		camouflage = 1
-		camouflage2 = 1
+		util_vehicle_3 = 1
+		body_armor_1 = 1
+		camouflage_1 = 1
+		camouflage_2 = 1
 		basic_computing = 1
 		integrated_circuit = 1
 		computing1 = 1
-		decryption1 = 1
-		encryption1 = 1
 		radar = 1
 		fuel_silos = 1
 		internet1 = 1
 		internet2 = 1
-		industrial_electrospun_polymeric_nanofibers = 1
-		multiwalled_carbon_nanotubes = 1
-		stereolitography = 1
-		early_3D_printers = 1
-		DNA_fingerprinting = 1
+		nanofibers_1 = 1
+		nanofibers_2 = 1
+		printing_1 = 1
+		printing_2 = 1
+		genetics_1 = 1
 		fuel_refining = 1
 		early_renewables = 1
 		renewables = 1
@@ -71,7 +77,6 @@
 		SPYSAT3 = 1
 		SPYSAT4 = 1
 		OLV1 = 1
-		nuclear_technology = 1
 
 		corvette_hull_1 = 1
 		corvette_hull_2 = 1
@@ -96,54 +101,64 @@
 		aircraft_carrier_engineering = 1
 		aircraft_heli_engineering_1 = 1
 
-		tech_submarine_engineering = 1
+		tech_submarine_engineering_1 = 1
 
 		tech_naval_systems_engineering = 1
-		tech_power_systems = 1
 		tech_power_systems_1 = 1
+		tech_power_systems_2 = 1
+		tech_diesel_power_systems_1 = 1
 
 		tech_combat_support_systems = 1
-		tech_fire_control = 1
 		tech_fire_control_1 = 1
-		tech_combat_radar = 1
+		tech_fire_control_2 = 1
 		tech_combat_radar_1 = 1
-		tech_combat_sonar = 1
+		tech_combat_radar_2 = 1
 		tech_combat_sonar_1 = 1
+		tech_combat_sonar_2 = 1
 
 		tech_early_naval_weapon_systems = 1
 		tech_naval_weapon_systems = 1
-		tech_light_guns = 1
 		tech_light_guns_1 = 1
+		tech_light_guns_2 = 1
 
-		tech_point_defense_system = 1
+		tech_point_defense_chain_gun = 1
 		tech_point_defense_system_1 = 1
 		tech_point_defense_system_2 = 1
 
-		tech_turret_missiles_surface = 1
 		tech_turret_missiles_surface_1 = 1
+		tech_turret_missiles_surface_2 = 1
 
-		tech_turret_missiles_aa = 1
 		tech_turret_missiles_aa_1 = 1
+		tech_turret_missiles_aa_2 = 1
 
-		tech_vls_surface = 1
 		tech_vls_surface_1 = 1
+		tech_vls_surface_2 = 1
 
-		tech_vls_aa = 1
 		tech_vls_aa_1 = 1
+		tech_vls_aa_2 = 1
 
-		tech_torpedoes = 1
 		tech_torpedoes_1 = 1
+		tech_torpedoes_2 = 1
 
-		tech_landing_craft = 1
+		tech_landing_craft_1 = 1
 	}
+
+	if = {
+		limit = { NOT = { has_dlc = "La Resistance" } }
+		set_technology = {
+			decryption1 = 1
+			encryption1 = 1
+		}
+	}
+	complete_special_project = sp:sp_armoured_vehicle_project
 	if = { limit = { has_dlc = "No Step Back" }
 
 		set_oob = "BRA_2000_nsb"
 		set_technology = {
-			nsb_transport_helicopter1 = 1
+			nsb_transport_helicopter_1 = 1
 			mbt_tech_ops = 1
 			mbt_tech = 1
-			early_cold_war_ammo = 1
+			tank_ammo_1 = 1
 			defensive_systems = 1
 			nsb_gun_technology_1 = 1
 			nsb_artillery_ammo_1 = 1
@@ -193,6 +208,8 @@
 			nsb_rocket_pods_tech_2 = 1
 			nsb_gun_pods_tech_2 = 1
 			nsb_light_nose_gun_tech_2 = 1
+			nsb_special_ammo_2 = 1
+			nsb_artillery_ammo_3 = 1
 		}
 
 		create_equipment_variant = {
@@ -232,6 +249,7 @@
 				armor_type_slot = tank_steel_armor_gen1
 				special_type_slot_2 = afv_mine_protection
 				special_type_slot_1 = afv_troop_capacity
+				special_type_slot_4 = tank_battlestation_1
 			}
 			upgrades = {
 				tank_nsb_armor_upgrade = 1
@@ -275,22 +293,22 @@
 
 		create_equipment_variant = {
 			name = "AS550 Esquilo II"
-		 	type = heavy_tank_chassis_1
-		 	parent_version = 0
-		 	modules = {
+			 type = heavy_tank_chassis_1
+			 parent_version = 0
+			modules = {
 				chassis_type_slot = helicopter_light_chassis
 				helicopter_body_layout = light_gunship_layout
 				helicopter_body_mount_1 = helicopter_gun_pod_gen2
-		 		nose_gun_type_slot = helicopter_medium_nose_gun_gen1
-		 		engine_type_slot = helicopter_turbine_engine_gen2
-		 		defence_type_slot = flare_launchers
-		 		sensor_and_avionics_slot = sensors_and_avionics_gen_2
-		 		helicopter_body_mount_2 = helicopter_rocket_pod_gen2
+				 nose_gun_type_slot = helicopter_medium_nose_gun_gen1
+				 engine_type_slot = helicopter_turbine_engine_gen2
+				 defence_type_slot = flare_launchers
+				 sensor_and_avionics_slot = sensors_and_avionics_gen_2
+				 helicopter_body_mount_2 = helicopter_rocket_pod_gen2
 			}
-		 	upgrades = {
-		 		helicopter_nsb_upgrade = 0
-		 	}
-		 	icon = "gfx/interface/technologies/FRA/AIR/UH2_alt2.dds"
+			 upgrades = {
+				 helicopter_nsb_upgrade = 0
+			 }
+			 icon = "gfx/interface/technologies/FRA/AIR/UH2_alt2.dds"
 		}
 
 		create_equipment_variant = {
@@ -317,7 +335,6 @@
 			icon = "gfx/interface/technologies/BRA/LAND/REC2.dds"
 		}
 
-		complete_special_project = sp:sp_armoured_vehicle_project
 		else = {
 			set_oob = "BRA_2000_nonnsb"
 			set_technology = {
@@ -337,10 +354,11 @@
 				SP_Anti_Air_0 = 1
 				SP_Anti_Air_1 = 1
 				Anti_Air_0 = 1
+				AA_upgrade_1 = 1
 				Rec_tank_0 = 1
-				attack_helicopter1 = 1
-				attack_helicopter2 = 1
-				transport_helicopter1 = 1
+				attack_helicopter_1 = 1
+				attack_helicopter_2 = 1
+				transport_helicopter_1 = 1
 			}
 		}
 	}
@@ -352,24 +370,38 @@
 			gen_4_light = 1
 			gen_3_medium = 1
 			gen_3_large = 1
+			gen_4_large = 1
 
 			flying_wing_design = 1
 			variable_wing_design = 1
 
 			engines_2 = 1
+			engines_3 = 1
 
 			refueling_1 = 1
+			redundant_1 = 1
 
 			early_weapons = 1
 			air_weapons_1 = 1
+			air_weapons_2 = 1
+
+			awacs_1 = 1
+
+			countermeasures_2 = 1
 			countermeasures_1 = 1
 
 			ag_weapons_1 = 1
+			ag_weapons_2 = 1
+			avionics_1 = 1
+			avionics_2 = 1
 
 			naval_weapons_1 = 1
+			naval_weapons_2 = 1
 			special_mad_1 = 1
 
 			tgp_recon_1 = 1
+			tgp_recon_2 = 1
+
 		}
 
 		create_equipment_variant = {
@@ -380,13 +412,30 @@
 				fixed_main_weapon_slot = weap_mp_med_hardpoint_1
 				fixed_gun_slot = weap_multi_gun_1
 				engine_type_slot = engine_prop_single_1
-				avionics_type_slot = avionics_manned_2
+				avionics_type_slot = avionics_manned_1
 				wingform_type_slot = wing_straight
 				special_slot_type_1 = spec_countermeasures_1
 				special_slot_type_2 = spec_redundant_1
 			}
 			obsolete = yes
-			icon = "gfx/interface/technologies/BRA/AIR/MR1.dds"
+			icon = "gfx/interface/technologies/BRA/AIR/Tucano.dds"
+		}
+
+		create_equipment_variant = {
+			name = "Embraer EMB-314 Super Tucano"
+			type = small_plane_strike_airframe_2
+			parent_version = 0
+			modules = {
+				fixed_main_weapon_slot = weap_mp_med_hardpoint_2
+				fixed_gun_slot = weap_multi_gun_1
+				engine_type_slot = engine_prop_single_2
+				avionics_type_slot = avionics_manned_2
+				wingform_type_slot = wing_straight
+				special_slot_type_1 = spec_countermeasures_2
+				special_slot_type_2 = spec_redundant_2
+				special_slot_type_3 = spec_protection_1
+			}
+			icon = "gfx/interface/technologies/BRA/AIR/Super_Tucano.dds"
 		}
 
 		### Brazil-specific variant of Aermacchi MB-326
@@ -402,6 +451,7 @@
 				wingform_type_slot = wing_straight
 				special_slot_type_1 = spec_countermeasures_1
 			}
+			icon = "gfx/interface/technologies/BRA/AIR/326.dds"
 			obsolete = yes
 		}
 
@@ -413,12 +463,30 @@
 			modules = {
 				fixed_main_weapon_slot = weap_mp_med_hardpoint_2
 				fixed_gun_slot = weap_multi_gun_1
-				engine_type_slot = engine_light_single_1
+				engine_type_slot = engine_light_single_2
 				avionics_type_slot = avionics_manned_1
 				wingform_type_slot = wing_swept
-				special_slot_type_1 = spec_countermeasures_1
+				special_slot_type_1 = spec_countermeasures_2
+			}
+			icon = "gfx/interface/technologies/BRA/AIR/AMX.dds"
+		}
+
+		create_equipment_variant = {
+			name = "EMB 110 Bandeirante" #C-95
+			type = large_plane_air_transport_airframe_1
+			parent_version = 0
+			modules = {
+				fixed_main_weapon_slot = weap_buff_transport
+				fixed_gun_slot = empty
+				engine_type_slot = engine_prop_double_2
+				avionics_type_slot = avionics_manned_1
+				wingform_type_slot = wing_swept
+				special_slot_type_1 = empty
+				special_slot_type_2 = empty
+				fixed_auxiliary_weapon_slot_1 = empty
 			}
 			obsolete = yes
+			icon = "gfx/interface/technologies/BRA/AIR/110.dds"
 		}
 
 		create_equipment_variant = { #ASW/ASuW Medium
@@ -428,7 +496,7 @@
 			modules = {
 				fixed_main_weapon_slot = weap_as_hardpoint_1
 				fixed_gun_slot = empty
-				engine_type_slot = engine_prop_double_1
+				engine_type_slot = engine_prop_double_2
 				avionics_type_slot = avionics_manned_1
 				wingform_type_slot = wing_swept
 				special_slot_type_1 = empty
@@ -436,6 +504,40 @@
 				fixed_auxiliary_weapon_slot_1 = weap_as_hardpoint_1
 			}
 			obsolete = yes
+			icon = "gfx/interface/technologies/BRA/AIR/111.dds"
+		}
+		create_equipment_variant = {
+			name = "EMB 145 AEWC"
+			type = large_plane_awacs_airframe_2
+			parent_version = 0
+			modules = {
+				fixed_main_weapon_slot = weap_buff_awacs_1
+				fixed_gun_slot = empty
+				engine_type_slot = engine_jet_double_2
+				avionics_type_slot = avionics_manned_2
+				wingform_type_slot = wing_swept
+				special_slot_type_1 = spec_countermeasures_1
+				special_slot_type_2 = spec_redundant_2
+				fixed_auxiliary_weapon_slot_1 = empty
+			}
+			icon = "gfx/interface/technologies/BRA/AIR/145_AEWC.dds"
+		}
+		create_equipment_variant = { #ASW/ASuW Medium
+			name = "EMB 145 MP"
+			type = large_plane_maritime_patrol_airframe_2
+			parent_version = 0
+			modules = {
+				fixed_main_weapon_slot = weap_as_hardpoint_1
+				fixed_gun_slot = empty
+				engine_type_slot = engine_jet_double_2
+				avionics_type_slot = avionics_manned_2
+				wingform_type_slot = wing_swept
+				special_slot_type_1 = spec_countermeasures_1
+				special_slot_type_2 = empty
+				fixed_auxiliary_weapon_slot_1 = weap_as_hardpoint_1
+			}
+			obsolete = yes
+			icon = "gfx/interface/technologies/BRA/AIR/145.dds"
 		}
 		else = {
 			set_air_oob = "BRA_2000_nonbba"
@@ -451,6 +553,7 @@
 			}
 		}
 	}
+	complete_special_project = sp:sp_missile_project
 	if = { limit = { has_dlc = "Gotterdammerung" }
 		set_technology = {
 			ballistic_missile = 1
@@ -481,14 +584,8 @@
 			hid_tech_missile_6 = 1
 		}
 
-		complete_special_project = sp:sp_space_program_gdm
-		complete_special_project = sp:sp_missile_project
 
 		set_variable = { num_launchers_set = 6 }
-
-		else = {
-			complete_special_project = sp:sp_space_program_non_gdm
-		}
 	}
 	set_naval_oob = "BRA_2000_naval_mtg"
 	#Colossus Class https://en.wikipedia.org/wiki/Brazilian_aircraft_carrier_Minas_Gerais
@@ -502,15 +599,16 @@
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_1
 			fixed_ship_auxillary_slot_2 = module_chain_gun
-			fixed_ship_auxillary_slot_1 = module_aa_missiles_1
-			fixed_ship_auxillary_slot = module_aa_missiles_1
+			fixed_ship_auxillary_slot_1 = module_naval_missile_mount_quad
+			fixed_ship_auxillary_slot = module_naval_missile_mount_quad
 			fixed_ship_flight_deck = module_flight_deck_1
-			front_1_custom_slot = module_aa_missiles_1
+			front_1_custom_slot = module_naval_missile_mount_quad
 			mid_1_custom_slot = module_helipads_1
 			mid_2_custom_slot = module_helipads_1
 			mid_3_custom_slot = module_fuel_tank
-			rear_1_custom_slot = module_aa_missiles_1
+			rear_1_custom_slot = module_naval_missile_mount_quad
 			rear_2_custom_slot = module_fuel_tank
+			fixed_ship_missile_ammo_slot = module_naval_ammo_air_defense_1
 		}
 	}
 	#Niterói Class https://sv.wikipedia.org/wiki/Niteroi-klass
@@ -523,12 +621,13 @@
 			fixed_ship_engine_slot = module_light_surface_jet_turbine_power
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_sonar_2
-			fixed_ship_auxillary_slot_2 = module_aa_missiles_2
-			fixed_ship_auxillary_slot_1 = module_anti_submarine_missile_2
+			fixed_ship_auxillary_slot_2 = module_naval_missile_mount_quad
+			fixed_ship_auxillary_slot_1 = module_naval_missile_mount_quad
 			fixed_ship_auxillary_slot = module_chain_gun
 			fixed_ship_battery_slot = module_76mm_gun_2
-			front_1_custom_slot = module_asm_2
+			front_1_custom_slot = module_naval_missile_mount_quad
 			rear_1_custom_slot = module_light_helipad_1
+			fixed_ship_missile_ammo_slot = module_naval_ammo_balanced_2
 		}
 	}
 	#Imperial Marinheiro Class https://pt.wikipedia.org/wiki/Classe_Imperial_Marinheiro
@@ -538,7 +637,7 @@
 		name_group = BRA_DD_HISTORICAL
 		parent_version = 0
 		modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_1
 			fixed_ship_auxillary_slot = module_chain_gun
@@ -558,7 +657,8 @@
 			fixed_ship_radar_slot = module_radar_2
 			fixed_ship_auxillary_slot = module_chain_gun
 			fixed_ship_battery_slot = module_76mm_gun_2
-			front_1_custom_slot = module_asm_2
+			front_1_custom_slot = module_naval_missile_mount_quad
+			fixed_ship_missile_ammo_slot = module_naval_ammo_anti_ship_2
 		}
 	}
 	#Inhaúma Class https://en.wikipedia.org/wiki/Inha%C3%BAma-class_corvette
@@ -571,7 +671,7 @@
 			fixed_ship_engine_slot = module_light_surface_jet_turbine_power
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_2
-			fixed_ship_auxillary_slot = module_chain_gun
+			fixed_ship_auxillary_slot = module_naval_vls_cells_8
 			fixed_ship_battery_slot = module_76mm_gun_2
 			front_1_custom_slot = module_torpedoes_2
 		}
@@ -583,10 +683,10 @@
 		name_group = BRA_DD_HISTORICAL
 		parent_version = 2
 		modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_2
-			fixed_ship_auxillary_slot = module_mineclearing
+			fixed_ship_auxillary_slot = module_naval_vls_cells_8
 			fixed_ship_battery_slot = module_76mm_gun_2
 			front_1_custom_slot = module_chain_gun
 		}
@@ -603,14 +703,22 @@
 			fixed_ship_radar_slot = module_sonar_2
 			fixed_ship_auxillary_slot_2 = module_fuel_tank
 			fixed_ship_auxillary_slot_1 = module_torpedoes_2
-			fixed_ship_auxillary_slot = module_vls_sub_asm_1
+			fixed_ship_auxillary_slot = module_naval_sub_vls_cells_8
 			fixed_ship_battery_slot = module_anti_ship_torpedoes_2
+			fixed_ship_missile_ammo_slot = module_naval_sub_ammo_anti_ship_1
 		}
 	}
 
 	add_ideas = {
+		wto_member
+		partially_nationalized_healthcare
+		balanced_protections
+		standard_maintenance
+		us_dollar
+		strong_regulations
+
 		recession
-		unrestrained_corruption
+		corruption_level_07
 		farmers
 		labour_unions
 		small_medium_business_owners
@@ -634,8 +742,22 @@
 		BRA_idea_oncoming_debt_crisis
 		BRA_idea_enraged_natives
 		BRA_idea_crippled_currency_one
-		BRA_idea_mercosur_member_state
+		at_member
+		un_aid_esco_member
+
+		un_aid_cdf_member
+
+		antarctica_small_treaty_admin_cost_2
+		no_currency_backing
 	}
+	add_to_array = { global.un_aid_esco_contributor = THIS }
+	add_to_array = { global.un_aid_cdf_contributor = THIS }
+
+	add_dynamic_modifier = { modifier = mercosur_member_state_modifier }
+	add_to_array = { global.mercosur_member_state = THIS }
+	set_variable = { mercosur_member_state_productivity_growth_modifier = 0.03 }
+	set_variable = { mercosur_member_state_tax_gain_multiplier_modifier = 0.03 }
+	set_variable = { mercosur_member_state_foreign_influence_modifier = 0.04 }
 
 
 	add_opinion_modifier = { target = ARG modifier = large_commercial_relations }
@@ -672,6 +794,8 @@
 	set_variable = { var = debt value = 1053 }
 	set_variable = { var = int_investments value = 124.8 }
 	set_variable = { var = treasury value = 48 }
+	set_variable = { inflation_rate_var = 0.04858 }
+	set_variable = { cb_policy_rate = 19 }
 	set_variable = { var = corporate_tax_rate value = 34 }
 	set_variable = { var = population_tax_rate value = 26 }
 	set_variable = { gdp_per_capita = 11.529 }
@@ -701,6 +825,7 @@
 	1024 = { add_dynamic_modifier = { modifier = BRA_amazon_modifier } }
 
 	set_variable = { overall_productivity = 591 }
+	set_variable = { var_reactor_material_stockpile = 2500 }
 
 	# Internal Faction
 	set_variable = { small_medium_business_owners_opinion = 70 }
@@ -742,7 +867,7 @@
 	add_to_array = { BRA.investment_targets = BAH } # The Bahamas
 	add_to_array = { BRA.investment_targets = LUX } # Luxembourg
 
-	set_country_flag = investment_targets_are_set_up
+
 
 	#Influence system
 	add_to_array = { BRA.influence_targets = ARG }
@@ -767,9 +892,9 @@
 	add_to_array = { influence_array_val = 3.04 }
 	add_to_array = { influence_array = ARG.id }
 	add_to_array = { influence_array_val = 2.43 }
-	add_to_array = { influence_array = NOR.id }
+	add_to_array = { influence_array = NRY.id }
 	add_to_array = { influence_array_val = 1.01 }
-	startup_influence = yes
+	sort_influence = yes
 
 	set_popularities = {
 		democratic = 48.4
@@ -788,33 +913,19 @@
 	start_politics_input = yes
 
 	# Party Popularities
-	set_variable = { party_pop_array^0 = 0 } #Western_Autocracy
 	set_variable = { party_pop_array^1 = 0.006 } #conservatism
 	set_variable = { party_pop_array^2 = 0.428 } #liberalism
 	set_variable = { party_pop_array^3 = 0.01 } #socialism
 	set_variable = { party_pop_array^4 = 0.036 } #Communist-State
 	set_variable = { party_pop_array^5 = 0.34 } #anarchist_communism
-	set_variable = { party_pop_array^6 = 0 } #Conservative
-	set_variable = { party_pop_array^7 = 0 } #Autocracy
-	set_variable = { party_pop_array^8 = 0 } #Mod_Vilayat_e_Faqih
-	set_variable = { party_pop_array^9 = 0 } #Vilayat_e_Faqih
-	set_variable = { party_pop_array^10 = 0 } #Kingdom
-	set_variable = { party_pop_array^11 = 0 } #Caliphate
-	set_variable = { party_pop_array^12 = 0 } #Neutral_Muslim_Brotherhood
-	set_variable = { party_pop_array^13 = 0 } #Neutral_Autocracy
-	set_variable = { party_pop_array^14 = 0 } #Neutral_conservatism
 	set_variable = { party_pop_array^15 = 0.015 } #oligarchism
-	set_variable = { party_pop_array^16 = 0 } #Neutral_Libertarian
 	set_variable = { party_pop_array^17 = 0.003 } #Neutral_green
 	set_variable = { party_pop_array^18 = 0.11 } #neutral_Social
 	set_variable = { party_pop_array^19 = 0.002 } #Neutral_Communism
 	set_variable = { party_pop_array^20 = 0.021 } #Nat_Populism
-	set_variable = { party_pop_array^21 = 0 } #Nat_Fascism
-	set_variable = { party_pop_array^22 = 0 } #Nat_Autocracy
-	set_variable = { party_pop_array^23 = 0 } #Monarchist
 
 	### Ruling Party
-	add_to_array = { ruling_party = 2 } # liberalism
+	set_variable = { ruling_party = 2 } # liberalism
 	add_to_array = { gov_coalition_array = 1 } # conservatism
 	add_to_array = { gov_coalition_array = 15 } # oligarchism
 
@@ -855,4 +966,36 @@
 	recruit_character = BRA_victor_cardoso_gomes
 	recruit_character = BRA_liseo_zampronio
 
+	if = {
+		limit = {
+			has_dlc = "La Resistance"
+		}
+		create_intelligence_agency = {
+			name = "Brazilian Intelligence Agency (ABIN)"
+			icon = GFX_intelligence_agency_logo_bra
+		}
+		set_country_flag = MD_skip_treasury_cost
+		upgrade_intelligence_agency = upgrade_form_department
+		upgrade_intelligence_agency = upgrade_establish_cyber_operations_division
+		clr_country_flag = MD_skip_treasury_cost
+	}
+
+
+	# Relation Starting Configuration (moved from on_startup)
+	add_opinion_modifier = { target = HAM modifier = HAM_Not_A_Recognized_country }
+	add_opinion_modifier = { target = CUB modifier = sanctions }
+	add_relation_modifier = { target = USA modifier = USA_World_Economical_Relations }
+	add_relation_modifier = { target = SOV modifier = SOV_World_Economical_Relations }
+	add_relation_modifier = { target = CHI modifier = CHI_World_Economical_Relations }
+	add_relation_modifier = { target = FRA modifier = FRA_World_Economical_Relations }
+	add_relation_modifier = { target = GER modifier = GER_World_Economical_Relations }
+	add_relation_modifier = { target = ENG modifier = ENG_World_Economical_Relations }
+	add_relation_modifier = { target = SPR modifier = SPR_World_Economical_Relations }
+	add_relation_modifier = { target = ITA modifier = ITA_World_Economical_Relations }
+	add_relation_modifier = { target = UKR modifier = UKR_world_economical_relations }
+	add_relation_modifier = { target = ISR modifier = ISR_World_Economical_Relations }
+	add_opinion_modifier = { target = TTP modifier = AlQaida_Are_Terrorists }
+	add_opinion_modifier = { target = TTP modifier = AlQaida_Are_Terrorists_Trade }
+	add_opinion_modifier = { target = TAL modifier = Taliban_Are_Terrorists }
+	add_opinion_modifier = { target = TAL modifier = Taliban_Are_Terrorists_Trade }
 }

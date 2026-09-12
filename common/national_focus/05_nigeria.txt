@@ -1,4 +1,4 @@
-﻿# Author(s): Angriest Bird
+# Author(s): Angriest Bird
 # Last Modified 16/04/2025 by Angriest Bird
 focus_tree = {
 	id = nigeria_focus
@@ -12,6 +12,7 @@ focus_tree = {
 
 	continuous_focus_position = { x = 1500 y = 2000 }
 	shared_focus = AFRICAN_UNION_shared_focus
+	# shared_focus = CMW_Aso_Rock_Declaration
 
 	shortcut = {
 		name = NIG_religious_divide
@@ -49,25 +50,16 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				factor = 1.5
-			}
-			modifier = {
-				is_historical_focus_on = no
-				factor = 0.5
-			}
-			# You must have chosen a political identity
-			modifier = {
 				factor = 0
-				OR = {
-					NOT = { has_completed_focus = NIG_the_anpp }
-					NOT = { has_completed_focus = NIG_the_pdp }
+				NOT = {
+					OR = {
+						has_completed_focus = NIG_the_anpp
+						has_completed_focus = NIG_the_pdp
+					}
 				}
 			}
+			modifier = { factor = 25 NIG_ai_religious_path = yes }
+			modifier = { factor = 0 NIG_ai_not_religious_path = yes }
 		}
 	}
 
@@ -86,9 +78,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_nigerian_sects"
@@ -96,19 +86,13 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				factor = 0.25
-			}
+			base = 1
 			modifier = {
 				factor = 0
 				has_completed_focus = NIG_the_pdp
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -126,9 +110,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_teachings_of_the_quaran"
@@ -136,19 +118,13 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				factor = 0
-			}
+			base = 1
 			modifier = {
 				factor = 0
 				has_completed_focus = NIG_the_pdp
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -167,9 +143,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_uniting_the_faiths"
@@ -177,11 +151,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -200,9 +172,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_beliefs_of_the_mosque"
@@ -210,11 +180,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -232,9 +200,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_islamic_preachings"
@@ -242,11 +208,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -267,9 +231,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_secure_tradtionalist_support"
@@ -277,11 +239,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -301,17 +261,11 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_the_pdp }
-		}
+		available = { NOT = { has_completed_focus = NIG_the_pdp } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_continue_sharia_law"
 			NIG_religious_idea_switch_muslim_majority = yes
-			set_temp_variable = { threat_change = 2 }
-			modify_terror_threat_effect = yes
-			set_temp_variable = { rad_change = 2 }
-			modify_radicalization_effect = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_the_ulema_opinion = yes
 			change_the_wahabi_ulema_opinion = yes
@@ -320,15 +274,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
-			modifier = {
-				add = 0.5
-				is_historical_focus_on = yes
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -347,9 +295,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_line_the_government"
@@ -358,11 +304,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -382,9 +326,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_contract_boko_haram"
@@ -394,18 +336,12 @@ focus_tree = {
 				load_oob = "NIG_boko_haram"
 			}
 			custom_effect_tooltip = NIG_enlist_boko_haram_TT
-			set_temp_variable = { threat_change = 10 }
-			modify_terror_threat_effect = yes
-			set_temp_variable = { rad_change = 5 }
-			modify_radicalization_effect = yes
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -434,19 +370,15 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_convert_the_christians"
 			NIG_religious_idea_switch_muslim_majority = yes
 			unlock_decision_category_tooltip = NIG_religious_divide_decisions_category
-			set_temp_variable = { rad_change = 5 }
-			modify_radicalization_effect = yes
 			set_temp_variable = { temp_opinion = 10 }
 			change_the_ulema_opinion = yes
 			change_the_wahabi_ulema_opinion = yes
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -465,24 +397,18 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM FOCUS_FILTER_STABILITY }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_justify_radcialism"
 			NIG_religious_idea_switch_muslim_majority = yes
 			add_stability = 0.035
-			set_temp_variable = { rad_change = 5 }
-			modify_radicalization_effect = yes
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -501,16 +427,12 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_disarm_the_militias"
 			if = {
-				limit = {
-					has_template = "Christian Militias"
-				}
+				limit = { has_template = "Christian Militias" }
 				hidden_effect = {
 					delete_unit_template_and_units = { division_template = "Christian Militias" }
 					add_manpower = 2000
@@ -521,11 +443,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -544,9 +464,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM FOCUS_FILTER_WAR_SUPPORT }
 
-		available = {
-			NOT = { has_completed_focus = NIG_suppression_of_islam }
-		}
+		available = { NOT = { has_completed_focus = NIG_suppression_of_islam } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_a_new_wave_of_extremism"
@@ -555,11 +473,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				add = 15
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -589,10 +505,8 @@ focus_tree = {
 				has_completed_focus = NIG_religious_divide
 				add = 20
 			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 25
-			}
+			modifier = { factor = 25 NIG_ai_religious_path = yes }
+			modifier = { factor = 0 NIG_ai_not_religious_path = yes }
 		}
 	}
 
@@ -615,39 +529,25 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		available = {
-			NOT = { has_government = fascism }
-		}
+		available = { NOT = { has_government = fascism } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_tolerance"
 			if = {
-				limit = {
-					has_completed_focus = NIG_continue_sharia_law
-				}
+				limit = { has_completed_focus = NIG_continue_sharia_law }
 				add_stability = 0.025
 			}
 			else_if = {
-				limit = {
-					has_completed_focus = NIG_end_sharia_law
-				}
+				limit = { has_completed_focus = NIG_end_sharia_law }
 				add_political_power = 150
 			}
-			else = {
-				custom_effect_tooltip = NIG_tolerance_toolie_TT
-			}
+			else = { custom_effect_tooltip = NIG_tolerance_toolie_TT }
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 25
-			}
+			modifier = { factor = 25 NIG_ai_historical_path = yes }
+			modifier = { factor = 0 NIG_ai_not_historical_path = yes }
 		}
 	}
 
@@ -665,29 +565,18 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM FOCUS_FILTER_STABILITY }
 
-		available = {
-			NOT = { has_government = fascism }
-		}
+		available = { NOT = { has_government = fascism } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_islamic_tolerance"
-			338 = { set_state_flag = NIG_tolerant_state }
-			339 = { set_state_flag = NIG_tolerant_state }
-			340 = { set_state_flag = NIG_tolerant_state }
 			custom_effect_tooltip = NIG_northern_tolerance_TT
 			add_stability = 0.025
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 25
-			}
+			modifier = { factor = 25 NIG_ai_historical_path = yes }
+			modifier = { factor = 0 NIG_ai_not_historical_path = yes }
 		}
 	}
 
@@ -705,34 +594,18 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM FOCUS_FILTER_STABILITY }
 
-		available = {
-			NOT = { has_government = fascism }
-		}
+		available = { NOT = { has_government = fascism } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_christian_faiths"
-			336 = { set_state_flag = NIG_tolerant_state }
-			337 = { set_state_flag = NIG_tolerant_state }
-			334 = { set_state_flag = NIG_tolerant_state }
-			332 = { set_state_flag = NIG_tolerant_state }
-			if = {
-				limit = { owns_state = 322 }
-				322 = { set_state_flag = NIG_tolerant_state }
-			}
 			custom_effect_tooltip = NIG_southern_tolerance_TT
 			add_stability = 0.025
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 25
-			}
+			modifier = { factor = 25 NIG_ai_historical_path = yes }
+			modifier = { factor = 0 NIG_ai_not_historical_path = yes }
 		}
 	}
 
@@ -751,9 +624,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_SECTARIANISM FOCUS_FILTER_STABILITY }
 
-		available = {
-			NOT = { has_government = fascism }
-		}
+		available = { NOT = { has_government = fascism } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_separation_of_church_and_state"
@@ -762,14 +633,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 25
-			}
+			modifier = { factor = 25 NIG_ai_historical_path = yes }
+			modifier = { factor = 0 NIG_ai_not_historical_path = yes }
 		}
 	}
 
@@ -787,9 +652,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_SECTARIANISM FOCUS_FILTER_STABILITY }
 
-		available = {
-			NOT = { has_government = fascism }
-		}
+		available = { NOT = { has_government = fascism } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_land_of_harmony"
@@ -802,14 +665,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 25
-			}
+			modifier = { factor = 25 NIG_ai_historical_path = yes }
+			modifier = { factor = 0 NIG_ai_not_historical_path = yes }
 		}
 	}
 
@@ -828,9 +685,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_convert_the_christians }
-		}
+		available = { NOT = { has_completed_focus = NIG_convert_the_christians } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_christian_theology"
@@ -840,13 +695,11 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
 				factor = 0
 				has_completed_focus = NIG_the_anpp
 			}
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -864,9 +717,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-		available = {
-			NOT = { has_completed_focus = NIG_convert_the_christians }
-		}
+		available = { NOT = { has_completed_focus = NIG_convert_the_christians } }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_education_from_the_bible"
@@ -876,13 +727,11 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
-			modifier = {
 				factor = 0
 				has_completed_focus = NIG_the_anpp
 			}
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -912,10 +761,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -945,11 +792,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -979,11 +824,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1020,11 +863,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -1056,11 +897,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1097,11 +936,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1115,34 +952,27 @@ focus_tree = {
 
 		cost = 10
 
-			prerequisite = { focus = NIG_rights_of_the_church }
-			prerequisite = { focus = NIG_secure_christian_support }
-			prerequisite = { focus = NIG_end_sharia_law }
+		prerequisite = { focus = NIG_rights_of_the_church }
+		prerequisite = { focus = NIG_secure_christian_support }
+		prerequisite = { focus = NIG_end_sharia_law }
 
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
-			available = {
-				NOT = { has_completed_focus = NIG_convert_the_christians }
-				NOT = { has_government = fascism }
-			}
+		available = {
+			NOT = { has_completed_focus = NIG_convert_the_christians }
+			NOT = { has_government = fascism }
+		}
 
-			completion_reward = {
-				log = "[GetDateText]: [This.GetName]: Focus NIG_enlist_the_militas"
-				NIG_religious_idea_switch_christian_majority = yes
-				# Introduces Christian Militias and Aligns them into the Army
-				hidden_effect = {
-					load_oob = "NIG_christian_militias"
-				}
-				custom_effect_tooltip = NIG_enlist_christian_militias_TT
-			}
+		completion_reward = {
+			log = "[GetDateText]: [This.GetName]: Focus NIG_enlist_the_militas"
+			NIG_religious_idea_switch_christian_majority = yes
+		}
 
-			ai_will_do = {
-				base = 0
-				modifier = {
-					has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-					factor = 0
-				}
-			}
+		ai_will_do = {
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
+		}
 	}
 
 	focus = {
@@ -1175,11 +1005,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1211,11 +1039,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1247,11 +1073,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1283,11 +1107,9 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 0
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 0
-			}
+			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -1313,39 +1135,26 @@ focus_tree = {
 			has_completed_focus = NIG_a_new_wave_of_extremism
 		}
 
-		bypass = {
-			salafist_caliphate_are_in_power = yes
-		}
+		bypass = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_rise_of_boko_haram"
 			set_temp_variable = { party_index = 11 }
 			set_temp_variable = { party_popularity_increase = 0.10 }
 			set_temp_variable = { temp_outlook_increase = 0.10 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			hidden_effect = {
-				clear_array = ruling_party
-				clear_array = gov_coalition_array
-				add_to_array = { ruling_party = 11 }
-				update_government_coalition_strength = yes
-				update_party_name = yes
-				set_coalition_drift = yes
-				set_ruling_leader = yes
-				set_leader = yes
-			}
-			set_politics = {
-				ruling_party = fascism
-				elections_allowed = no
+				set_temp_variable = { rul_party_temp = 11 }
+				set_temp_variable = { disable_elections = 1 }
+				change_ruling_party_effect = yes
 			}
 			custom_effect_tooltip = NIG_rise_of_boko_haram_TT
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 15
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1397,14 +1206,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
-			modifier = {
-				factor = 2
-				is_historical_focus_on = yes
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1423,9 +1226,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_west_african_caliphate"
@@ -1435,10 +1236,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 50 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1456,30 +1255,29 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_recognize_the_islamic_state"
+			every_country = {
+				limit = {
+					has_government = fascism
+					NOT = { tag = SAU }
+					NOT = { tag = UAE }
+					NOT = { tag = OMA }
+					NOT = { tag = BHR }
+				}
+				set_temp_variable = { ROOT.NIG_recognition_partners = 1 }
+				add_opinion_modifier = { target = NIG modifier = recognized_us }
+				reverse_add_opinion_modifier = { target = NIG modifier = recognized_us }
+			}
 			if = {
 				limit = {
 					OR = {
-						any_country = { has_government = fascism }
+						check_variable = { NIG_recognition_partners > 0 }
 						country_exists = ISI
 						country_exists = TAL
 					}
-				}
-				every_country = {
-					limit = {
-						has_government = fascism
-						NOT = { tag = SAU }
-						NOT = { tag = UAE }
-						NOT = { tag = OMA }
-						NOT = { tag = BHR }
-					}
-					add_opinion_modifier = { target = NIG modifier = recognized_us }
-					reverse_add_opinion_modifier = { target = NIG modifier = recognized_us }
 				}
 				add_political_power = 150
 			}
@@ -1487,10 +1285,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1508,9 +1304,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_instigate_african_salafism"
@@ -1519,17 +1313,15 @@ focus_tree = {
 				set_temp_variable = { party_index = 11 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
 				set_temp_variable = { temp_outlook_increase = 0.05 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 			}
 			add_political_power = 100
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1548,9 +1340,9 @@ focus_tree = {
 			focus = NIG_west_african_caliphate
 		}
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_support_neighboring_extremists"
@@ -1558,16 +1350,14 @@ focus_tree = {
 				set_temp_variable = { party_index = 11 }
 				set_temp_variable = { party_popularity_increase = 0.10 }
 				set_temp_variable = { temp_outlook_increase = 0.10 }
-				add_relative_party_popularity = yes
+				change_relative_party_popularity = yes
 			}
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1583,45 +1373,41 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_support_neighboring_extremists }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		search_filters = { FOCUS_FILTER_EQUIPMENT FOCUS_FILTER_INFLUENCE }
+
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_arm_other_extremists"
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 			every_other_country = {
-				limit = {
-					salafist_caliphate_are_in_power = yes
-				}
+				limit = { salafist_caliphate_are_in_power = yes }
 				if = {
-					limit = { NIG = { has_tech = infantry_weapons3 } }
+					limit = { NIG = { has_tech = infantry_weapons_4 } }
 					add_equipment_to_stockpile = {
-						type = infantry_weapons3
+						type = infantry_weapons_4
 						amount = 500
 						producer = NIG
 					}
 				}
 				else_if = {
-					limit = { NIG = { has_tech = infantry_weapons2 } }
+					limit = { NIG = { has_tech = infantry_weapons_3 } }
 					add_equipment_to_stockpile = {
-						type = infantry_weapons2
+						type = infantry_weapons_3
 						amount = 500
 						producer = NIG
 					}
 				}
 				else_if = {
-					limit = { NIG = { has_tech = infantry_weapons1 } }
+					limit = { NIG = { has_tech = infantry_weapons_2 } }
 					add_equipment_to_stockpile = {
-						type = infantry_weapons1
+						type = infantry_weapons_2
 						amount = 500
 						producer = NIG
 					}
 				}
 				set_temp_variable = { percent_change = 3 }
-				set_temp_variable = { tag_index = NIG.id }
-				set_temp_variable = { influence_target = THIS.id }
 				change_influence_percentage = yes
 			}
 		}
@@ -1629,9 +1415,11 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1649,9 +1437,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INFLUENCE FOCUS_FILTER_DIPLOMACY }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_build_ties_with_extremist_groups"
@@ -1663,18 +1449,14 @@ focus_tree = {
 				reverse_add_opinion_modifier = { target = NIG modifier = supports_us }
 				# Nigerian Influence drop # Burna Boy makes some sick ass music gg Nigerian Afrobeat
 				set_temp_variable = { percent_change = 3 }
-				set_temp_variable = { tag_index = NIG.id }
-				set_temp_variable = { influence_target = THIS.id }
 				change_influence_percentage = yes
 			}
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1715,6 +1497,9 @@ focus_tree = {
 				array = NGR.core_states
 				add_core_of = NIG
 			}
+			set_temp_variable = { wargoal_on = NGR }
+			set_temp_variable = { wargoal_type = 2 }
+			add_threat_from_wargoal_effect = yes
 			create_wargoal = {
 				target = NGR
 				type = annex_everything
@@ -1724,16 +1509,14 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
-			modifier = {
 				factor = 2
 				strength_ratio = {
 					tag = NGR
 					ratio > 0.80
 				}
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1796,10 +1579,16 @@ focus_tree = {
 				array = TOG.core_states
 				add_core_of = NIG
 			}
+			set_temp_variable = { wargoal_on = BEN }
+			set_temp_variable = { wargoal_type = 2 }
+			add_threat_from_wargoal_effect = yes
 			create_wargoal = {
 				target = BEN
 				type = annex_everything
 			}
+			set_temp_variable = { wargoal_on = TOG }
+			set_temp_variable = { wargoal_type = 2 }
+			add_threat_from_wargoal_effect = yes
 			create_wargoal = {
 				target = TOG
 				type = annex_everything
@@ -1809,16 +1598,14 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
-			modifier = {
 				factor = 2
 				strength_ratio = {
 					tag = BEN
 					ratio > 0.80
 				}
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1836,9 +1623,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_impose_sharia_law_across_nigeria"
@@ -1846,15 +1631,13 @@ focus_tree = {
 			set_temp_variable = { party_index = 11 }
 			set_temp_variable = { party_popularity_increase = 0.10 }
 			set_temp_variable = { temp_outlook_increase = 0.10 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1872,9 +1655,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_the_new_kid_on_the_block"
@@ -1884,10 +1665,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -1903,6 +1682,8 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_the_new_kid_on_the_block }
 		prerequisite = { focus = NIG_impose_sharia_law_across_nigeria }
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_FOREIGN_POLICY }
 
 		available = {
 			is_subject = no
@@ -1931,14 +1712,14 @@ focus_tree = {
 				}
 				country_event = { id = nigeria_md.9 days = 1 }
 			}
+			custom_effect_tooltip = TT_IF_THEY_ACCEPT
+			custom_effect_tooltip = NIG_islamic_states_response_TT
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -2026,14 +1807,23 @@ focus_tree = {
 				array = CAR.core_states
 				add_core_of = NIG
 			}
+			set_temp_variable = { wargoal_on = CAM }
+			set_temp_variable = { wargoal_type = 2 }
+			add_threat_from_wargoal_effect = yes
 			create_wargoal = {
 				target = CAM
 				type = annex_everything
 			}
+			set_temp_variable = { wargoal_on = CAR }
+			set_temp_variable = { wargoal_type = 2 }
+			add_threat_from_wargoal_effect = yes
 			create_wargoal = {
 				target = CAR
 				type = annex_everything
 			}
+			set_temp_variable = { wargoal_on = EGU }
+			set_temp_variable = { wargoal_type = 2 }
+			add_threat_from_wargoal_effect = yes
 			create_wargoal = {
 				target = EGU
 				type = annex_everything
@@ -2042,10 +1832,6 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
 			modifier = {
 				factor = 2
 				strength_ratio = {
@@ -2061,6 +1847,8 @@ focus_tree = {
 					ratio > 0.75
 				}
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -2078,16 +1866,14 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_local_salafism"
 			set_temp_variable = { party_index = 11 }
 			set_temp_variable = { party_popularity_increase = 0.10 }
 			set_temp_variable = { temp_outlook_increase = 0.10 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_war_support = 0.05
 			if = {
 				limit = { has_idea = NIG_restrained_piracy_idea }
@@ -2105,9 +1891,11 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
+				factor = 5
+				has_idea = NIG_unrestrained_piracy_idea
 			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -2126,25 +1914,21 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_POLITICAL }
 
-		available = {
-			salafist_caliphate_are_in_power = yes
-		}
+		available = { salafist_caliphate_are_in_power = yes }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_declare_a_new_caliph"
 			set_temp_variable = { party_index = 11 }
 			set_temp_variable = { party_popularity_increase = 0.10 }
 			set_temp_variable = { temp_outlook_increase = 0.10 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_ideas = NIG_the_new_nigerian_caliph_idea
 		}
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				has_global_flag = NIG_RISE_OF_BOKO_HARAM_PATH
-				factor = 3
-			}
+			modifier = { factor = 25 has_global_flag = NIG_CALIPHATE_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_caliphate_path = yes }
 		}
 	}
 
@@ -2166,9 +1950,7 @@ focus_tree = {
 			add_stability = 0.05
 		}
 
-		ai_will_do = {
-			factor = 3
-		}
+		ai_will_do = { base = 3 }
 	}
 
 	focus = {
@@ -2191,9 +1973,7 @@ focus_tree = {
 			add_political_power = 100
 		}
 
-		ai_will_do = {
-			factor = 3
-		}
+		ai_will_do = { base = 3 }
 	}
 
 	focus = {
@@ -2216,9 +1996,7 @@ focus_tree = {
 			change_domestic_influence_percentage = yes
 		}
 
-		ai_will_do = {
-			factor = 3
-		}
+		ai_will_do = { base = 3 }
 	}
 
 	focus = {
@@ -2252,10 +2030,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				is_historical_focus_on = yes
-				add = 0.50
-			}
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -2283,7 +2059,6 @@ focus_tree = {
 
 		dynamic = yes
 
-
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_the_anpp"
 			set_country_flag = NIG_the_anpp_flag
@@ -2294,6 +2069,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_anpp_party_path = yes }
+			modifier = { factor = 0 NIG_ai_not_anpp_party_path = yes }
 		}
 	}
 
@@ -2325,6 +2102,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -2354,6 +2133,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -2369,7 +2150,7 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_social_conservatism }
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_EXPENDITURE }
 
 		available = {
 			neutrality_neutral_conservatism_in_power_or_coalition = yes
@@ -2384,7 +2165,7 @@ focus_tree = {
 			set_temp_variable = { party_index = 14 }
 			set_temp_variable = { party_popularity_increase = 0.01 }
 			set_temp_variable = { temp_outlook_increase = 0.01 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			338 = {
 				add_building_construction = {
 					type = internet_station
@@ -2403,6 +2184,12 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -2429,18 +2216,18 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_balanced_budgets"
 			set_temp_variable = { treasury_change = -2 }
 			modify_treasury_effect = yes
-			random_owned_state = {
-				prioritize = { 337 334 }
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_state = {
-				prioritize = { 336 332 }
-				add_extra_state_shared_building_slots = 1
-			}
+			random_owned_state = { prioritize = { 337 334 } add_extra_state_shared_building_slots = 1 }
+			random_owned_state = { prioritize = { 336 332 } add_extra_state_shared_building_slots = 1 }
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -2455,6 +2242,8 @@ focus_tree = {
 		cost = 10
 
 		prerequisite = { focus = NIG_found_the_ntel }
+
+		search_filters = { FOCUS_FILTER_TRADE FOCUS_FILTER_FOREIGN_POLICY }
 
 		available = {
 			neutrality_neutral_conservatism_in_power_or_coalition = yes
@@ -2475,6 +2264,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_historical_path = yes }
+			modifier = { factor = 0 NIG_ai_not_historical_path = yes }
 		}
 	}
 
@@ -2508,6 +2299,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_pdp_path = yes }
+			modifier = { factor = 0 NIG_ai_not_pdp_path = yes }
 		}
 	}
 
@@ -2527,10 +2320,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_SECTARIANISM }
 
 		available = {
-			custom_trigger_tooltip = {
-				is_in_array = { ruling_party = 14 }
-				tooltip = has_neutral_conservatism_government_TT
-			}
+			neutrality_neutral_conservatism_are_in_power = yes
 			NOT = { has_completed_focus = NIG_rise_of_boko_haram }
 		}
 
@@ -2543,6 +2333,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_CHRISTIAN_NATION_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_christian_nation_path = yes }
 		}
 	}
 
@@ -2570,9 +2362,7 @@ focus_tree = {
 			add_political_power = 100
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -2595,9 +2385,7 @@ focus_tree = {
 			increase_economic_growth = yes
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -2617,14 +2405,14 @@ focus_tree = {
 		available = {
 			custom_trigger_tooltip = {
 				OR = {
-					has_idea = paralyzing_corruption
-					has_idea = crippling_corruption
-					has_idea = rampant_corruption
-					has_idea = unrestrained_corruption
-					has_idea = systematic_corruption
-					has_idea = widespread_corruption
-					has_idea = medium_corruption
-					has_idea = modest_corruption
+					has_idea = corruption_level_10
+					has_idea = corruption_level_09
+					has_idea = corruption_level_08
+					has_idea = corruption_level_07
+					has_idea = corruption_level_06
+					has_idea = corruption_level_05
+					has_idea = corruption_level_04
+					has_idea = corruption_level_03
 				}
 				tooltip = NIG_found_the_icpc_trigger_TT
 			}
@@ -2632,8 +2420,8 @@ focus_tree = {
 
 		bypass = {
 			OR = {
-				has_idea = negligible_corruption
-				has_idea = slight_corruption
+				has_idea = corruption_level_01
+				has_idea = corruption_level_02
 			}
 		}
 
@@ -2653,14 +2441,14 @@ focus_tree = {
 			modifier = {
 				add = 1
 				OR = {
-					has_idea = paralyzing_corruption
-					has_idea = crippling_corruption
-					has_idea = rampant_corruption
-					has_idea = unrestrained_corruption
-					has_idea = systematic_corruption
-					has_idea = widespread_corruption
-					has_idea = medium_corruption
-					has_idea = modest_corruption
+					has_idea = corruption_level_10
+					has_idea = corruption_level_09
+					has_idea = corruption_level_08
+					has_idea = corruption_level_07
+					has_idea = corruption_level_06
+					has_idea = corruption_level_05
+					has_idea = corruption_level_04
+					has_idea = corruption_level_03
 				}
 			}
 		}
@@ -2688,9 +2476,7 @@ focus_tree = {
 			}
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -2704,6 +2490,8 @@ focus_tree = {
 		cost = 5
 
 		prerequisite = { focus = NIG_reform_the_economic_departments }
+
+		search_filters = { FOCUS_FILTER_FOREIGN_INVESTMENTS FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_foreign_grants"
@@ -2725,14 +2513,11 @@ focus_tree = {
 				NIG = {
 					set_temp_variable = { percent_change = 2 }
 					set_temp_variable = { tag_index = FRA.id }
-					set_temp_variable = { influence_target = THIS.id }
 					change_influence_percentage = yes
 					set_temp_variable = { treasury_change = 1 }
 					modify_treasury_effect = yes
 					random_owned_controlled_state = {
-						limit = {
-							infrastructure < 5
-						}
+						limit = { infrastructure < 5 }
 						add_building_construction = {
 							type = infrastructure
 							level = 1
@@ -2747,9 +2532,7 @@ focus_tree = {
 			}
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -2793,11 +2576,16 @@ focus_tree = {
 				limit = { has_idea = NIG_restrained_piracy_idea }
 				remove_ideas = NIG_restrained_piracy_idea
 			}
+			increase_policing_budget_2 = yes
 			add_stability = 0.05
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 5
+				has_idea = NIG_unrestrained_piracy_idea
+			}
 		}
 	}
 
@@ -2823,9 +2611,7 @@ focus_tree = {
 			}
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -2850,12 +2636,13 @@ focus_tree = {
 			}
 		}
 
-		bypass = {
-			NOT = { has_idea = NIG_restrained_piracy_idea }
-		}
+		bypass = { NOT = { has_idea = NIG_restrained_piracy_idea } }
 
 		cancel = {
-			NOT = { has_idea = police_03 }
+			OR = {
+				has_idea = police_01
+				has_idea = police_02
+			}
 		}
 
 		completion_reward = {
@@ -2876,6 +2663,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 5
+				has_idea = NIG_restrained_piracy_idea
+			}
 		}
 	}
 
@@ -2885,34 +2676,38 @@ focus_tree = {
 		icon = army_reform
 
 		x = 6
-		y = 8
+		y = 7
 		relative_position_id = NIG_federal_government_of_nigeria
 
-		cost = 10
+		cost = 0
 
-		prerequisite = { focus = NIG_address_niger_delta }
+		prerequisite = { focus = NIG_the_togo_triangle }
 		mutually_exclusive = { focus = NIG_negotiate_peace }
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 
 		available = {
 			OR = {
-				has_idea = NIG_niger_delta_crisis_1
-				has_idea = NIG_niger_delta_crisis_2
-				has_idea = NIG_niger_delta_crisis_3
-				has_idea = NIG_niger_delta_avengers_idea
+				has_idea = NIG_joint_task_force_idea
+				has_country_flag = NIG_niger_delta_resolved
 			}
 		}
 
 		bypass = {
-			has_country_flag = NIG_niger_delta_resolved
+			OR = {
+				has_idea = NIG_joint_task_force_idea
+				has_country_flag = NIG_niger_delta_resolved
+			}
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_military_solution"
 			add_war_support = 0.05
 			army_experience = 25
-			add_ideas = NIG_joint_task_force_idea
+			add_timed_idea = {
+				idea = NIG_joint_task_force_idea
+				years = 3
+			}
 			set_country_flag = NIG_military_solution_path
 		}
 
@@ -2930,12 +2725,12 @@ focus_tree = {
 		icon = Focus_African_Liberation
 
 		x = 7
-		y = 7
+		y = 8
 		relative_position_id = NIG_federal_government_of_nigeria
 
 		cost = 10
 
-		prerequisite = { focus = NIG_the_togo_triangle }
+		prerequisite = { focus = NIG_negotiate_peace focus = NIG_military_solution }
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_RESOURCE }
 
@@ -2944,29 +2739,35 @@ focus_tree = {
 				has_idea = NIG_niger_delta_crisis_1
 				has_idea = NIG_niger_delta_crisis_2
 				has_idea = NIG_niger_delta_crisis_3
-				has_idea = NIG_niger_delta_avengers_idea
-				has_country_flag = NIG_amnesty_succeeded
-				has_country_flag = NIG_amnesty_partial
 			}
 		}
 
-		bypass = {
-			has_country_flag = NIG_niger_delta_resolved
-		}
+		bypass = { has_country_flag = NIG_niger_delta_resolved }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_address_niger_delta"
 			add_political_power = 100
 			add_stability = 0.03
 			set_country_flag = NIG_address_niger_delta_path
+			#unlock_decision_tooltip = NIG_suppress_delta_militants
+			#unlock_decision_tooltip = NIG_environmental_cleanup_program
+			if = {
+				limit = {
+					has_country_flag = NIG_negotiating_with_militants
+				}
+				unlock_decision_tooltip = NIG_environmental_cleanup_program
+			}
+			if = {
+				limit = {
+					has_country_flag = NIG_military_solution_path
+				}
+				unlock_decision_tooltip = NIG_suppress_delta_militants
+			}
 		}
 
 		ai_will_do = {
 			base = 5
-			modifier = {
-				add = 5
-				is_historical_focus_on = yes
-			}
+			modifier = { factor = 2 NIG_ai_historical_path = yes }
 		}
 	}
 
@@ -2975,27 +2776,28 @@ focus_tree = {
 		icon = peace
 
 		x = 8
-		y = 8
+		y = 7
 		relative_position_id = NIG_federal_government_of_nigeria
 
-		cost = 10
+		cost = 0
 
-		prerequisite = { focus = NIG_address_niger_delta }
+		prerequisite = { focus = NIG_the_togo_triangle }
 		mutually_exclusive = { focus = NIG_military_solution }
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_EXPENDITURE }
 
 		available = {
 			OR = {
-				has_idea = NIG_niger_delta_crisis_1
-				has_idea = NIG_niger_delta_crisis_2
-				has_idea = NIG_niger_delta_crisis_3
+				has_country_flag = NIG_negotiating_with_militants
+				has_country_flag = NIG_amnesty_succeeded
 			}
-			NOT = { has_country_flag = NIG_amnesty_failed }
 		}
 
 		bypass = {
-			has_country_flag = NIG_niger_delta_resolved
+			OR = {
+				has_country_flag = NIG_negotiating_with_militants
+				has_country_flag = NIG_amnesty_succeeded
+			}
 		}
 
 		completion_reward = {
@@ -3003,19 +2805,22 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -5 }
 			modify_treasury_effect = yes
 			add_stability = 0.02
+			add_timed_idea = {
+				idea = NIG_ongoing_negotiations
+				years = 3
+			}
 			set_country_flag = NIG_negotiating_with_militants
-			set_country_flag = NIG_negotiate_peace_path
 		}
 
 		ai_will_do = {
 			base = 3
 			modifier = {
-				add = 5
-				is_historical_focus_on = yes
-			}
-			modifier = {
 				add = 3
 				date > 2008.1.1
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -3030,16 +2835,13 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = {
-			focus = NIG_negotiate_peace
-			focus = NIG_military_solution
-		}
+		prerequisite = { focus = NIG_address_niger_delta }
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
 
-		bypass = {
-			has_country_flag = NIG_niger_delta_resolved
-		}
+		available = { NOT = { has_idea = NIG_niger_delta_crisis_3 } }
+
+		bypass = { has_country_flag = NIG_niger_delta_resolved }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_nddc_reform"
@@ -3057,6 +2859,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 5
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 		}
 	}
 
@@ -3070,21 +2876,14 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = {
-			focus = NIG_negotiate_peace
-			focus = NIG_military_solution
-		}
+		prerequisite = { focus = NIG_address_niger_delta }
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_EXPENDITURE }
 
 		available = {
 			date > 2008.1.1
-			OR = {
-				has_idea = NIG_niger_delta_crisis_1
-				has_idea = NIG_niger_delta_crisis_2
-				has_idea = NIG_niger_delta_crisis_3
-			}
-			NOT = { has_country_flag = NIG_amnesty_active }
+			NOT = { has_idea = NIG_niger_delta_crisis_3 }
+			NOT = { has_country_flag = NIG_amnesty_succeeded }
 		}
 
 		bypass = {
@@ -3098,45 +2897,40 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_amnesty_program"
 			set_temp_variable = { treasury_change = -15 }
 			modify_treasury_effect = yes
-			set_country_flag = NIG_amnesty_blanket
-			set_country_flag = NIG_amnesty_active
+			set_country_flag = NIG_amnesty_succeeded
 			# Replace crisis with amnesty program
 			if = {
 				limit = { has_idea = NIG_niger_delta_crisis_3 }
-				swap_ideas = {
-					remove_idea = NIG_niger_delta_crisis_3
-					add_idea = NIG_amnesty_program_idea
-				}
+				remove_ideas = NIG_niger_delta_crisis_3
 			}
 			else_if = {
 				limit = { has_idea = NIG_niger_delta_crisis_2 }
-				swap_ideas = {
-					remove_idea = NIG_niger_delta_crisis_2
-					add_idea = NIG_amnesty_program_idea
-				}
+				remove_ideas = NIG_niger_delta_crisis_2
 			}
 			else_if = {
 				limit = { has_idea = NIG_niger_delta_crisis_1 }
-				swap_ideas = {
-					remove_idea = NIG_niger_delta_crisis_1
-					add_idea = NIG_amnesty_program_idea
-				}
+				remove_ideas = NIG_niger_delta_crisis_1
+			}
+			add_timed_idea = {
+				idea = NIG_amnesty_program_idea
+				years = 5
 			}
 			hidden_effect = {
-				country_event = { id = nigeria_delta.11 days = 180 }
+				country_event = { id = nigeria_delta.19 months = 60 }
 			}
 		}
 
 		ai_will_do = {
 			base = 5
 			modifier = {
-				add = 10
-				is_historical_focus_on = yes
-			}
-			modifier = {
 				add = 5
 				date > 2009.1.1
 			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 2 NIG_ai_historical_path = yes }
 		}
 	}
 
@@ -3154,25 +2948,47 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_RESOURCE FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
 
+		available = { NOT = { has_idea = NIG_niger_delta_crisis_3 } }
+
 		bypass = {
-			has_country_flag = NIG_niger_delta_resolved
+			OR = {
+				has_idea = NIG_oil_revenue_sharing_mil_idea
+				has_idea = NIG_oil_revenue_sharing_peace_idea
+				has_country_flag = NIG_niger_delta_resolved
+			}
 		}
 
 		completion_reward = {
+			custom_effect_tooltip = NIG_oil_sharing_tt
 			log = "[GetDateText]: [This.GetName]: Focus NIG_oil_revenue_sharing"
 			set_temp_variable = { treasury_change = -5 }
 			modify_treasury_effect = yes
-			add_ideas = NIG_oil_revenue_sharing_idea
-			add_stability = 0.05
+			if = {
+				limit = { has_completed_focus = NIG_military_solution }
+				add_ideas = NIG_oil_revenue_sharing_mil_idea
+			add_resource = {
+				type = oil
+				amount = 8
+				state = 332
+				}
+			}
+			if = {
+				limit = { has_completed_focus = NIG_negotiate_peace }
+				add_ideas = NIG_oil_revenue_sharing_peace_idea
 			add_resource = {
 				type = oil
 				amount = 5
 				state = 332
+				}
 			}
 		}
 
 		ai_will_do = {
 			base = 5
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 		}
 	}
 
@@ -3186,10 +3002,7 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = {
-			focus = NIG_military_solution
-			focus = NIG_amnesty_program
-		}
+		prerequisite = { focus = NIG_amnesty_program }
 		prerequisite = { focus = NIG_oil_revenue_sharing }
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_RESOURCE }
@@ -3205,7 +3018,6 @@ focus_tree = {
 			}
 			OR = {
 				has_country_flag = NIG_amnesty_succeeded
-				has_country_flag = NIG_amnesty_partial
 				AND = {
 					has_country_flag = NIG_military_solution_path
 					NOT = {
@@ -3219,18 +3031,14 @@ focus_tree = {
 			}
 		}
 
-		bypass = {
-			has_country_flag = NIG_niger_delta_resolved
-		}
+		bypass = { has_country_flag = NIG_niger_delta_resolved }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: Focus NIG_niger_delta_resolved"
 			country_event = { id = nigeria_delta.30 days = 1 }
 		}
 
-		ai_will_do = {
-			base = 10
-		}
+		ai_will_do = { base = 10 }
 	}
 
 	##ANPP
@@ -3263,6 +3071,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -3291,11 +3101,13 @@ focus_tree = {
 			set_temp_variable = { party_index = 3 }
 			set_temp_variable = { party_popularity_increase = 0.1 }
 			set_temp_variable = { temp_outlook_increase = 0.1 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -3326,6 +3138,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -3341,6 +3155,8 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_allocation_of_rights }
 
+		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_INDUSTRY }
+
 		available = {
 			western_socialism_are_in_power_or_coalition = yes
 			NOT = { has_completed_focus = NIG_rise_of_boko_haram }
@@ -3353,6 +3169,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -3381,11 +3199,13 @@ focus_tree = {
 			set_temp_variable = { party_index = 3 }
 			set_temp_variable = { party_popularity_increase = 0.1 }
 			set_temp_variable = { temp_outlook_increase = 0.1 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -3411,13 +3231,18 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_state_run_markets"
 			add_ideas = NIG_state_run_markets_idea
-			add_political_power = -100
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -3449,6 +3274,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3480,6 +3307,12 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 5
+				has_idea = NIG_uncontrollable_population_growth_idea
+			}
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3508,6 +3341,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3532,18 +3367,20 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_industrial_regulations"
 			add_stability = 0.025
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-			}
+			random_owned_state = { add_extra_state_shared_building_slots = 1 }
+			random_owned_state = { add_extra_state_shared_building_slots = 1 }
 			set_temp_variable = { treasury_change = -2 }
 			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3574,6 +3411,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3592,9 +3431,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INFLUENCE FOCUS_FILTER_STABILITY }
 
-		available = {
-			has_idea = USA_usaid
-		}
+		available = { has_idea = USA_usaid }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_end_usaid"
@@ -3606,6 +3443,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3639,12 +3478,13 @@ focus_tree = {
 			reverse_add_opinion_modifier = { target = USA modifier = supports_us }
 			set_temp_variable = { percent_change = 4 }
 			set_temp_variable = { tag_index = USA.id }
-			set_temp_variable = { influence_target = THIS.id }
 			change_influence_percentage = yes
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 40 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3671,6 +3511,8 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 25 NIG_ai_elected_government_path = yes }
+			modifier = { factor = 0 NIG_ai_not_elected_government_path = yes }
 		}
 	}
 
@@ -3695,10 +3537,6 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				factor = 2.5
-				is_historical_focus_on = yes
-			}
-			modifier = {
 				factor = 2
 				check_variable = { interest_rate > 4.0 }
 			}
@@ -3706,6 +3544,7 @@ focus_tree = {
 				factor = 2
 				check_variable = { debt > 0 }
 			}
+			modifier = { factor = 2 NIG_ai_historical_path = yes }
 		}
 	}
 
@@ -3736,8 +3575,8 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
-				factor = 2.5
-				is_historical_focus_on = yes
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 			modifier = {
 				factor = 2
@@ -3747,6 +3586,7 @@ focus_tree = {
 				factor = 2
 				check_variable = { debt > 0 }
 			}
+			modifier = { factor = 2 NIG_ai_historical_path = yes }
 		}
 	}
 
@@ -3784,6 +3624,10 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
+				factor = 0
+				can_staff_an_offices = no
+			}
+			modifier = {
 				add = 15
 				check_variable = { interest_rate < 8 }
 			}
@@ -3794,6 +3638,10 @@ focus_tree = {
 					check_variable = { international_bankers_opinion < 49 }
 					check_variable = { industrial_conglomerates_opinion < 49 }
 				}
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -3839,9 +3687,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_nigerian_industry"
-			every_owned_state = {
-				add_extra_state_shared_building_slots = 1
-			}
+			every_owned_state = { add_extra_state_shared_building_slots = 1 }
 			set_temp_variable = { treasury_change = -7 }
 			modify_treasury_effect = yes
 			set_temp_variable = { temp_opinion = 5 }
@@ -3853,6 +3699,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 			modifier = {
 				factor = 2
 				check_variable = { total_unemployed_percentage_display > 3 }
@@ -3881,16 +3731,15 @@ focus_tree = {
 					is_in_africa = yes
 					NOT = { has_war_with = NIG }
 					NOT = { has_country_flag = NIG_already_invested_in_flag }
-					NOT = { has_idea = Non_State_Actor }
+					NOT = { has_idea = non_state_actor }
 				}
 				random_select_amount = 3
- 				country_event = { id = nigeria_md.8 days = 1 }
+				 country_event = { id = nigeria_md.8 days = 1 }
 			}
 			newline = yes
 			custom_effect_tooltip = TT_IF_THEY_ACCEPT
 			effect_tooltip = {
 				set_temp_variable = { percent_change = 2 }
-				set_temp_variable = { tag_index = NIG.id }
 				set_temp_variable = { influence_target = TOG.id }
 				change_influence_percentage = yes
 				NIG = {
@@ -3900,9 +3749,7 @@ focus_tree = {
 					modify_international_investment_effect = yes
 				}
 				random_owned_controlled_state = {
-					limit = {
-						infrastructure < 5
-					}
+					limit = { infrastructure < 5 }
 					add_building_construction = {
 						type = infrastructure
 						level = 1
@@ -3978,6 +3825,10 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
+				factor = 0
+				can_staff_an_offices = no
+			}
+			modifier = {
 				add = 10
 				check_variable = { small_medium_business_owners_opinion > 49 }
 			}
@@ -3992,6 +3843,10 @@ focus_tree = {
 			modifier = {
 				factor = 2
 				check_variable = { total_unemployed_percentage_display > 7 }
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -4033,10 +3888,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
-			modifier = {
-				add = 10
-				is_historical_focus_on = yes
-			}
+			modifier = { factor = 2 NIG_ai_historical_path = yes }
 		}
 	}
 
@@ -4101,6 +3953,14 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_industrial_complex = no
+			}
 		}
 	}
 
@@ -4117,7 +3977,7 @@ focus_tree = {
 		prerequisite = { focus = NIG_water_crisis }
 		prerequisite = { focus = NIG_nigerian_industry }
 
-		search_filters = { FOCUS_FILTER_INTERNAL_FACTION }
+		search_filters = { FOCUS_FILTER_INTERNAL_FACTION FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_nigerian_agricultural_belt"
@@ -4128,28 +3988,7 @@ focus_tree = {
 			effect_tooltip = {
 				custom_effect_tooltip = if_oligarchs_opinion_at_least_positive_tt
 				random_owned_controlled_state = {
-					limit = {
-						free_building_slots = {
-							building = agriculture_district
-							size > 0
-							include_locked = yes
-						}
-						OR = {
-							is_in_home_area = yes
-							NOT = {
-								owner = {
-									any_owned_state = {
-										free_building_slots = {
-											building = agriculture_district
-											size > 0
-											include_locked = yes
-										}
-										is_in_home_area = yes
-									}
-								}
-							}
-						}
-					}
+					limit = { free_shared_building_slots = yes }
 					add_extra_state_shared_building_slots = 1
 					add_building_construction = {
 						type = agriculture_district
@@ -4160,32 +3999,9 @@ focus_tree = {
 			}
 			hidden_effect = {
 				if = {
-					limit = {
-						check_variable = { oligarchs_opinion > 49 }
-					}
+					limit = { check_variable = { oligarchs_opinion > 49 } }
 					random_owned_controlled_state = {
-						limit = {
-							free_building_slots = {
-								building = agriculture_district
-								size > 0
-								include_locked = yes
-							}
-							OR = {
-								is_in_home_area = yes
-								NOT = {
-									owner = {
-										any_owned_state = {
-											free_building_slots = {
-												building = agriculture_district
-												size > 0
-												include_locked = yes
-											}
-											is_in_home_area = yes
-										}
-									}
-								}
-							}
-						}
+						limit = { free_shared_building_slots = yes }
 						add_extra_state_shared_building_slots = 1
 						add_building_construction = {
 							type = agriculture_district
@@ -4199,6 +4015,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				can_staff_an_agriculture_district = no
+			}
 			modifier = {
 				factor = 2
 				check_variable = { total_unemployed_percentage_display > 3 }
@@ -4275,17 +4095,16 @@ focus_tree = {
 					is_in_africa = yes
 					NOT = { has_war_with = NIG }
 					NOT = { has_country_flag = NIG_already_invested_in_flag }
-					NOT = { has_idea = Non_State_Actor }
+					NOT = { has_idea = non_state_actor }
 					NOT = { is_neighbor_of = NIG }
 				}
 				random_select_amount = 3
- 				country_event = { id = nigeria_md.8 days = 1 }
+				 country_event = { id = nigeria_md.8 days = 1 }
 			}
 			newline = yes
 			custom_effect_tooltip = TT_IF_THEY_ACCEPT
 			effect_tooltip = {
 				set_temp_variable = { percent_change = 2 }
-				set_temp_variable = { tag_index = NIG.id }
 				set_temp_variable = { influence_target = TOG.id }
 				change_influence_percentage = yes
 				NIG = {
@@ -4295,9 +4114,7 @@ focus_tree = {
 					modify_international_investment_effect = yes
 				}
 				random_owned_controlled_state = {
-					limit = {
-						infrastructure < 5
-					}
+					limit = { infrastructure < 5 }
 					add_building_construction = {
 						type = infrastructure
 						level = 1
@@ -4357,6 +4174,10 @@ focus_tree = {
 			modifier = {
 				add = 5
 				337 = { infrastructure < 3 }
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -4424,9 +4245,7 @@ focus_tree = {
 			change_industrial_conglomerates_opinion = yes
 			change_international_bankers_opinion = yes
 			if = {
-				limit = {
-					has_idea = NIG_reckless_growth_idea
-				}
+				limit = { has_idea = NIG_reckless_growth_idea }
 				modify_timed_idea = {
 					idea = NIG_reckless_growth_idea
 					days = 180
@@ -4483,6 +4302,14 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_industrial_complex = no
+			}
 		}
 	}
 
@@ -4511,11 +4338,19 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
+				factor = 0
+				can_staff_an_arms_industry = no
+			}
+			modifier = {
 				add = 5
 				OR = {
 					check_variable = { defense_industry_opinion < 49 }
 					check_variable = { the_military_opinion < 49 }
 				}
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -4540,8 +4375,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_spur_regional_development"
 			increase_economic_growth = yes
-			set_temp_variable = { treasury_change = gdp_total }
-			multiply_temp_variable = { treasury_change = 0.05 }
+			set_temp_variable = { treasury_change = { value = gdp_total multiply = 0.05 } }
 			modify_treasury_effect = yes
 		}
 
@@ -4558,6 +4392,10 @@ focus_tree = {
 			modifier = {
 				add = 5
 				has_idea = stagnation
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -4628,6 +4466,15 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_desalination_projects"
 			one_random_infrastructure = yes
@@ -4635,6 +4482,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 		}
 	}
 
@@ -4650,7 +4501,7 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_northern_factories }
 
-		search_filters = { FOCUS_FILTER_RESOURCE }
+		search_filters = { FOCUS_FILTER_RESOURCE FOCUS_FILTER_EXPENDITURE }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_nigerian_oil"
@@ -4686,7 +4537,7 @@ focus_tree = {
 							}
 						}
 					}
-					add_resource = {	# Ambazonia
+					add_resource = { # Ambazonia
 						type = oil
 						amount = 15
 						state = 322
@@ -4722,6 +4573,10 @@ focus_tree = {
 			modifier = {
 				add = 10
 				322 = { is_owned_and_controlled_by = NIG }
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -4783,17 +4638,16 @@ focus_tree = {
 					is_in_africa = yes
 					NOT = { has_war_with = NIG }
 					NOT = { has_country_flag = NIG_already_invested_in_flag }
-					NOT = { has_idea = Non_State_Actor }
+					NOT = { has_idea = non_state_actor }
 					is_neighbor_of = NIG
 				}
 				random_select_amount = 2
- 				country_event = { id = nigeria_md.8 days = 1 }
+				 country_event = { id = nigeria_md.8 days = 1 }
 			}
 			newline = yes
 			custom_effect_tooltip = TT_IF_THEY_ACCEPT
 			effect_tooltip = {
 				set_temp_variable = { percent_change = 2 }
-				set_temp_variable = { tag_index = NIG.id }
 				set_temp_variable = { influence_target = TOG.id }
 				change_influence_percentage = yes
 				NIG = {
@@ -4803,9 +4657,7 @@ focus_tree = {
 					modify_international_investment_effect = yes
 				}
 				random_owned_controlled_state = {
-					limit = {
-						infrastructure < 5
-					}
+					limit = { infrastructure < 5 }
 					add_building_construction = {
 						type = infrastructure
 						level = 1
@@ -4839,6 +4691,15 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
+		bypass = {
+			all_owned_state = {
+				free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_west_african_highways"
 			set_temp_variable = { treasury_change = -7 }
@@ -4863,13 +4724,15 @@ focus_tree = {
 			base = 1
 			modifier = {
 				add = 10
-				any_owned_state = {
-					infrastructure < 3
-				}
+				any_owned_state = { infrastructure < 3 }
 			}
 			modifier = {
 				factor = 0
 				check_variable = { interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -4887,7 +4750,7 @@ focus_tree = {
 		prerequisite = { focus = NIG_middle_belt_legislation }
 		prerequisite = { focus = NIG_desalination_projects }
 
-		search_filters = { FOCUS_FILTER_INTERNAL_FACTION FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		search_filters = { FOCUS_FILTER_INTERNAL_FACTION FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_agricultural_investments"
@@ -4935,6 +4798,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				can_staff_an_agriculture_district = no
+			}
 		}
 	}
 
@@ -4951,7 +4818,7 @@ focus_tree = {
 		prerequisite = { focus = NIG_reckless_agriculture }
 		prerequisite = { focus = NIG_desalination_projects }
 
-		search_filters = { FOCUS_FILTER_RESOURCE }
+		search_filters = { FOCUS_FILTER_RESOURCE FOCUS_FILTER_EXPENDITURE }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_industrial_expansions"
@@ -4971,9 +4838,7 @@ focus_tree = {
 				}
 			}
 			if = {
-				limit = {
-					has_idea = NIG_reckless_growth_idea
-				}
+				limit = { has_idea = NIG_reckless_growth_idea }
 				modify_timed_idea = {
 					idea = NIG_reckless_growth_idea
 					days = 180
@@ -4992,6 +4857,10 @@ focus_tree = {
 			modifier = {
 				factor = 0
 				check_variable = { interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
 			}
 		}
 	}
@@ -5018,9 +4887,7 @@ focus_tree = {
 			}
 		}
 
-		ai_will_do = {
-			base = 10
-		}
+		ai_will_do = { base = 10 }
 	}
 
 	focus = {
@@ -5052,9 +4919,7 @@ focus_tree = {
 			}
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -5074,7 +4939,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_consolidations_of_arms"
 			add_equipment_to_stockpile = {
-				type = infantry_weapons1
+				type = infantry_weapons_2
 				amount = 1500
 				producer = NIG
 			}
@@ -5084,6 +4949,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 		}
 	}
 
@@ -5114,9 +4983,23 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
+				factor = 0
+				can_staff_an_industrial_complex = no
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_offices = no
+			}
+			modifier = {
 				add = 10
 				check_variable = { interest_rate < 8 }
 			}
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 25 has_global_flag = NIG_SOCIAL_DEMOCRACY_FOCUS_PATH }
+			modifier = { factor = 0 NIG_ai_not_social_democracy_path = yes }
 		}
 	}
 
@@ -5138,7 +5021,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [This.GetName]: focus NIG_sustainable_development"
+			log = "[GetDateText]: [This.GetName]: focus NIG_european_investments"
 			add_stability = 0.10
 		}
 
@@ -5209,9 +5092,7 @@ focus_tree = {
 			change_industrial_conglomerates_opinion = yes
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -5238,9 +5119,7 @@ focus_tree = {
 			set_temp_variable = { temp_opinion = 5 }
 			change_small_medium_business_owners_opinion = yes
 			if = {
-				limit = {
-					has_idea = NIG_reckless_growth_idea
-				}
+				limit = { has_idea = NIG_reckless_growth_idea }
 				modify_timed_idea = {
 					idea = NIG_reckless_growth_idea
 					days = 180
@@ -5256,6 +5135,14 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_industrial_complex = no
+			}
 		}
 	}
 
@@ -5278,7 +5165,7 @@ focus_tree = {
 			set_temp_variable = { party_index = 17 }
 			set_temp_variable = { party_popularity_increase = 0.04 }
 			set_temp_variable = { temp_outlook_increase = 0.04 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_resource = {
 				type = aluminium
 				amount = 5
@@ -5295,6 +5182,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 		}
 	}
 
@@ -5317,13 +5208,11 @@ focus_tree = {
 			set_temp_variable = { party_index = 17 }
 			set_temp_variable = { party_popularity_increase = 0.04 }
 			set_temp_variable = { temp_outlook_increase = 0.04 }
-			add_relative_party_popularity = yes
+			change_relative_party_popularity = yes
 			add_ideas = eco_factories_projects_idea
 		}
 
-		ai_will_do = {
-			base = 1
-		}
+		ai_will_do = { base = 1 }
 	}
 
 	focus = {
@@ -5377,6 +5266,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
 		}
 	}
 
@@ -5417,9 +5310,7 @@ focus_tree = {
 				}
 			}
 			if = {
-				limit = {
-					has_idea = NIG_reckless_growth_idea
-				}
+				limit = { has_idea = NIG_reckless_growth_idea }
 				modify_timed_idea = {
 					idea = NIG_reckless_growth_idea
 					days = 180
@@ -5435,6 +5326,14 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_industrial_complex = no
+			}
 		}
 	}
 
@@ -5469,6 +5368,7 @@ focus_tree = {
 				factor = 2.5
 				threat > 0.10
 			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5505,6 +5405,7 @@ focus_tree = {
 				factor = 2.5
 				threat > 0.10
 			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5520,6 +5421,8 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_nigerian_armed_forces }
 
+		search_filters = { FOCUS_FILTER_ARMY }
+
 		available = {
 			is_subject = no
 			NOT = { has_idea = no_military }
@@ -5531,9 +5434,7 @@ focus_tree = {
 				add_ideas = rifle_production_bonus
 			}
 			else_if = {
-				limit = {
-					has_idea = rifle_production_bonus
-				}
+				limit = { has_idea = rifle_production_bonus }
 				swap_ideas = {
 					remove_idea = rifle_production_bonus
 					add_idea = rifle_production_bonus2
@@ -5543,6 +5444,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5589,6 +5491,11 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5604,7 +5511,7 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_defense_industries_of_nigeria }
 
-		search_filters = { FOCUS_FILTER_RESOURCE }
+		search_filters = { FOCUS_FILTER_RESOURCE FOCUS_FILTER_EXPENDITURE }
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_resource_drives"
@@ -5639,6 +5546,10 @@ focus_tree = {
 		ai_will_do = {
 			base = 1
 			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
 				factor = 2
 				OR = {
 					check_variable = { resource_imported@tungsten > 0 }
@@ -5653,6 +5564,7 @@ focus_tree = {
 				factor = 2
 				has_at_least_regional_power_status = yes
 			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5711,6 +5623,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_arms_industry = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5725,6 +5646,8 @@ focus_tree = {
 		cost = 10
 
 		prerequisite = { focus = NIG_the_army }
+
+		search_filters = { FOCUS_FILTER_ARMY }
 
 		available = {
 			is_subject = no
@@ -5754,6 +5677,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5770,6 +5694,8 @@ focus_tree = {
 		prerequisite = { focus = NIG_the_army }
 		prerequisite = { focus = NIG_air_components }
 
+		search_filters = { FOCUS_FILTER_ARMY }
+
 		available = {
 			is_subject = no
 			NOT = { has_idea = no_military }
@@ -5783,6 +5709,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5816,7 +5743,7 @@ focus_tree = {
 			if = {
 				limit = { has_opinion = { target = USA value > 40 } }
 				add_equipment_to_stockpile = {
-					type = attack_helicopter2
+					type = attack_helicopter_2
 					amount = 30
 					producer = USA
 				}
@@ -5824,7 +5751,7 @@ focus_tree = {
 			else_if = {
 				limit = { has_opinion = { target = SOV value > 40 } }
 				add_equipment_to_stockpile = {
-					type = attack_helicopter2
+					type = attack_helicopter_2
 					amount = 30
 					producer = SOV
 				}
@@ -5832,7 +5759,7 @@ focus_tree = {
 			else_if = {
 				limit = { has_opinion = { target = CHI value > 40 } }
 				add_equipment_to_stockpile = {
-					type = attack_helicopter2
+					type = attack_helicopter_2
 					amount = 30
 					producer = CHI
 				}
@@ -5844,6 +5771,11 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5879,6 +5811,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5899,6 +5832,8 @@ focus_tree = {
 		}
 		prerequisite = { focus = NIG_consolidations_of_arms }
 
+		search_filters = { FOCUS_FILTER_MILITARY_LAWS FOCUS_FILTER_ARMY }
+
 		available = {
 			is_subject = no
 			NOT = { has_idea = no_military }
@@ -5911,6 +5846,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5947,6 +5883,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_arms_industry = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -5998,9 +5943,7 @@ focus_tree = {
 						has_completed_focus = NIG_contract_boko_haram
 					}
 				}
-				hidden_effect = {
-					load_oob = "NIG_establish_ng"
-				}
+				hidden_effect = { load_oob = "NIG_establish_ng" }
 				set_temp_variable = { treasury_change = -1.5 }
 				modify_treasury_effect = yes
 				custom_effect_tooltip = NIG_establish_ng_two_TT
@@ -6011,6 +5954,11 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6026,6 +5974,8 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_rifle_compositions }
 
+		search_filters = { FOCUS_FILTER_ARMY }
+
 		available = {
 			is_subject = no
 			NOT = { has_idea = no_military }
@@ -6038,6 +5988,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6085,6 +6036,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_arms_industry = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6097,6 +6057,8 @@ focus_tree = {
 		relative_position_id = NIG_nigerian_armed_forces
 
 		cost = 10
+
+		search_filters = { FOCUS_FILTER_NAVY }
 
 		available = {
 			is_subject = no
@@ -6111,6 +6073,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6146,6 +6109,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6183,6 +6147,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_arms_industry = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6199,6 +6172,8 @@ focus_tree = {
 		prerequisite = { focus = NIG_light_forces_investments }
 		mutually_exclusive = { focus = NIG_eastern_doctrines }
 
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			is_subject = no
 			NOT = { has_idea = no_military }
@@ -6212,9 +6187,7 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_western_military_assistance"
 			if = {
 				limit = {
-					NIG = {
-						NOT = { has_war_with = USA }
-					}
+					NIG = { NOT = { has_war_with = USA } }
 					USA = { has_idea = NATO_member }
 					NOT = { has_global_flag = GAME_RULE_nato_disabled }
 				}
@@ -6222,13 +6195,17 @@ focus_tree = {
 					add_opinion_modifier = { target = NIG modifier = has_expressed_loyalty }
 					reverse_add_opinion_modifier = { target = NIG modifier = has_expressed_loyalty }
 				}
-				every_country = {
-					limit = {
-						NOT = { original_tag = USA }
-						has_idea = NATO_member
+				for_each_scope_loop = {
+					array = global.nato_members
+					tooltip = TT_ALL_NATO_MEMBER_NATIONS_GAIN
+					if = {
+						limit = {
+							exists = yes
+							NOT = { original_tag = USA }
+						}
+						add_opinion_modifier = { target = NIG modifier = political_outreach }
+						reverse_add_opinion_modifier = { target = NIG modifier = political_outreach }
 					}
-					add_opinion_modifier = { target = NIG modifier = political_outreach }
-					reverse_add_opinion_modifier = { target = NIG modifier = political_outreach }
 				}
 				army_experience = 50
 				air_experience = 50
@@ -6236,9 +6213,7 @@ focus_tree = {
 			}
 			else = {
 				every_country = {
-					limit = {
-						has_government = democratic
-					}
+					limit = { has_government = democratic }
 					add_opinion_modifier = { target = NIG modifier = political_outreach }
 					reverse_add_opinion_modifier = { target = NIG modifier = political_outreach }
 				}
@@ -6250,6 +6225,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6265,6 +6241,8 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_light_forces_investments }
 		mutually_exclusive = { focus = NIG_western_military_assistance }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
 			is_subject = no
@@ -6282,9 +6260,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_eastern_doctrines"
 			if = {
-				limit = {
-					NOT = { has_war_with = CHI }
-				}
+				limit = { NOT = { has_war_with = CHI } }
 				CHI = {
 					add_opinion_modifier = { target = NIG modifier = has_expressed_loyalty }
 					reverse_add_opinion_modifier = { target = NIG modifier = has_expressed_loyalty }
@@ -6295,9 +6271,7 @@ focus_tree = {
 				}
 			}
 			if = {
-				limit = {
-					NOT = { has_war_with = SOV }
-				}
+				limit = { NOT = { has_war_with = SOV } }
 				SOV = {
 					add_opinion_modifier = { target = NIG modifier = has_expressed_loyalty }
 					reverse_add_opinion_modifier = { target = NIG modifier = has_expressed_loyalty }
@@ -6314,6 +6288,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6361,6 +6336,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_dockyard = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6376,6 +6360,8 @@ focus_tree = {
 
 		prerequisite = { focus = NIG_nigerian_coastal_forces }
 
+		search_filters = { FOCUS_FILTER_NAVY FOCUS_FILTER_INFLUENCE }
+
 		available = {
 			is_subject = no
 			NOT = { has_idea = no_military }
@@ -6385,13 +6371,13 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus NIG_royal_naval_doctrines"
 			set_temp_variable = { percent_change = 4 }
 			set_temp_variable = { tag_index = ENG.id }
-			set_temp_variable = { influence_target = THIS.id }
 			change_influence_percentage = yes
 			navy_experience = 50
 		}
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6419,6 +6405,7 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6454,6 +6441,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_dockyard = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6490,6 +6486,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_dockyard = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 
@@ -6526,6 +6531,15 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+			modifier = {
+				factor = 0
+				has_active_mission = bankruptcy_incoming_collapse
+			}
+			modifier = {
+				factor = 0
+				can_staff_an_dockyard = no
+			}
+			modifier = { factor = 2 ai_is_threatened = yes }
 		}
 	}
 }

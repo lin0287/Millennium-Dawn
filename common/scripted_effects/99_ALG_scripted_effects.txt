@@ -1,0 +1,297 @@
+ALG_increase_desertification = {
+	if = {
+		limit = { has_idea = ALG_sahara_expansion_1 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_2
+			remove_idea = ALG_sahara_expansion_1
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_2 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_3
+			remove_idea = ALG_sahara_expansion_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_3 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_4
+			remove_idea = ALG_sahara_expansion_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_4 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_5
+			remove_idea = ALG_sahara_expansion_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_5 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_6
+			remove_idea = ALG_sahara_expansion_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_6 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_7
+			remove_idea = ALG_sahara_expansion_6
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_7 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_8
+			remove_idea = ALG_sahara_expansion_7
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_8 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_9
+			remove_idea = ALG_sahara_expansion_8
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_9 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_10
+			remove_idea = ALG_sahara_expansion_9
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_10 }
+		add_political_power = -200
+	}
+}
+
+ALG_decrease_desertification = {
+	if = {
+		limit = { has_idea = ALG_sahara_expansion_1 }
+		add_political_power = 200
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_2 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_1
+			remove_idea = ALG_sahara_expansion_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_3 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_2
+			remove_idea = ALG_sahara_expansion_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_4 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_3
+			remove_idea = ALG_sahara_expansion_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_5 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_4
+			remove_idea = ALG_sahara_expansion_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_6 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_5
+			remove_idea = ALG_sahara_expansion_6
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_7 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_6
+			remove_idea = ALG_sahara_expansion_7
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_8 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_7
+			remove_idea = ALG_sahara_expansion_8
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_9 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_8
+			remove_idea = ALG_sahara_expansion_9
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_10 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_9
+			remove_idea = ALG_sahara_expansion_10
+		}
+	}
+}
+
+ALG_increase_desertification_rate = {
+	if = {
+		limit = {
+			check_variable = { sahara_retreats > 4 }
+		}
+		custom_effect_tooltip = ALG_increase_yearly_bad_desertification_5
+		add_to_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_reduce_yearly_good_desertification_5
+		subtract_from_variable = { sahara_retreats = 5 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { sahara_steady > 4 }
+		}
+		custom_effect_tooltip = ALG_increase_yearly_bad_desertification_5
+		add_to_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_reduce_yearly_neutral_desertification_5
+		subtract_from_variable = { sahara_steady = 5 }
+	}
+	else = {
+		add_political_power = -200
+	}
+}
+
+ALG_decrease_desertification_rate = {
+	if = {
+		limit = {
+			check_variable = { sahara_steady < 30 }
+		}
+		custom_effect_tooltip = ALG_decrease_yearly_bad_desertification_5
+		subtract_from_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_increase_yearly_neutral_desertification_5
+		add_to_variable = { sahara_steady = 5 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { sahara_retreats < 70 }
+		}
+		custom_effect_tooltip = ALG_decrease_yearly_bad_desertification_5
+		subtract_from_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_increase_yearly_good_desertification_5
+		add_to_variable = { sahara_retreats = 5 }
+	}
+	else = {
+		add_political_power = 200
+	}
+}
+
+ALG_update_kabyle_modifiers = {
+	hidden_effect = {
+		remove_ideas = ALG_kabyle_content
+		remove_ideas = ALG_kabyle_discontent
+		remove_ideas = ALG_kabyle_unrest
+	}
+	clamp_variable = { var = ALG_kabyle_satisfaction min = 0 max = 100 }
+	if = {
+		limit = { check_variable = { ALG_kabyle_satisfaction > 69 } }
+		add_ideas = ALG_kabyle_content
+	}
+	else_if = {
+		limit = { check_variable = { ALG_kabyle_satisfaction < 25 } }
+		add_ideas = ALG_kabyle_unrest
+	}
+	else_if = {
+		limit = { check_variable = { ALG_kabyle_satisfaction < 40 } }
+		add_ideas = ALG_kabyle_discontent
+	}
+}
+
+ALG_update_hirak_gui_dirty_variable = {
+	if = { limit = { check_variable = { global.ALG_hirak_gui_dirty_update_var < 10000 } }
+		add_to_variable = { global.ALG_hirak_gui_dirty_update_var = 1 }
+	}
+	else = {
+		set_variable = { global.ALG_hirak_gui_dirty_update_var = 1 }
+	}
+}
+
+ALG_trigger_protest = {
+	# Guard: if all states are already swayed, skip the random_list entirely
+	if = {
+		limit = {
+			NOT = {
+				AND = {
+					379 = { has_state_flag = ALG_locals_swayed }
+					380 = { has_state_flag = ALG_locals_swayed }
+					381 = { has_state_flag = ALG_locals_swayed }
+					382 = { has_state_flag = ALG_locals_swayed }
+					383 = { has_state_flag = ALG_locals_swayed }
+					384 = { has_state_flag = ALG_locals_swayed }
+					385 = { has_state_flag = ALG_locals_swayed }
+					386 = { has_state_flag = ALG_locals_swayed }
+					387 = { has_state_flag = ALG_locals_swayed }
+				}
+			}
+		}
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 1.2
+						NOT = {
+							379 = {
+								has_state_flag = ALG_locals_swayed
+							}
+						}
+				}
+				modifier = {
+					factor = 0
+						379 = {
+							has_state_flag = ALG_locals_swayed
+						}
+					}
+				country_event = algerian_events.201 # Mzab falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 380 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 380 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.202 # Aurès falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 381 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 381 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.203 # Tamanrasset falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 382 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 382 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.204 # Grand Erg Occidental falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 383 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 383 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.205 # Algerian Atlas falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 384 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 384 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.206 # Constantinois falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 385 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 385 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.207 # Kabylia falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 386 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 386 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.208 # Algérois falls
+			}
+			10 = {
+				modifier = { factor = 1.2 NOT = { 387 = { has_state_flag = ALG_locals_swayed } } }
+				modifier = { factor = 0 387 = { has_state_flag = ALG_locals_swayed } }
+				country_event = algerian_events.209 # Oranais falls
+			}
+		}
+	}
+}

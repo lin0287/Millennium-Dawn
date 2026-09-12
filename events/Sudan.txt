@@ -1,4 +1,4 @@
-﻿add_namespace = Sudan
+add_namespace = Sudan
 add_namespace = SudanNews
 add_namespace = SouthSudan
 add_namespace = SouthSudanNews
@@ -15,9 +15,9 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			owns_state = 222
-			owns_state = 422
+		owns_any_state_of = {
+			222
+			422
 		}
 	}
 
@@ -90,8 +90,8 @@ country_event = {
 		hidden_effect = {
 			if = {
 				limit = {
-					any_other_country = {
-						original_tag = SUD
+					any_country_with_original_tag = {
+						original_tag_to_check = SUD
 						has_war_with = DAR
 					}
 				}
@@ -137,7 +137,6 @@ country_event = {
 	option = {
 		name = Sudan.2.b
 		ai_chance = { base = 20 }
-		log = "[GetDateText]: [THIS.GetName]: Sudan.2.b executed"
 	}
 
 }
@@ -241,7 +240,6 @@ country_event = {
 
 	option = {
 		name = Sudan.5.a
-		log = "[GetDateText]: [THIS.GetName]: Sudan.5.a executed"
 	}
 
 }
@@ -257,7 +255,6 @@ country_event = {
 
 	option = {
 		name = Sudan.6.a
-		log = "[GetDateText]: [THIS.GetName]: Sudan.6.a executed"
 	}
 
 }
@@ -276,7 +273,6 @@ news_event = {
 
 	option = {
 		name = SudanNews.1.a
-		log = "[GetDateText]: [This.GetName]: SudanNews.1.a executed"
 	}
 
 }
@@ -295,7 +291,6 @@ news_event = {
 
 	option = {
 		name = SudanNews.2.a
-		log = "[GetDateText]: [This.GetName]: SudanNews.2.a executed"
 	}
 
 }
@@ -384,7 +379,7 @@ country_event = {
 						end_wars = yes
 						end_civil_wars = no
 					}
-					country_event = { id = SouthSudan.12 }
+					country_event = SouthSudan.12
 				}
 				country_event = { id = SouthSudan.16 hours = 6 }
 			}
@@ -407,7 +402,7 @@ country_event = {
 							end_civil_wars = no
 						}
 					}
-					country_event = { id = SouthSudan.13 }
+					country_event = SouthSudan.13
 				}
 			}
 		}
@@ -431,7 +426,6 @@ country_event = {
 
 	option = {
 		name = SouthSudan.2.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudan.2.a executed"
 	}
 
 }
@@ -447,7 +441,6 @@ country_event = {
 
 	option = {
 		name = SouthSudan.3.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudan.3.a executed"
 	}
 
 }
@@ -469,7 +462,6 @@ country_event = {
 		}
 		set_temp_variable = { influence_target = FROM }
 		set_temp_variable = { percent_change = 10 }
-		set_temp_variable = { tag_index = ROOT }
 		change_influence_percentage = yes
 		transfer_units_fraction = {
 			target = FROM
@@ -503,7 +495,6 @@ country_event = {
 
 	option = {
 		name = SouthSudan.5.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudan.5.a executed"
 	}
 
 }
@@ -519,7 +510,6 @@ country_event = {
 
 	option = {
 		name = SouthSudan.6.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudan.6.a executed"
 	}
 
 }
@@ -545,7 +535,6 @@ country_event = {
 		}
 		set_temp_variable = { influence_target = FROM }
 		set_temp_variable = { percent_change = 10 }
-		set_temp_variable = { tag_index = ROOT }
 		change_influence_percentage = yes
 		effect_tooltip = {
 			transfer_state = 925
@@ -633,7 +622,6 @@ country_event = {
 
 	option = {
 		name = SouthSudan.9.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudan.9.a executed"
 	}
 
 }
@@ -649,7 +637,6 @@ country_event = {
 
 	option = {
 		name = SouthSudan.10.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudan.10.a executed"
 	}
 
 }
@@ -747,7 +734,6 @@ country_event = {
 		effect_tooltip = {
 			kill_country_leader = yes
 		}
-		set_ruling_leader = yes
 		set_leader = yes
 		set_variable = { current_term = 0 }
 	}
@@ -868,7 +854,6 @@ news_event = {
 
 	option = {
 		name = SouthSudanNews.1.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudanNews.1.a executed"
 	}
 
 }
@@ -886,7 +871,6 @@ news_event = {
 
 	option = {
 		name = SouthSudanNews.2.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudanNews.2.a executed"
 	}
 }
 
@@ -917,7 +901,6 @@ news_event = {
 
 	option = {
 		name = SouthSudanNews.3.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudanNews.3.a executed"
 	}
 }
 
@@ -948,7 +931,6 @@ news_event = {
 
 	option = {
 		name = SouthSudanNews.4.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudanNews.4.a executed"
 	}
 }
 
@@ -965,7 +947,6 @@ news_event = {
 
 	option = {
 		name = SouthSudanNews.5.a
-		log = "[GetDateText]: [THIS.GetName]: SouthSudanNews.5.a executed"
 	}
 
 }
@@ -981,7 +962,7 @@ country_event = {
 	trigger = {
 		NOT = { has_global_flag = war_in_darfur }
 		NOT = { country_exists = DAR }
-		is_in_array = { ruling_party = 12 }
+		check_variable = { ruling_party = 12 }
 		controls_province = 10739
 		controls_province = 11069
 		controls_province = 11075
@@ -1016,18 +997,17 @@ country_event = {
 		}
 	}
 
-	option = {
-		log = "[GetDateText]: [THIS.GetName]: Darfur.1.a executed"
-		# First uprising happens randomly in three possible places
+	immediate = {
+		log = "[GetDateText]: [THIS.GetName]: Darfur.1 executed"
 		random_list = {
 			10 = {
-				country_event = { id = Darfur.2 }	#Golo uprising
+				country_event = Darfur.2
 			}
 			10 = {
-				country_event = { id = Darfur.3 }	#Tine uprising
+				country_event = Darfur.3
 			}
 			10 = {
-				country_event = { id = Darfur.4 }	#El-Fasher uprising
+				country_event = Darfur.4
 			}
 		}
 		hidden_effect = { news_event = { id = DarfurNews.1 hours = 6 } }
@@ -1098,6 +1078,16 @@ country_event = {
 					}
 					country_event = { id = Darfur.4 days = 20 random_days = 20 }
 				}
+				1 = {
+					modifier = {
+						factor = 0
+						NOT = { has_country_flag = SUD_tine_uprising }
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_country_flag = SUD_el_fasher_uprising }
+					}
+				}
 			}
 		}
 	}
@@ -1152,25 +1142,33 @@ country_event = {
 		log = "[GetDateText]: [THIS.GetName]: Darfur.3.a executed"
 		set_country_flag = SUD_tine_uprising
 		send_equipment = {
-			equipment = Inf_equipment
+			equipment = infantry_weapons_type
 			amount = 1500
 			target = DAR
 		}
 		hidden_effect = {
-			random_list = {
-				10 = {
-					modifier = {
-						factor = 0
-						has_country_flag = SUD_golo_uprising
+			if = {
+				limit = {
+					OR = {
+						NOT = { has_country_flag = SUD_golo_uprising }
+						NOT = { has_country_flag = SUD_el_fasher_uprising }
 					}
-					country_event = { id = Darfur.2 days = 20 random_days = 20 }
 				}
-				10 = {
-					modifier = {
-						factor = 0
-						has_country_flag = SUD_el_fasher_uprising
+				random_list = {
+					10 = {
+						modifier = {
+							factor = 0
+							has_country_flag = SUD_golo_uprising
+						}
+						country_event = { id = Darfur.2 days = 20 random_days = 20 }
 					}
-					country_event = { id = Darfur.4 days = 20 random_days = 20 }
+					10 = {
+						modifier = {
+							factor = 0
+							has_country_flag = SUD_el_fasher_uprising
+						}
+						country_event = { id = Darfur.4 days = 20 random_days = 20 }
+					}
 				}
 			}
 		}
@@ -1232,9 +1230,11 @@ country_event = {
 		hidden_effect = {
 			if = {
 				limit = {
-					OR = {
-						has_country_flag = SUD_golo_uprising
-						has_country_flag = SUD_tine_uprising
+					NOT = {
+						OR = {
+							has_country_flag = SUD_golo_uprising
+							has_country_flag = SUD_tine_uprising
+						}
 					}
 				}
 				random_list = {
@@ -1272,7 +1272,6 @@ news_event = {
 
 	option = {
 		name = DarfurNews.1.a
-		log = "[GetDateText]: [THIS.GetName]: DarfurNews.1.a executed"
 	}
 }
 
@@ -1289,7 +1288,6 @@ news_event = {
 
 	option = {
 		name = DarfurNews.2.a
-		log = "[GetDateText]: [THIS.GetName]: DarfurNews.2.a executed"
 	}
 }
 
@@ -1306,6 +1304,5 @@ news_event = {
 
 	option = {
 		name = DarfurNews.3.a
-		log = "[GetDateText]: [THIS.GetName]: DarfurNews.3.a executed"
 	}
 }

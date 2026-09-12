@@ -1,4 +1,4 @@
-﻿division_template = {
+division_template = {
 	name = "Piyade Tugayi"
 
 	regiments = {
@@ -23,13 +23,19 @@ units = {
 
 instant_effect = {
 	add_equipment_to_stockpile = {
-		type = infantry_weapons
+		type = infantry_weapons_1
 		amount = 2000
 		producer = TUR
 	}
 	add_equipment_to_stockpile = {
-		type = command_control_equipment
+		type = cnc_equipment_1
 		amount = 160
 		producer = TUR
+	}
+	add_equipment_to_stockpile = {
+		type = Anti_tank_0
+		amount = 36
+		variant_name = "M40"
+		producer = USA
 	}
 }
