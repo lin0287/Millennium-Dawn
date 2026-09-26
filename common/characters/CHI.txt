@@ -12,7 +12,7 @@ characters = {
 			slot = army_chief
 			idea_token = fu_quanyou
 			traits = {
-				army_chief_logistics_1
+				army_chief_logistics_3
 			}
 			cost = 100
 			ai_will_do = {
@@ -236,7 +236,7 @@ characters = {
 			slot = high_command
 			idea_token = chen_bingde
 			traits = {
-				army_regrouping_2
+				army_regrouping_3
 			}
 			cost = 100
 			ai_will_do = {
@@ -811,7 +811,7 @@ characters = {
 			slot = navy_chief
 			idea_token = shi_yunsheng
 			traits = {
-				navy_chief_naval_aviation_1
+				navy_chief_naval_aviation_3
 			}
 			cost = 100
 			ai_will_do = {
