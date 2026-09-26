@@ -3388,6 +3388,12 @@ capital = 547
 	give_guarantee = NKO
 	#Sino-Pakistan friendship & defence cooperation
 	give_guarantee = PAK
+
+	# Lin Scientist
+
+	recruit_character = CHI_lin_zhi
+	recruit_character = CHI_tom_lin
+
 	#2000 Army chiefs
 	recruit_character = CHI_chi_haotian
 	recruit_character = CHI_cao_gangchuan

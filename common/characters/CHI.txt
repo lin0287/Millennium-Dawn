@@ -1749,4 +1749,44 @@ characters = {
 			coordination_skill = 3
 		}
 	}
+	CHI_lin_zhi = {
+		name = "Zhi Lin"
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/scientist/CHI_scientist_zhi_lin.dds"
+			}
+		}
+
+		scientist = {
+			traits = { 
+				scientist_trait_genius 
+				scientist_trait_bright 
+				scientist_trait_brilliant_theorist
+				scientist_trait_gifted_engineer
+			}
+			skills = {
+				specialization_air = 5
+			}
+		}
+	}
+	CHI_tom_lin = {
+		name = "Tom Lin"
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/scientist/CHI_scientist_zhi_lin.dds"
+			}
+		}
+
+		scientist = {
+			traits = { 
+				scientist_trait_genius 
+				scientist_trait_bright 
+				scientist_trait_brilliant_theorist
+				scientist_trait_gifted_engineer
+			}
+			skills = {
+				specialization_naval = 5
+			}
+		}
+	}
 }
