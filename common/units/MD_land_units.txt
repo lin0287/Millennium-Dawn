@@ -332,8 +332,70 @@ sub_units = {
 		transport = util_vehicle_equipment
 
 		need = {
-			Inf_equipment = 177
-			L_AT_Equipment = 8
+			infantry_weapons_type = 150
+			L_AT_Equipment = 15
+			AA_Equipment = 5
+			util_vehicle_type = 15
+		}
+		plains = { attack = 0.05 movement = 0.10 }
+		desert = { movement = 0.05 }
+		hills = { movement = -0.05 }
+		forest = { attack = -0.10 movement = -0.10 }
+		mountain = { attack = -0.20 defence = -0.10 movement = -0.15 }
+		jungle = { attack = -0.15 movement = -0.15 }
+		marsh = { attack = -0.10 movement = -0.15 }
+		urban = { defence = 0.05 }
+
+	}
+	Mech_Militia_Bat = {
+		sprite = MD_mechanized
+		map_icon_category = armored
+		ai_priority = 3
+		priority = 20
+		active = no
+		type = { mechanized }
+
+		group = militia
+
+		categories = {
+			category_front_line
+			category_all_infantry
+			category_army
+			category_all_armor
+			category_apc
+			category_militia
+			category_mech_inf
+		}
+
+		combat_width = 4
+
+		#Size Definitions
+		max_strength = 18
+		max_organisation = 43
+		default_morale = 0.10
+		manpower = 120
+		entrenchment = -0.2
+		suppression = 2
+
+		defense = -0.2
+		breakthrough = -0.2
+		air_attack = -0.2
+		ap_attack = -0.2
+
+		#Misc Abilities
+		training_time = 120
+		weight = 1
+
+		# this is what moves us and sets speed
+		transport = medium_tank_amphibious_chassis
+
+		essential = {
+			medium_tank_amphibious_chassis
+		}
+
+		need = {
+			infantry_weapons_type = 120
+			L_AT_Equipment = 12
 			AA_Equipment = 4
 			util_vehicle_equipment = 60
 		}
@@ -511,33 +573,30 @@ sub_units = {
 			attack = 0.2
 			defence = 0.3
 		}
-		desert = {
-			attack = -0.15
-		}
-		mountain = {
-			defence = 0.15
-		}
-		jungle = {
-			attack = -0.15
-		}
-		marsh = {
-			attack = -0.15
-		}
-		urban = {
-			attack = 0.1
-			defence = 0.3
-		}
-		supercity = {
-			defence = 0.2
-		}
-		forest = {
-			defence = 0.15
-		}
-		river = {
-			attack = -0.6
-		}
-		amphibious = {
-			attack = -0.2
+
+		combat_width = 4
+
+		#Size Definitions
+		max_strength = 16
+		max_organisation = 35
+		default_morale = 0.13
+		suppression = 2
+		manpower = 200
+		entrenchment = -0.15
+
+		#Misc Abilities
+		training_time = 120
+		weight = 2
+
+		transport = heavy_util_vehicle_type
+
+		need = {
+			infantry_weapons_type = 200
+			L_AT_Equipment = 20
+			AA_Equipment = 20
+			cnc_equipment_type = 20
+			heavy_util_vehicle_type = 20
+			H_AT_Equipment = 10
 		}
 	}
 	Mech_Inf_Bat = {
@@ -585,12 +644,11 @@ sub_units = {
 		}
 
 		need = {
-			Inf_equipment = 260
-			L_AT_Equipment = 12
-			H_AT_Equipment = 6
-			AA_Equipment = 8
-			command_control_equipment = 25
-			medium_tank_amphibious_chassis = 60
+			infantry_weapons_type = 160
+			L_AT_Equipment = 16
+			AA_Equipment = 16
+			cnc_equipment_type = 16
+			medium_tank_amphibious_chassis = 20
 		}
 
 		forest = {
@@ -672,10 +730,9 @@ sub_units = {
 		need = {
 			Inf_equipment = 213
 			L_AT_Equipment = 12
-			H_AT_Equipment = 6
-			AA_Equipment = 8
-			command_control_equipment = 25
-			medium_tank_flame_chassis = 60
+			AA_Equipment = 6
+			cnc_equipment_type = 12
+			medium_tank_flame_chassis = 20
 		}
 
 		plains = {
@@ -854,11 +911,12 @@ sub_units = {
 		can_be_parachuted = yes
 
 		need = {
-			Inf_equipment = 267
-			L_AT_Equipment = 12
-			AA_Equipment = 8
-			command_control_equipment = 35
-			util_vehicle_equipment = 60
+			infantry_weapons_type = 200
+			L_AT_Equipment = 10
+			AA_Equipment = 10
+			cnc_equipment_type = 20
+			util_vehicle_type = 20
+
 		}
 
 		hills = {
@@ -943,9 +1001,8 @@ sub_units = {
 		can_be_parachuted = yes
 
 		need = {
-			Inf_equipment = 260
-			L_AT_Equipment = 12
-			H_AT_Equipment = 6
+			infantry_weapons_type = 160
+			L_AT_Equipment = 8
 			AA_Equipment = 8
 			command_control_equipment = 35
 			medium_tank_amphibious_chassis = 60
@@ -1033,12 +1090,11 @@ sub_units = {
 		can_be_parachuted = yes
 
 		need = {
-			Inf_equipment = 213
-			L_AT_Equipment = 12
-			H_AT_Equipment = 6
-			AA_Equipment = 8
-			command_control_equipment = 35
-			medium_tank_flame_chassis = 60
+			infantry_weapons_type = 120
+			L_AT_Equipment = 6
+			AA_Equipment = 6
+			cnc_equipment_type = 12
+			medium_tank_flame_chassis = 20
 		}
 
 		plains = {
@@ -1295,10 +1351,10 @@ sub_units = {
 		transport = command_control_equipment
 
 		need = {
-			Inf_equipment = 250
-			L_AT_Equipment = 12
-			AA_Equipment = 8
-			command_control_equipment = 30
+			infantry_weapons_type = 200
+			L_AT_Equipment = 20
+			AA_Equipment = 10
+			cnc_equipment_type = 20
 		}
 
 		plains = {
@@ -1486,11 +1542,12 @@ sub_units = {
 		transport = util_vehicle_equipment
 
 		need = {
-			Inf_equipment = 267
-			L_AT_Equipment = 12
-			AA_Equipment = 8
-			command_control_equipment = 35
-			util_vehicle_equipment = 60
+			infantry_weapons_type = 200
+			L_AT_Equipment = 20
+			H_AT_Equipment = 10
+			AA_Equipment = 10
+			cnc_equipment_type = 20
+			util_vehicle_type = 20
 		}
 
 		hills = {
@@ -1575,9 +1632,9 @@ sub_units = {
 		transport = medium_tank_amphibious_chassis
 
 		need = {
-			Inf_equipment = 260
-			L_AT_Equipment = 12
-			H_AT_Equipment = 6
+			infantry_weapons_type = 160
+			L_AT_Equipment = 16
+			H_AT_Equipment = 10
 			AA_Equipment = 8
 			command_control_equipment = 35
 			medium_tank_amphibious_chassis = 60
@@ -1663,12 +1720,12 @@ sub_units = {
 		transport = medium_tank_flame_chassis
 
 		need = {
-			Inf_equipment = 213
+			infantry_weapons_type = 120
 			L_AT_Equipment = 12
-			H_AT_Equipment = 6
-			AA_Equipment = 8
-			command_control_equipment = 35
-			medium_tank_flame_chassis = 60
+			H_AT_Equipment = 10
+			AA_Equipment = 6
+			cnc_equipment_type = 20
+			medium_tank_flame_chassis = 20
 		}
 
 		plains = {
@@ -1760,9 +1817,16 @@ sub_units = {
 
 		transport = heavy_tank_amphibious_chassis
 
-		plains = {
-			attack = -0.3
-			defence = -0.2
+	}
+	air_assault_arty_Bat = {
+		sprite = MD_infantry_2
+		map_icon_category = infantry
+		ai_priority = 0
+		priority = 1
+		active = no
+
+		type = {
+			artillery
 		}
 		desert = {
 			attack = -0.3
@@ -2238,6 +2302,57 @@ sub_units = {
 		supply_consumption = 0.06
 
 		transport = medium_tank_destroyer_chassis
+
+	}
+	A_L_arm_Bat = {
+		sprite = MD_medium_armor
+		map_icon_category = armored
+		special_forces = yes
+		priority = 20
+		active = no
+		ai_priority = 3
+		type = {
+			armor
+			anti_tank
+			mechanized
+		}
+
+		group = airborne_infantry
+
+		categories = {
+			category_tanks
+			category_front_line
+			category_all_armor
+			category_asg
+			category_army
+			category_non_militia
+			category_mot_airborne
+			category_arm_airborne
+		}
+
+		combat_width = 4
+
+		need = {
+			medium_tank_destroyer_chassis = 24
+			cnc_equipment_type = 24
+		}
+		plains = { attack = 0.15 defence = 0.10 movement = 0.10 }
+		desert = { attack = 0.15 movement = 0.10 }
+		hills = { attack = -0.05 movement = -0.05 }
+		forest = { attack = -0.20 movement = -0.15 }
+		mountain = { attack = -0.30 defence = -0.20 movement = -0.20 }
+		jungle = { attack = -0.25 defence = -0.15 movement = -0.20 }
+		marsh = { attack = -0.15 movement = -0.20 }
+		urban = { attack = -0.10 }
+
+		manpower = 120
+		max_organisation = 17
+		max_strength = 8
+		default_morale = 0.05
+		training_time = 180
+		weight = 1.5
+		suppression = 2.5
+
 		can_be_parachuted = yes
 
 		plains = {
@@ -3033,7 +3148,8 @@ sub_units = {
 
 		need = {
 			artillery_equipment = 18
-			command_control_equipment = 5
+			cnc_equipment_type = 18
+			util_vehicle_type = 24
 		}
 
 		manpower = 240
@@ -3046,7 +3162,7 @@ sub_units = {
 
 		supply_consumption = 0.06
 
-		transport = artillery_equipment
+		transport = util_vehicle_type
 
 		plains = {
 			attack = 0.1
@@ -3150,7 +3266,8 @@ sub_units = {
 
 		need = {
 			medium_tank_artillery_chassis = 18
-			command_control_equipment = 5
+			cnc_equipment_type = 18
+			util_vehicle_type = 6
 		}
 
 		essential = {
@@ -3249,8 +3366,8 @@ sub_units = {
 
 		transport = medium_tank_artillery_chassis
 	}
-	SP_R_Arty_Bat = { #Rev 3 - has large counter
-		sprite = MD4_medium_armor
+	SP_R_arty_Bat = { #Rev 3 - has large counter
+		sprite = MD_medium_armor
 		map_icon_category = armored
 		ai_priority = 0
 		priority = 5
@@ -3273,7 +3390,8 @@ sub_units = {
 
 		need = {
 			medium_tank_rocket_chassis = 18
-			command_control_equipment = 5
+			cnc_equipment_type = 18
+			util_vehicle_type = 6
 		}
 
 		essential = {
@@ -3396,7 +3514,8 @@ sub_units = {
 
 		need = {
 			medium_tank_aa_chassis = 18
-			command_control_equipment = 6
+			cnc_equipment_type = 18
+			util_vehicle_type = 6
 		}
 		manpower = 120
 		max_organisation = 3
@@ -3475,14 +3594,20 @@ sub_units = {
 			category_army
 		}
 
-		combat_width = 1
+		combat_width = 3
 
 		#Size Definitions
-		max_strength = 2
-		max_organisation = 20
-		default_morale = 0.1
-		manpower = 250
-		training_time = 120
+		max_strength = 15
+		max_organisation = 40
+		default_morale = 0.16
+		manpower = 150
+		entrenchment = 0.1
+		defense = 0.5
+		breakthrough = 0.2
+		soft_attack = 0.2
+		hard_attack = 0.2
+		ap_attack = 0.5
+		suppression = 1
 
 		#Misc Abilities
 		weight = 0.1
@@ -3563,8 +3688,10 @@ sub_units = {
 		}
 
 		need = {
-			heavy_tank_amphibious_chassis = 20
-			command_control_equipment = 10
+			infantry_weapons_type = 225
+			L_AT_Equipment = 15
+			AA_Equipment = 8
+			cnc_equipment_type = 15
 		}
 
 		same_support_type = support
@@ -3830,11 +3957,18 @@ sub_units = {
 		combat_width = 3
 
 		#Size Definitions
-		max_strength = 50
-		max_organisation = 40
-		default_morale = 0.15
-		manpower = 750
-		entrenchment = -0.3
+		max_strength = 20
+		max_organisation = 35
+		default_morale = 0.16
+		manpower = 200
+		entrenchment = 0.1
+		defense = 1
+		breakthrough = 2
+		soft_attack = 1.5
+		hard_attack = 1.5
+		ap_attack = 1
+		air_attack = 1
+		suppression = 1
 
 		#Misc Abilities
 		training_time = 120
@@ -3844,10 +3978,10 @@ sub_units = {
 		transport = command_control_equipment
 
 		need = {
-			Inf_equipment = 250
-			L_AT_Equipment = 12
-			AA_Equipment = 8
-			command_control_equipment = 20
+			infantry_weapons_type = 400
+			L_AT_Equipment = 20
+			AA_Equipment = 10
+			cnc_equipment_type = 20
 		}
 
 		plains = {
@@ -3888,6 +4022,68 @@ sub_units = {
 		}
 	}
 
+		can_be_parachuted = yes
+		can_exfiltrate_from_coast = yes
+		mountaineers = yes
+		rangers = yes
+		marines = yes
+
+		type = {
+			infantry
+		}
+
+		group = special_forces
+
+		categories = {
+			category_front_line
+			category_conventional_infantry
+			category_special_forces
+			category_light_infantry
+			category_all_infantry
+			category_army
+			category_non_militia
+			category_foot_inf
+		}
+
+		combat_width = 5
+
+		#Size Definitions
+		max_strength = 20
+		max_organisation = 35
+		default_morale = 0.16
+		manpower = 200
+		entrenchment = 0.1
+		defense = 1
+		breakthrough = 2
+		soft_attack = 1.5
+		hard_attack = 1.5
+		ap_attack = 1
+		air_attack = 1
+		suppression = 1
+
+		#Misc Abilities
+		training_time = 200
+		weight = 0.5
+
+		transport = cnc_equipment_type
+
+		need = {
+			infantry_weapons_type = 400
+			L_AT_Equipment = 20
+			AA_Equipment = 10
+			cnc_equipment_type = 20
+		}
+		plains = { attack = 0.05 }
+		desert = { attack = 0.10 movement = 0.05 }
+		hills = { attack = 0.10 defence = 0.10 }
+		forest = { attack = 0.15 defence = 0.15 }
+		mountain = { attack = 0.15 defence = 0.15 movement = 0.05 }
+		jungle = { attack = 0.15 defence = 0.15 }
+		marsh = { attack = 0.10 defence = 0.10 }
+		urban = { attack = 0.15 defence = 0.15 }
+		amphibious = { attack = 0.05 }
+
+	}
 	#Needed for Operations - DO NOT TOUCH
 	fake_intel_unit = {
 		sprite = infantry
