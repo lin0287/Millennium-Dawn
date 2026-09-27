@@ -9,7 +9,7 @@ ideas = {
 				production_factory_max_efficiency_factor = 1.0
 				consumer_goods_factor = -0.8
 				research_speed_factor = 15.0
-				productivity_growth_modifier = 12
+				productivity_growth_modifier = 100
 			}
 		}
 
