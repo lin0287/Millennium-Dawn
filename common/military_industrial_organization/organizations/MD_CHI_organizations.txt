@@ -5010,7 +5010,7 @@ CHI_cetc_manufacturer = {
 	task_capacity = 18
 
 	equipment_type = {
-		cnc_equipment
+		cnc_equipment_type
 		mio_cat_eq_only_uav
 		medium_tank_rocket_chassis
 		medium_tank_aa_chassis
