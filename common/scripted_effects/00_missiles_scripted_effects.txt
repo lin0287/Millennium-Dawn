@@ -261,6 +261,12 @@ calculate_production_vars_10 = {
 		}
 	}
 
+	if = {
+		limit = { has_idea = lin_enterprises }
+		divide_variable = { var = var_gui_prod_10_days value = 40 }
+		clamp_variable = { var = var_gui_prod_10_days min = 1 max = @prod_days_math_max }
+	}
+
 	set_variable = {
 		var_space_week_10 = {
 			value = var_gui_prod_10_price_total
@@ -305,6 +311,12 @@ calculate_production_vars_11 = {
 			round = yes
 			clamp = { min = 1 max = @prod_days_math_max }
 		}
+	}
+
+	if = {
+		limit = { has_idea = lin_enterprises }
+		divide_variable = { var = var_gui_prod_11_days value = 40 }
+		clamp_variable = { var = var_gui_prod_11_days min = 1 max = @prod_days_math_max }
 	}
 
 	set_variable = {
@@ -353,6 +365,12 @@ calculate_production_vars_12 = {
 		}
 	}
 
+	if = {
+		limit = { has_idea = lin_enterprises }
+		divide_variable = { var = var_gui_prod_12_days value = 40 }
+		clamp_variable = { var = var_gui_prod_12_days min = 1 max = @prod_days_math_max }
+	}
+
 	set_variable = {
 		var_space_week_12 = {
 			value = var_gui_prod_12_price_total
@@ -399,6 +417,12 @@ calculate_production_vars_13 = {
 		}
 	}
 
+	if = {
+		limit = { has_idea = lin_enterprises }
+		divide_variable = { var = var_gui_prod_13_days value = 40 }
+		clamp_variable = { var = var_gui_prod_13_days min = 1 max = @prod_days_math_max }
+	}
+
 	set_variable = {
 		var_space_week_13 = {
 			value = var_gui_prod_13_price_total
@@ -443,6 +467,12 @@ calculate_production_vars_14 = {
 			round = yes
 			clamp = { min = 1 max = @prod_days_math_max }
 		}
+	}
+
+	if = {
+		limit = { has_idea = lin_enterprises }
+		divide_variable = { var = var_gui_prod_14_days value = 40 }
+		clamp_variable = { var = var_gui_prod_14_days min = 1 max = @prod_days_math_max }
 	}
 
 	set_variable = {
